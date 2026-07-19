@@ -304,7 +304,7 @@ const loveMessages=[
 
 "🌹 Forever starts with you.",
 
-"💌 Amine loves you more than words."
+"💌 Amine loves you more than words." ,
 
 "❤️ Every day with you feels like a beautiful gift. Thank you for bringing happiness, warmth, and love into my life.",
 
@@ -522,6 +522,3 @@ status.innerHTML="❌ opss Error sending";
 }
 
 });
-document.getElementById("sendMessageBtn").onclick = function(){
-    alert("Button works ❤️");
-};
