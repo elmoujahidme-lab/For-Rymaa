@@ -305,7 +305,6 @@ const loveMessages=[
 "🌹 Forever starts with you.",
 
 "💌 Amine loves you more than words."
-const loveMessages=[
 
 "❤️ Every day with you feels like a beautiful gift. Thank you for bringing happiness, warmth, and love into my life.",
 
@@ -396,7 +395,7 @@ msg.innerText
 );
 createHearts();
 
-},600);
+},100);
 
 waiting=true;
 
