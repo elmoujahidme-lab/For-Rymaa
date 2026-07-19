@@ -419,3 +419,54 @@ function sendTelegram(message){
     });
 
 }
+// ===============================
+// Ryme Message + Password
+// ===============================
+
+const sendMessageBtn = document.getElementById("sendMessageBtn");
+const rymeMessage = document.getElementById("rymeMessage");
+const passwordInput = document.getElementById("passwordInput");
+const sendStatus = document.getElementById("sendStatus");
+
+
+if(sendMessageBtn){
+
+sendMessageBtn.onclick = function(){
+
+    const message = rymeMessage.value;
+    const password = passwordInput.value;
+
+
+    if(password !== "ryma"){
+
+        sendStatus.innerHTML = "❌ Wrong password";
+        return;
+
+    }
+
+
+    if(message.trim() === ""){
+
+        sendStatus.innerHTML = "✍️ Write a message";
+        return;
+
+    }
+
+
+    fetch(
+    "https://eotrmolcy1kaxd4.m.pipedream.net/?message=" 
+    + encodeURIComponent(
+        "💌 Message from Ryme ❤️\n\n" + message
+    )
+    );
+
+
+    sendStatus.innerHTML = "✅ Sent with love ❤️";
+
+
+    rymeMessage.value="";
+    passwordInput.value="";
+
+};
+
+}
