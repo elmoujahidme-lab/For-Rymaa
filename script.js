@@ -395,7 +395,7 @@ msg.innerText
 );
 createHearts();
 
-},400);
+},600);
 
 waiting=true;
 
