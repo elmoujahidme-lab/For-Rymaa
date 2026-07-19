@@ -284,3 +284,118 @@ setInterval(()=>{
         Math.random()*100+"% "+Math.random()*100+"%";
 
 },5000);
+const loveMessages=[
+
+"❤️ Every day with you is my favorite day.",
+
+"🌹 You are my safest place.",
+
+"💖 Thank you for being in my life.",
+
+"🥹 Your smile makes everything better.",
+
+"✨ I choose you. Every single day.",
+
+"💕 You are my favorite notification.",
+
+"🌸 I hope today makes you smile.",
+
+"❤️ You are my little miracle.",
+
+"🌹 Forever starts with you.",
+
+"💌 Amine loves you more than words."
+
+];
+
+const gift=document.getElementById("giftBox");
+
+const msg=document.getElementById("giftMessage");
+
+const timer=document.getElementById("countdown");
+
+let waiting=false;
+
+gift.onclick=function(){
+
+if(waiting)return;
+
+gift.classList.add("openGift");
+
+setTimeout(()=>{
+
+gift.classList.remove("openGift");
+
+gift.innerHTML="💝";
+
+msg.innerHTML=loveMessages[Math.floor(Math.random()*loveMessages.length)];
+
+createHearts();
+
+},600);
+
+waiting=true;
+
+let t=60;
+
+timer.innerHTML="Next gift in 60s";
+
+let x=setInterval(()=>{
+
+t--;
+
+timer.innerHTML="Next gift in "+t+"s";
+
+if(t<=0){
+
+clearInterval(x);
+
+gift.innerHTML="🎁";
+
+timer.innerHTML="";
+
+waiting=false;
+
+}
+
+},1000);
+
+};
+
+function createHearts(){
+
+for(let i=0;i<25;i++){
+
+let h=document.createElement("div");
+
+h.innerHTML="❤️";
+
+h.style.position="fixed";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.top="100vh";
+
+h.style.fontSize=(20+Math.random()*20)+"px";
+
+h.style.transition="3s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+
+h.style.transform="translateY(-120vh)";
+
+h.style.opacity="0";
+
+},50);
+
+setTimeout(()=>{
+
+h.remove();
+
+},3000);
+
+}
+
+}
