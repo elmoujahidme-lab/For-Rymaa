@@ -399,3 +399,20 @@ h.remove();
 }
 
 }
+// ===============================
+// Telegram Notification - Love Box
+// ===============================
+
+const telegramURL = "https://eotrmolcy1kaxd4.m.pipedream.net/";
+
+function sendTelegram(message){
+
+    fetch(telegramURL + "?message=" + encodeURIComponent(message))
+    .then(()=>{
+        console.log("Telegram sent");
+    })
+    .catch(error=>{
+        console.log(error);
+    });
+
+}
