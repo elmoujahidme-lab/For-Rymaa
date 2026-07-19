@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Ryme ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="music/bali-maak.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating Hearts -->
+<div id="hearts"></div>
+
+<!-- ===================== -->
+<!-- Welcome Page -->
+<!-- ===================== -->
+
+<section id="welcome" class="page active">
+
+    <div class="welcome-box">
+
+        <h1>For Ryme ❤️</h1>
+
+        <p class="subtitle">
+            Today...
+            <br>
+            How do you feel?
+        </p>
+
+        <button id="happyBtn" class="main-btn">
+            🌸 Happy
+        </button>
+
+        <button id="sadBtn" class="main-btn dark">
+            ⌚ Need Time
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ===================== -->
+<!-- HAPPY PAGE -->
+<!-- ===================== -->
+
+<section id="happy" class="page">
+
+<h1>I'm Happy 🌸</h1>
+
+<p id="loveMessage"></p>
+
+<div class="counter">
+
+<h2>Since We Met ❤️</h2>
+
+<div id="timer">
+
+<span id="days">0</span> Days
+
+<span id="hours">0</span> Hours
+
+<span id="minutes">0</span> Minutes
+
+</div>
+
+</div>
+
+<h2>Our Memories 📸</h2>
+
+<div class="gallery">
+
+<img src="photos/1.jpg">
+
+<img src="photos/2.jpg">
+
+<img src="photos/3.jpg">
+
+<img src="photos/4.jpg">
+
+<img src="photos/5.jpg">
+
+<img src="photos/6.jpg">
+
+</div>
+
+<div class="music">
+
+<button id="playMusic">
+
+🎵 Play Our Song
+
+</button>
+
+</div>
+
+<div class="activities">
+
+<div class="card">
+
+❤️ I Love You More Every Day
+
+</div>
+
+<div class="card">
+
+🌹 Thank You For Existing
+
+</div>
+
+<div class="card">
+
+😊 You Make My World Better
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===================== -->
+<!-- SAD PAGE -->
+<!-- ===================== -->
+
+<section id="sad" class="page darkPage">
+
+<div class="typewriter">
+
+<p>
+
+If you are here...
+
+maybe you're still giving me
+
+a chance to speak.
+
+</p>
+
+</div>
+
+<button id="continueBtn" class="main-btn">
+
+Continue
+
+</button>
+
+</section>
+
+<!-- ===================== -->
+<!-- Letter -->
+<!-- ===================== -->
+
+<section id="letter" class="page darkPage">
+
+<h1>💌</h1>
+
+<div class="letter">
+
+<h2>To Ryme</h2>
+
+<p>
+
+I'm not asking you to forgive me immediately.
+
+I just want you to know
+
+that I truly regret hurting you.
+
+You deserve honesty,
+
+respect,
+
+and peace.
+
+If I could go back,
+
+I would choose different words.
+
+Because seeing you hurt
+
+hurts me too.
+
+Thank you for reading this.
+
+❤️
+
+</p>
+
+</div>
+
+<button id="next1" class="main-btn">
+
+Next
+
+</button>
+
+</section>
+
+<!-- ===================== -->
+<!-- Broken Heart -->
+<!-- ===================== -->
+
+<section id="heartGame" class="page darkPage">
+
+<h1>💔</h1>
+
+<h2>Can You Fix My Heart?</h2>
+
+<p>
+
+Tap the broken heart.
+
+</p>
+
+<div id="brokenHeart">
+
+💔
+
+</div>
+
+<p id="heartText"></p>
+
+<button id="next2" class="main-btn">
+
+Continue
+
+</button>
+
+</section>
+
+<!-- ===================== -->
+<!-- Lessons -->
+<!-- ===================== -->
+
+<section id="lessons" class="page">
+
+<h1>Things I Learned</h1>
+
+<div class="lesson">
+
+❤️ Words can hurt.
+
+</div>
+
+<div class="lesson">
+
+❤️ Love needs patience.
+
+</div>
+
+<div class="lesson">
+
+❤️ Actions matter more than promises.
+
+</div>
+
+<div class="lesson">
+
+❤️ I never want to lose you.
+
+</div>
+
+<button id="next3" class="main-btn">
+
+Continue
+
+</button>
+
+</section>
+
+<!-- ===================== -->
+<!-- Memories -->
+<!-- ===================== -->
+
+<section id="memories" class="page">
+
+<h1>Our Memories 📸</h1>
+
+<div class="gallery">
+
+<img src="photos/7.jpg">
+
+<img src="photos/8.jpg">
+
+<img src="photos/9.jpg">
+
+<img src="photos/10.jpg">
+
+<img src="photos/11.jpg">
+
+<img src="photos/12.jpg">
+
+</div>
+
+<button id="next4" class="main-btn">
+
+Last Page
+
+</button>
+
+</section>
+
+<!-- ===================== -->
+<!-- Final -->
+<!-- ===================== -->
+
+<section id="final" class="page darkPage">
+
+<h1>
+
+I Love You
+
+Ryme ❤️
+
+</h1>
+
+<p>
+
+I won't stop trying.
+
+Not because I have to...
+
+Because you're worth it.
+
+</p>
+
+<div class="finalHeart">
+
+❤️
+
+</div>
+
+<p>
+
+Always.
+
+Forever.
+
+</p>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>

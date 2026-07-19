@@ -1,0 +1,726 @@
+/* ===========================
+   GLOBAL STYLE
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#fff8f8;
+    --white:#ffffff;
+    --pink:#ff4f8b;
+    --pink2:#ff85ad;
+    --light:#ffe8ef;
+    --dark:#1e1e1e;
+    --gray:#777;
+    --shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:#444;
+    overflow-x:hidden;
+
+}
+
+/* ===========================
+   Floating Hearts
+=========================== */
+
+#hearts{
+
+    position:fixed;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    pointer-events:none;
+    z-index:1;
+
+}
+
+.heart{
+
+    position:absolute;
+    color:#ff5c8d;
+    animation:float 8s linear infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(100vh) scale(.5);
+opacity:0;
+
+}
+
+10%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120px) rotate(360deg);
+opacity:0;
+
+}
+
+}
+
+/* ===========================
+   PAGE
+=========================== */
+
+.page{
+
+display:none;
+min-height:100vh;
+padding:30px;
+animation:fade .6s ease;
+position:relative;
+z-index:10;
+
+}
+
+.page.active{
+
+display:block;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================
+   WELCOME
+=========================== */
+
+#welcome{
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+}
+
+.welcome-box{
+
+background:white;
+padding:40px 25px;
+border-radius:30px;
+box-shadow:var(--shadow);
+max-width:420px;
+width:100%;
+
+}
+
+.welcome-box h1{
+
+font-size:40px;
+color:var(--pink);
+margin-bottom:20px;
+
+}
+
+.subtitle{
+
+font-size:20px;
+line-height:35px;
+color:#666;
+margin-bottom:35px;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.main-btn{
+
+width:100%;
+padding:18px;
+margin-top:18px;
+border:none;
+border-radius:50px;
+background:linear-gradient(135deg,var(--pink),var(--pink2));
+color:white;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+transition:.35s;
+box-shadow:0 10px 25px rgba(255,79,139,.25);
+
+}
+
+.main-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+.dark{
+
+background:#333;
+
+}
+
+/* ===========================
+   TITLES
+=========================== */
+
+h1{
+
+text-align:center;
+color:var(--pink);
+margin-bottom:25px;
+
+}
+
+h2{
+
+margin:25px 0 15px;
+color:var(--pink);
+
+}
+
+/* ===========================
+   HAPPY PAGE
+=========================== */
+
+#happy{
+
+max-width:450px;
+margin:auto;
+
+}
+
+#loveMessage{
+
+background:white;
+padding:22px;
+border-radius:20px;
+box-shadow:var(--shadow);
+font-size:18px;
+line-height:32px;
+text-align:center;
+margin-bottom:30px;
+
+}
+
+/* ===========================
+   COUNTER
+=========================== */
+
+.counter{
+
+background:white;
+padding:25px;
+border-radius:25px;
+box-shadow:var(--shadow);
+text-align:center;
+margin-bottom:30px;
+
+}
+
+#timer{
+
+display:flex;
+justify-content:space-around;
+margin-top:15px;
+flex-wrap:wrap;
+gap:15px;
+
+}
+
+#timer span{
+
+display:block;
+font-size:28px;
+font-weight:bold;
+color:var(--pink);
+
+}
+
+/* ===========================
+   GALLERY
+=========================== */
+
+.gallery{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+
+}
+
+.gallery img{
+
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:18px;
+transition:.35s;
+cursor:pointer;
+box-shadow:var(--shadow);
+
+}
+
+.gallery img:hover{
+
+transform:scale(1.05);
+
+}
+
+/* ===========================
+   MUSIC
+=========================== */
+
+.music{
+
+margin-top:30px;
+
+}
+
+#playMusic{
+
+width:100%;
+padding:16px;
+border:none;
+border-radius:40px;
+background:#ff4f8b;
+color:white;
+font-size:17px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+
+}
+
+#playMusic:hover{
+
+background:#ff2e73;
+
+}
+/* ===========================
+   DARK PAGES
+=========================== */
+
+.darkPage{
+
+    background:linear-gradient(180deg,#111,#1c1c1c);
+    color:white;
+    min-height:100vh;
+
+}
+
+.darkPage h1,
+.darkPage h2{
+
+    color:#ff7aa8;
+
+}
+
+/* ===========================
+   TYPEWRITER
+=========================== */
+
+.typewriter{
+
+    max-width:450px;
+    margin:80px auto;
+    text-align:center;
+
+}
+
+.typewriter p{
+
+    font-size:22px;
+    line-height:40px;
+    color:white;
+    animation:fadeText 2s ease;
+
+}
+
+@keyframes fadeText{
+
+    from{
+
+        opacity:0;
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===========================
+   LETTER
+=========================== */
+
+.letter{
+
+    background:white;
+    color:#444;
+    border-radius:25px;
+    padding:30px;
+    margin:25px auto;
+    max-width:500px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.letter h2{
+
+    text-align:center;
+    margin-bottom:20px;
+
+}
+
+.letter p{
+
+    line-height:34px;
+    font-size:17px;
+
+}
+
+/* ===========================
+   HEART GAME
+=========================== */
+
+#heartGame{
+
+    text-align:center;
+
+}
+
+#brokenHeart{
+
+    font-size:90px;
+    margin:40px auto;
+    cursor:pointer;
+    transition:.4s;
+
+}
+
+#brokenHeart:hover{
+
+    transform:scale(1.15);
+
+}
+
+#heartText{
+
+    font-size:20px;
+    color:#ff93b8;
+    margin-top:20px;
+
+}
+
+/* ===========================
+   LESSONS
+=========================== */
+
+.lesson{
+
+    background:white;
+    margin:18px 0;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    font-size:18px;
+
+}
+
+/* ===========================
+   ACTIVITIES
+=========================== */
+
+.activities{
+
+    margin-top:35px;
+
+}
+
+.card{
+
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:15px;
+    text-align:center;
+    font-size:18px;
+    box-shadow:var(--shadow);
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/* ===========================
+   FINAL PAGE
+=========================== */
+
+#final{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+}
+
+#final h1{
+
+    font-size:45px;
+    line-height:60px;
+
+}
+
+#final p{
+
+    margin-top:25px;
+    font-size:20px;
+    line-height:35px;
+    color:white;
+
+}
+
+.finalHeart{
+
+    font-size:100px;
+    margin:40px 0;
+    animation:beat 1.2s infinite;
+
+}
+
+@keyframes beat{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.25);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ===========================
+   IMAGE MODAL
+=========================== */
+
+.gallery img{
+
+    transition:.35s;
+
+}
+
+.gallery img:active{
+
+    transform:scale(.95);
+
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#ff7aa8;
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f4f4f4;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.welcome-box{
+
+padding:35px 20px;
+
+}
+
+.welcome-box h1{
+
+font-size:34px;
+
+}
+
+.subtitle{
+
+font-size:18px;
+
+}
+
+.gallery{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.gallery img{
+
+height:150px;
+
+}
+
+#timer{
+
+flex-direction:column;
+
+}
+
+#timer span{
+
+font-size:32px;
+
+}
+
+.main-btn{
+
+font-size:17px;
+
+}
+
+.letter{
+
+padding:22px;
+
+}
+
+.letter p{
+
+font-size:16px;
+
+line-height:30px;
+
+}
+
+.finalHeart{
+
+font-size:85px;
+
+}
+
+}
+
+/* ===========================
+   SMALL PHONES
+=========================== */
+
+@media(max-width:420px){
+
+.gallery img{
+
+height:135px;
+
+}
+
+.welcome-box{
+
+padding:28px 18px;
+
+}
+
+.main-btn{
+
+padding:16px;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+h2{
+
+font-size:22px;
+
+}
+
+}
+
+/* ===========================
+   SMOOTH ANIMATION
+=========================== */
+
+button,
+img,
+.card,
+.lesson{
+
+transition:all .3s ease;
+
+}
