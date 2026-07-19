@@ -799,3 +799,101 @@ color:#888;
 font-size:14px;
 
 }
+.message-box{
+
+margin:30px auto;
+padding:25px;
+max-width:350px;
+
+background:rgba(255,255,255,0.15);
+
+border-radius:25px;
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+text-align:center;
+
+}
+
+
+.message-box h2{
+
+color:#ff4d88;
+
+}
+
+
+.message-box textarea{
+
+width:90%;
+height:120px;
+
+border:none;
+
+border-radius:20px;
+
+padding:15px;
+
+font-size:15px;
+
+resize:none;
+
+outline:none;
+
+}
+
+
+.message-box input{
+
+width:80%;
+
+padding:12px;
+
+margin:15px;
+
+border-radius:20px;
+
+border:none;
+
+text-align:center;
+
+}
+
+
+.message-box button{
+
+background:#ff4d88;
+
+color:white;
+
+border:none;
+
+padding:12px 30px;
+
+border-radius:30px;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+.message-box button:hover{
+
+transform:scale(1.05);
+
+}
+
+
+#sendStatus{
+
+margin-top:15px;
+
+font-weight:bold;
+
+}
