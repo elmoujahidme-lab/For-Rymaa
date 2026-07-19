@@ -305,6 +305,67 @@ const loveMessages=[
 "🌹 Forever starts with you.",
 
 "💌 Amine loves you more than words."
+const loveMessages=[
+
+"❤️ Every day with you feels like a beautiful gift. Thank you for bringing happiness, warmth, and love into my life.",
+
+"🌹 You are not just a person I love, you are the place where my heart feels safe and peaceful.",
+
+"💖 Thank you for every smile, every moment, and every little thing you do that makes my world brighter.",
+
+"🥹 Your smile has a special power. It can turn my worst days into moments I want to remember forever.",
+
+"✨ I choose you today, tomorrow, and every day after. My heart always finds its way back to you.",
+
+"💕 You are my favorite message, my favorite thought, and the person I want to share my beautiful moments with.",
+
+"🌸 I hope you always remember how special you are and how much happiness your existence brings to my life.",
+
+"❤️ You are my little miracle, the beautiful surprise that made my life more meaningful.",
+
+"🌹 Forever is a long time, but I would still choose to spend every moment of it with you.",
+
+"💌 Amine loves you more than words can explain. You are a precious part of my heart.",
+
+"🌙 Even when we are far apart, you are always close to my heart and always in my thoughts.",
+
+"💗 You make ordinary days feel magical just by being yourself. Never forget how amazing you are.",
+
+"🌷 Your happiness matters to me more than anything. I always want to see you smiling.",
+
+"❤️ If I could give you one thing, I would give you the ability to see yourself through my eyes, so you could understand how beautiful you truly are.",
+
+"✨ You are the reason behind many of my smiles and one of the most beautiful chapters of my story.",
+
+"🌹 No matter what happens, I will always appreciate the moments, memories, and feelings we share together.",
+
+"💖 Your voice, your smile, and your presence have a way of making everything feel better.",
+
+"🥰 I hope you know that someone out there is always thinking about you and wishing you happiness.",
+
+"🌸 You are more than a dream. You are a beautiful reality that I am grateful for every day.",
+
+"❤️ Loving you is not just a feeling, it is a choice I happily make again and again.",
+
+"💌 Every memory with you is something I keep carefully in my heart because you make moments special.",
+
+"🌹 You deserve all the love, kindness, and happiness that this world can offer.",
+
+"✨ Thank you for being yourself. The real you is the person my heart admires the most.",
+
+"💖 Sometimes I just stop and smile because I realize how lucky I am to have someone like you in my life.",
+
+"🌙 You are the calm in my chaos, the light in my dark moments, and the smile in my heart.",
+
+"❤️ I don't need perfect days. I just need beautiful moments with you.",
+
+"🌷 Your presence makes my life softer, happier, and more beautiful than before.",
+
+"🥹 I hope every day reminds you that you are loved, appreciated, and never forgotten.",
+
+"💗 You are my favorite person, my sweetest thought, and a beautiful reason to keep smiling.",
+
+"💌 No matter how many words I write, they will never be enough to describe how special you are to me."
 
 ];
 
@@ -339,9 +400,9 @@ createHearts();
 
 waiting=true;
 
-let t=60;
+let t=10;
 
-timer.innerHTML="Next gift in 60s";
+timer.innerHTML="Next gift in 10s";
 
 let x=setInterval(()=>{
 
@@ -452,7 +513,7 @@ passwordBox.value="";
 })
 .catch(()=>{
 
-status.innerHTML="❌ Error sending";
+status.innerHTML="❌ opss Error sending";
 
 });
 
