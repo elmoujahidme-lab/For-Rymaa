@@ -403,70 +403,62 @@ h.remove();
 
 }
 // ===============================
-// Telegram Notification - Love Box
-// ===============================
-
-const telegramURL = "https://eotrmolcy1kaxd4.m.pipedream.net/";
-
-function sendTelegram(message){
-
-    fetch(telegramURL + "?message=" + encodeURIComponent(message))
-    .then(()=>{
-        console.log("Telegram sent");
-    })
-    .catch(error=>{
-        console.log(error);
-    });
-
-}
-// ===============================
 // Ryme Message + Password
 // ===============================
 
-const sendMessageBtn = document.getElementById("sendMessageBtn");
-const rymeMessage = document.getElementById("rymeMessage");
-const passwordInput = document.getElementById("passwordInput");
-const sendStatus = document.getElementById("sendStatus");
+document.addEventListener("DOMContentLoaded", ()=>{
+
+const sendBtn = document.getElementById("sendMessageBtn");
+const messageBox = document.getElementById("rymeMessage");
+const passwordBox = document.getElementById("passwordInput");
+const status = document.getElementById("sendStatus");
 
 
-if(sendMessageBtn){
+if(sendBtn){
 
-sendMessageBtn.onclick = function(){
+sendBtn.onclick = ()=>{
 
-    const message = rymeMessage.value;
-    const password = passwordInput.value;
-
-
-    if(password !== "ryma"){
-
-        sendStatus.innerHTML = "❌ Wrong password";
-        return;
-
-    }
+let message = messageBox.value;
+let password = passwordBox.value;
 
 
-    if(message.trim() === ""){
+if(password !== "ryma"){
 
-        sendStatus.innerHTML = "✍️ Write a message";
-        return;
+status.innerHTML="❌ Wrong password";
+return;
 
-    }
-
-
-    fetch(
-    "https://eotrmolcy1kaxd4.m.pipedream.net/?message=" 
-    + encodeURIComponent(
-        "💌 Message from Ryme ❤️\n\n" + message
-    )
-    );
+}
 
 
-    sendStatus.innerHTML = "✅ Sent with love ❤️";
+if(message.trim()==""){
+
+status.innerHTML="✍️ Write a message";
+return;
+
+}
 
 
-    rymeMessage.value="";
-    passwordInput.value="";
+fetch(
+"https://eotrmolcy1kaxd4.m.pipedream.net/?message="
++ encodeURIComponent("💌 Message from Ryme ❤️\n\n"+message)
+)
+.then(()=>{
+
+status.innerHTML="✅ Message sent ❤️";
+
+messageBox.value="";
+passwordBox.value="";
+
+})
+.catch(()=>{
+
+status.innerHTML="❌ Error sending";
+
+});
+
 
 };
 
 }
+
+});
