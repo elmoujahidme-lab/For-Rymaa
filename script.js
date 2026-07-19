@@ -462,3 +462,6 @@ status.innerHTML="❌ Error sending";
 }
 
 });
+document.getElementById("sendMessageBtn").onclick = function(){
+    alert("Button works ❤️");
+};
