@@ -329,7 +329,10 @@ gift.classList.remove("openGift");
 gift.innerHTML="💝";
 
 msg.innerHTML=loveMessages[Math.floor(Math.random()*loveMessages.length)];
-
+sendTelegram(
+"🎁 Ryme opened Love Box ❤️\n\n" +
+msg.innerText
+);
 createHearts();
 
 },600);
