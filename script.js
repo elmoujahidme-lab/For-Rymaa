@@ -484,7 +484,7 @@ let password = passwordBox.value;
 
 if(password !== "ryma"){
 
-status.innerHTML="❌ Wrong password";
+status.innerHTML="❌ try again babe ☺️​";
 return;
 
 }
@@ -492,7 +492,7 @@ return;
 
 if(message.trim()==""){
 
-status.innerHTML="✍️ Write a message";
+status.innerHTML="✍️ Write a Beautiful message";
 return;
 
 }
@@ -512,7 +512,7 @@ passwordBox.value="";
 })
 .catch(()=>{
 
-status.innerHTML="❌ opss, don't give up ❤️";
+status.innerHTML="❌ opss, dont give up ❤️";
 
 });
 
