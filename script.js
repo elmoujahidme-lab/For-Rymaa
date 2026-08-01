@@ -103,7 +103,7 @@ document.getElementById("seconds").textContent = seconds;
 }
 
 updateCounter();
-
+setInterval(updateCounter, 1000);
 setInterval(updateCounter,60000);
 
 
@@ -465,6 +465,59 @@ h.remove();
 }
 
 }
+const music = document.getElementById("music");
+const playBtn = document.getElementById("playMusic");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
+
+playBtn.onclick = () => {
+
+    if(music.paused){
+
+        music.play();
+
+        playBtn.innerHTML="⏸ Pause";
+
+    }else{
+
+        music.pause();
+
+        playBtn.innerHTML="▶️ Play";
+
+    }
+
+};
+
+music.addEventListener("timeupdate",()=>{
+
+    progress.value=(music.currentTime/music.duration)*100;
+
+});
+
+progress.oninput=()=>{
+
+    music.currentTime=(progress.value/100)*music.duration;
+
+};
+
+volume.oninput=()=>{
+
+    music.volume=volume.value;
+
+};
+document.querySelectorAll(".quizBtn").forEach(btn=>{
+
+btn.onclick=()=>{
+
+document.getElementById("quizResult").innerHTML=
+
+"🥰 Correct! Amine loves you more than anything ❤️";
+
+createHearts();
+
+};
+
+});
 // ===============================
 // Ryme Message + Password
 // ===============================
