@@ -25,20 +25,33 @@ const next2=document.getElementById("next2");
 const next3=document.getElementById("next3");
 const next4=document.getElementById("next4");
 
-happyBtn.onclick=()=>showPage("happy");
+if (happyBtn) {
+    happyBtn.addEventListener("click", () => showPage("happy"));
+}
 
-sadBtn.onclick=()=>showPage("sad");
+if (sadBtn) {
+    sadBtn.addEventListener("click", () => showPage("sad"));
+}
 
-continueBtn.onclick=()=>showPage("letter");
+if (continueBtn) {
+    continueBtn.addEventListener("click", () => showPage("letter"));
+}
 
-next1.onclick=()=>showPage("heartGame");
+if (next1) {
+    next1.addEventListener("click", () => showPage("heartGame"));
+}
 
-next2.onclick=()=>showPage("lessons");
+if (next2) {
+    next2.addEventListener("click", () => showPage("lessons"));
+}
 
-next3.onclick=()=>showPage("memories");
+if (next3) {
+    next3.addEventListener("click", () => showPage("memories"));
+}
 
-next4.onclick=()=>showPage("final");
-
+if (next4) {
+    next4.addEventListener("click", () => showPage("final"));
+}
 
 // ===============================
 // Random Love Messages
