@@ -155,6 +155,29 @@ if (volume) {
         music.volume = volume.value;
     };
 }
+const cover = document.querySelector(".music-cover");
+
+playBtn.onclick = () => {
+
+    if (music.paused) {
+
+        music.play();
+
+        playBtn.innerHTML = "❚❚";
+
+        cover.classList.add("playing");
+
+    } else {
+
+        music.pause();
+
+        playBtn.innerHTML = "▶";
+
+        cover.classList.remove("playing");
+
+    }
+
+};
 // ===============================
 // Heart Game
 // ===============================
