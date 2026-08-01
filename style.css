@@ -932,3 +932,143 @@ max-height:85%;
 border-radius:20px;
 
 }
+/* ==========================
+   Elegant Music Player
+========================== */
+
+.music-player{
+
+    margin:40px auto;
+    max-width:430px;
+
+    background:rgba(255,255,255,.85);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+    text-align:center;
+
+}
+
+.music-cover{
+
+    width:90px;
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#ff4f8b,#ff9cc0);
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+
+    color:white;
+
+    margin-bottom:18px;
+
+    animation:spin 8s linear infinite;
+
+    animation-play-state:paused;
+
+}
+
+.music-cover.playing{
+
+    animation-play-state:running;
+
+}
+
+.music-info h3{
+
+    color:#ff4f8b;
+    margin-bottom:5px;
+
+}
+
+.music-info p{
+
+    color:#777;
+    margin-bottom:20px;
+
+}
+
+.play-btn{
+
+    width:65px;
+    height:65px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ff4f8b;
+
+    color:white;
+
+    font-size:26px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    margin-bottom:20px;
+
+}
+
+.play-btn:hover{
+
+    transform:scale(1.08);
+
+    background:#ff2f75;
+
+}
+
+#progress{
+
+    width:100%;
+    margin-bottom:20px;
+
+}
+
+.volume-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.volume-box input{
+
+    width:100%;
+
+}
+
+@keyframes spin{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
