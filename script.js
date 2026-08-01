@@ -523,13 +523,6 @@ createHearts();
 // Ryme Message + Password
 // ===============================
 
-document.addEventListener("DOMContentLoaded", ()=>{
-
-const sendBtn = document.getElementById("sendMessageBtn");
-const messageBox = document.getElementById("rymeMessage");
-const passwordBox = document.getElementById("passwordInput");
-const status = document.getElementById("sendStatus");
-
 document.addEventListener("DOMContentLoaded", () => {
 
     const sendBtn = document.getElementById("sendMessageBtn");
@@ -537,35 +530,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordBox = document.getElementById("passwordInput");
     const status = document.getElementById("sendStatus");
 
-    if (sendBtn) {
+    if (!sendBtn) return;
 
-        sendBtn.onclick = () => {
+    sendBtn.onclick = () => {
 
-            const message = messageBox.value.trim();
-            const password = passwordBox.value;
+        const message = messageBox.value.trim();
+        const password = passwordBox.value;
 
-            if (password !== "ryma") {
-                status.innerHTML = "❌ Try again babe ❤️";
-                return;
-            }
+        if (password !== "ryma") {
+            status.innerHTML = "❌ Try again babe ❤️";
+            return;
+        }
 
-            if (message === "") {
-                status.innerHTML = "✍️ Write a beautiful message.";
-                return;
-            }
+        if (message === "") {
+            status.innerHTML = "✍️ Write a beautiful message.";
+            return;
+        }
 
-            sendTelegram(
-                "💌 Message from Rymaa ❤️\n\n" + message
-            );
+        sendTelegram("💌 Message from Rymaa ❤️\n\n" + message);
 
-            status.innerHTML = "✅ I received it, honey ❤️";
+        status.innerHTML = "✅ I received it, honey ❤️";
 
-            messageBox.value = "";
-            passwordBox.value = "";
-
-        };
-
-    }
+        messageBox.value = "";
+        passwordBox.value = "";
+    };
 
 });
 // ===============================
