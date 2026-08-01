@@ -46,7 +46,7 @@ next4.onclick=()=>showPage("final");
 
 const messages=[
 
-"You are my favorite person ❤️",
+"You are my favorite person ❤️ ",
 
 "I smile every time I think about you.",
 
