@@ -582,3 +582,19 @@ status.innerHTML="❌ opss, dont give up babe ❤️";
 }
 
 });
+// ===============================
+// Quiz
+// ===============================
+
+document.querySelectorAll(".quizBtn").forEach(btn => {
+    btn.onclick = () => {
+        document.getElementById("quizResult").innerHTML =
+            "🥰 Correct! Amine loves you more than anything ❤️";
+    };
+});
+
+const quizNext = document.getElementById("quizNext");
+
+if (quizNext) {
+    quizNext.onclick = () => showPage("sad");
+}
