@@ -390,7 +390,7 @@ gift.innerHTML="💝";
 
 msg.innerHTML=loveMessages[Math.floor(Math.random()*loveMessages.length)];
 sendTelegram(
-"🎁 Ryme opened Love Box ❤️\n\n" +
+"🎁 Ryma opened Love Box ❤️\n\n" +
 msg.innerText
 );
 createHearts();
@@ -500,7 +500,7 @@ return;
 
 fetch(
 "https://eotrmolcy1kaxd4.m.pipedream.net/?message="
-+ encodeURIComponent("💌 Message from Ryme ❤️\n\n"+message)
++ encodeURIComponent("💌 Message from your love rymaa ❤️\n\n"+message)
 )
 .then(()=>{
 
@@ -512,7 +512,7 @@ passwordBox.value="";
 })
 .catch(()=>{
 
-status.innerHTML="❌ opss Error sending";
+status.innerHTML="❌ opss, don't give up ❤️";
 
 });
 
