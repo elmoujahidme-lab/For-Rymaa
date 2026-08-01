@@ -97,6 +97,7 @@ document.getElementById("hours").textContent=hours;
 
 document.getElementById("minutes").textContent=minutes;
 
+document.getElementById("seconds").textContent = seconds;
 }
 
 updateCounter();
@@ -120,7 +121,7 @@ if(!playing){
 
 music.play();
 
-playMusic.innerHTML="⏸ Pause Our Song";
+playMusic.innerHTML="⏸ Pause Our New Song";
 
 playing=true;
 
@@ -128,7 +129,7 @@ playing=true;
 
 music.pause();
 
-playMusic.innerHTML="🎵 Play Our Song";
+playMusic.innerHTML="🎵 Play Our New Song";
 
 playing=false;
 
@@ -504,7 +505,7 @@ fetch(
 )
 .then(()=>{
 
-status.innerHTML="✅ Message sent ❤️";
+status.innerHTML="✅ i received it, honey ❤️";
 
 messageBox.value="";
 passwordBox.value="";
@@ -512,7 +513,7 @@ passwordBox.value="";
 })
 .catch(()=>{
 
-status.innerHTML="❌ opss, dont give up ❤️";
+status.innerHTML="❌ opss, dont give up babe ❤️";
 
 });
 
