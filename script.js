@@ -469,10 +469,7 @@ h.remove();
 }
 
 }
-const music = document.getElementById("music");
-const playBtn = document.getElementById("playMusic");
-const progress = document.getElementById("progress");
-const volume = document.getElementById("volume");
+
 
 playBtn.onclick = () => {
 
@@ -493,7 +490,7 @@ playBtn.onclick = () => {
 };
 
 music.addEventListener("timeupdate",()=>{
-
+    if (!music.duration) return;
     progress.value=(music.currentTime/music.duration)*100;
 
 });
@@ -533,68 +530,62 @@ const messageBox = document.getElementById("rymeMessage");
 const passwordBox = document.getElementById("passwordInput");
 const status = document.getElementById("sendStatus");
 
+document.addEventListener("DOMContentLoaded", () => {
 
-if(sendBtn){
+    const sendBtn = document.getElementById("sendMessageBtn");
+    const messageBox = document.getElementById("rymeMessage");
+    const passwordBox = document.getElementById("passwordInput");
+    const status = document.getElementById("sendStatus");
 
-sendBtn.onclick = ()=>{
+    if (sendBtn) {
 
-let message = messageBox.value;
-let password = passwordBox.value;
+        sendBtn.onclick = () => {
 
+            const message = messageBox.value.trim();
+            const password = passwordBox.value;
 
-if(password !== "ryma"){
+            if (password !== "ryma") {
+                status.innerHTML = "❌ Try again babe ❤️";
+                return;
+            }
 
-status.innerHTML="❌ try again babe ☺️​";
-return;
+            if (message === "") {
+                status.innerHTML = "✍️ Write a beautiful message.";
+                return;
+            }
 
-}
+            sendTelegram(
+                "💌 Message from Rymaa ❤️\n\n" + message
+            );
 
+            status.innerHTML = "✅ I received it, honey ❤️";
 
-if(message.trim()==""){
+            messageBox.value = "";
+            passwordBox.value = "";
 
-status.innerHTML="✍️ Write a Beautiful message";
-return;
+        };
 
-}
-
-
-fetch(
-"https://eotrmolcy1kaxd4.m.pipedream.net/?message="
-+ encodeURIComponent("💌 Message from your love rymaa ❤️\n\n"+message)
-)
-.then(()=>{
-
-status.innerHTML="✅ i received it, honey ❤️";
-
-messageBox.value="";
-passwordBox.value="";
-
-})
-.catch(()=>{
-
-status.innerHTML="❌ opss, dont give up babe ❤️";
-
-});
-
-
-};
-
-}
+    }
 
 });
 // ===============================
-// Quiz
+// Telegram
 // ===============================
 
-document.querySelectorAll(".quizBtn").forEach(btn => {
-    btn.onclick = () => {
-        document.getElementById("quizResult").innerHTML =
-            "🥰 Correct! Amine loves you more than anything ❤️";
-    };
-});
+const BOT_TOKEN = "8870658126:AAGGaKWdHV9IExNP09wO-JSCTEhnA_WTPZM";
+const CHAT_ID = "7361145577";
 
-const quizNext = document.getElementById("quizNext");
+function sendTelegram(text) {
 
-if (quizNext) {
-    quizNext.onclick = () => showPage("sad");
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: text
+        })
+    });
+
 }
