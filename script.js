@@ -104,40 +104,44 @@ document.getElementById("seconds").textContent = seconds;
 
 updateCounter();
 setInterval(updateCounter, 1000);
-setInterval(updateCounter,60000);
+
 
 
 // ===============================
 // Music
 // ===============================
+const music = document.getElementById("music");
+const playBtn = document.getElementById("playMusic");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
 
-const music=document.getElementById("music");
+playBtn.onclick = () => {
 
-const playMusic=document.getElementById("playMusic");
-
-let playing=false;
-
-playMusic.onclick=function(){
-
-if(!playing){
-
-music.play();
-
-playMusic.innerHTML="⏸ Pause Our New Song";
-
-playing=true;
-
-}else{
-
-music.pause();
-
-playMusic.innerHTML="🎵 Play Our New Song";
-
-playing=false;
-
-}
+    if (music.paused) {
+        music.play();
+        playBtn.innerHTML = "⏸ Pause";
+    } else {
+        music.pause();
+        playBtn.innerHTML = "▶️ Play";
+    }
 
 };
+
+if (progress) {
+    music.addEventListener("timeupdate", () => {
+        progress.value = (music.currentTime / music.duration) * 100;
+    });
+
+    progress.oninput = () => {
+        music.currentTime = (progress.value / 100) * music.duration;
+    };
+}
+
+if (volume) {
+    volume.oninput = () => {
+        music.volume = volume.value;
+    };
+}
 // ===============================
 // Heart Game
 // ===============================
