@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
        Example:
 
        const API_URL =
-       "https://script.google.com/macros/s/XXXXXXXXXXXX/exec";
+       "https://script.google.com/macros/s/AKfycbwn3VYO5bTHqf4rC3khqVibW7MAPJ2Y_iqtEog1Qm2cRe6XqdjgNCj9-_q-7M1U0UOp/exec";
     */
 
     const API_URL =
@@ -40,6 +40,99 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const LOVE_CODE =
         "ryma";
+
+
+    /* ============================================================
+       SHARED MEMORY CLOUD
+    ============================================================ */
+
+    const sharedData = {
+        notes: [],
+        diary: [],
+        bucket: [],
+        capsules: [],
+        checkins: []
+    };
+
+    let sharedSyncOnline = false;
+
+    function makeId(prefix = "rymaa") {
+        return prefix + "-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
+    }
+
+    async function saveShared(action, data = {}) {
+        const payload = {
+            siteKey: SITE_KEY,
+            action,
+            ...data
+        };
+
+        try {
+            await fetch(API_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=UTF-8"
+                },
+                body: JSON.stringify(payload)
+            });
+            return true;
+        } catch (error) {
+            console.warn("Shared save failed; local copy kept.", error);
+            return false;
+        }
+    }
+
+    async function loadSharedData() {
+        if (!API_URL || API_URL.includes("PUT_YOUR")) return;
+
+        try {
+            const response = await fetch(
+                API_URL + "?action=sync&t=" + Date.now(),
+                { cache: "no-store" }
+            );
+
+            const result = await response.json();
+
+            if (result.ok && result.data) {
+                Object.keys(sharedData).forEach(key => {
+                    sharedData[key] = Array.isArray(result.data[key])
+                        ? result.data[key]
+                        : [];
+                });
+                sharedSyncOnline = true;
+                localStorage.setItem("rymaaSharedCache", JSON.stringify(sharedData));
+            }
+        } catch (error) {
+            console.warn("Could not sync shared memories. Using local cache.", error);
+            try {
+                const cache = JSON.parse(localStorage.getItem("rymaaSharedCache") || "{}");
+                Object.keys(sharedData).forEach(key => {
+                    if (Array.isArray(cache[key])) sharedData[key] = cache[key];
+                });
+            } catch {}
+        }
+    }
+
+    function cacheSharedData() {
+        localStorage.setItem("rymaaSharedCache", JSON.stringify(sharedData));
+    }
+
+    function upsertLocal(collection, item) {
+        const list = sharedData[collection];
+        const index = list.findIndex(existing => String(existing.id) === String(item.id));
+        if (index >= 0) list[index] = { ...list[index], ...item };
+        else list.push(item);
+        cacheSharedData();
+    }
+
+    function authorName() {
+        return localStorage.getItem("rymaaAuthor") || "Amine";
+    }
+
+    function setAuthor(name) {
+        localStorage.setItem("rymaaAuthor", name);
+    }
 
 
     /* ============================================================
@@ -925,6 +1018,184 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
+
+    /* ============================================================
+       NEW SHARED FEATURES
+    ============================================================ */
+
+    function authorSelector(id = "featureAuthor") {
+        return `
+            <select id="${id}" class="feature-input">
+                <option value="Amine" ${authorName() === "Amine" ? "selected" : ""}>Amine ❤️</option>
+                <option value="Rymaa" ${authorName() === "Rymaa" ? "selected" : ""}>Rymaa 🌸</option>
+            </select>
+        `;
+    }
+
+    function sharedDate(value) {
+        if (!value) return "";
+        const d = new Date(value);
+        return isNaN(d.getTime()) ? String(value) : d.toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
+    }
+
+    function renderDashboard() {
+        const done = sharedData.bucket.filter(item => item.done).length;
+        const openCapsules = sharedData.capsules.filter(item => !item.locked).length;
+        const today = getTodayKey();
+        const todayCheckins = sharedData.checkins.filter(item => String(item.date || "").slice(0, 10) === today).length;
+
+        featureModalBody.innerHTML = `
+            <div class="feature-content">
+                <div class="big-icon">📊❤️</div>
+                <h2>Our Dashboard</h2>
+                <p class="feature-subtitle">A living snapshot of the little world we're building together.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card"><strong>${sharedData.diary.length}</strong><span>Diary entries</span></div>
+                    <div class="stat-card"><strong>${sharedData.notes.length}</strong><span>Love notes</span></div>
+                    <div class="stat-card"><strong>${sharedData.bucket.length}</strong><span>Dreams added</span></div>
+                    <div class="stat-card"><strong>${done}</strong><span>Dreams achieved</span></div>
+                    <div class="stat-card"><strong>${sharedData.capsules.length}</strong><span>Time capsules</span></div>
+                    <div class="stat-card"><strong>${todayCheckins}</strong><span>Today's check-ins</span></div>
+                </div>
+
+                <div class="feature-message">
+                    ${sharedSyncOnline ? "☁️ Shared memory is connected. What you add here can be seen from the other device too." : "📱 Offline mode: your changes stay on this device and will sync when the connection is available."}
+                </div>
+
+                <button class="feature-btn" data-action="refresh-shared">🔄 Refresh Our Story</button>
+            </div>
+        `;
+        openFeature();
+    }
+
+    function renderDiary() {
+        const entries = sharedData.diary.slice().reverse();
+        const list = entries.length ? entries.map(item => `
+            <article class="memory-item">
+                <div class="memory-meta"><span>${escapeHTML(item.mood || "❤️")} ${escapeHTML(item.author || "Us")}</span><small>${escapeHTML(sharedDate(item.date))}</small></div>
+                <h3>${escapeHTML(item.title || "A little moment")}</h3>
+                <p>${escapeHTML(item.text || "")}</p>
+            </article>
+        `).join("") : `<div class="feature-message">Our diary is still waiting for its first chapter. 🌱</div>`;
+
+        featureModalBody.innerHTML = `
+            <div class="feature-content">
+                <div class="big-icon">📖</div>
+                <h2>Our Diary</h2>
+                <p class="feature-subtitle">Write down moments we may want to remember years from now.</p>
+                ${authorSelector()}
+                <select id="diaryMood" class="feature-input">
+                    <option>❤️ Happy</option><option>🥹 Emotional</option><option>😂 Funny</option><option>🌙 Peaceful</option><option>🥺 Missing you</option><option>✨ Excited</option>
+                </select>
+                <input id="diaryTitle" class="feature-input" maxlength="120" placeholder="Give this memory a title...">
+                <textarea id="diaryText" class="feature-textarea" maxlength="2000" placeholder="What happened? How did it feel? Why should future us remember it?"></textarea>
+                <button class="feature-btn" data-action="save-diary">📖 Add to Our Diary</button>
+                <div class="memory-list">${list}</div>
+            </div>
+        `;
+        openFeature();
+    }
+
+    function renderBucket() {
+        const items = sharedData.bucket.slice().reverse();
+        const list = items.length ? items.map(item => `
+            <div class="bucket-item ${item.done ? "done" : ""}">
+                <button class="bucket-check" data-action="toggle-bucket" data-id="${escapeHTML(item.id)}">${item.done ? "✓" : "○"}</button>
+                <div><strong>${escapeHTML(item.text)}</strong><small>${escapeHTML(item.done ? "Achieved ❤️" : "Still on our list ✨")}</small></div>
+            </div>
+        `).join("") : `<div class="feature-message">No dreams yet. Add the first one. 🌷</div>`;
+
+        featureModalBody.innerHTML = `
+            <div class="feature-content">
+                <div class="big-icon">🎯</div>
+                <h2>Our Dreams</h2>
+                <p class="feature-subtitle">A list of things we want to experience, build or simply do together.</p>
+                ${authorSelector()}
+                <div class="inline-form">
+                    <input id="bucketInput" class="feature-input" maxlength="180" placeholder="One dream...">
+                    <button class="feature-btn" data-action="add-bucket">➕ Add</button>
+                </div>
+                <div class="bucket-list">${list}</div>
+            </div>
+        `;
+        openFeature();
+    }
+
+    function renderCapsule() {
+        const capsules = sharedData.capsules.slice().reverse();
+        const list = capsules.length ? capsules.map(item => `
+            <article class="capsule-item ${item.locked ? "locked" : "opened"}">
+                <div class="capsule-icon">${item.locked ? "🔒" : "💌"}</div>
+                <div>
+                    <h3>${escapeHTML(item.title || "Our Time Capsule")}</h3>
+                    <small>Opens: ${escapeHTML(sharedDate(item.openDate))}</small>
+                    <p>${item.locked ? "This message is sealed until its date. Future us will have to wait. 🤫" : escapeHTML(item.message || "")}</p>
+                </div>
+            </article>
+        `).join("") : `<div class="feature-message">Nothing sealed yet. Write something for future us. 🔐</div>`;
+
+        featureModalBody.innerHTML = `
+            <div class="feature-content">
+                <div class="big-icon">🔒</div>
+                <h2>Our Time Capsule</h2>
+                <p class="feature-subtitle">A message for a future version of us. The server hides the text until the opening date.</p>
+                ${authorSelector()}
+                <input id="capsuleTitle" class="feature-input" maxlength="120" placeholder="Title — e.g. To Us in 2027">
+                <input id="capsuleDate" class="feature-input" type="date">
+                <textarea id="capsuleMessage" class="feature-textarea" maxlength="2500" placeholder="Write something future us should read..."></textarea>
+                <button class="feature-btn" data-action="save-capsule">🔐 Seal This Message</button>
+                <div class="capsule-list">${list}</div>
+            </div>
+        `;
+        openFeature();
+    }
+
+    function renderCheckin() {
+        const list = sharedData.checkins.slice().reverse().slice(0, 12);
+        const listHTML = list.length ? list.map(item => `
+            <div class="checkin-item"><span>${escapeHTML(item.mood || "❤️")}</span><div><strong>${escapeHTML(item.author || "Us")}</strong><p>${escapeHTML(item.message || "Just checking in ❤️")}</p><small>${escapeHTML(sharedDate(item.date))}</small></div></div>
+        `).join("") : `<div class="feature-message">No check-ins yet today. 🌙</div>`;
+
+        featureModalBody.innerHTML = `
+            <div class="feature-content">
+                <div class="big-icon">🌙</div>
+                <h2>Today's Mood</h2>
+                <p class="feature-subtitle">Leave a tiny signal for each other — even when there isn't much to say.</p>
+                ${authorSelector()}
+                <div class="mood-grid">
+                    <button class="mood-btn" data-action="select-mood" data-mood="❤️">❤️</button><button class="mood-btn" data-action="select-mood" data-mood="🥹">🥹</button><button class="mood-btn" data-action="select-mood" data-mood="😂">😂</button><button class="mood-btn" data-action="select-mood" data-mood="🌙">🌙</button><button class="mood-btn" data-action="select-mood" data-mood="🥺">🥺</button><button class="mood-btn" data-action="select-mood" data-mood="✨">✨</button>
+                </div>
+                <textarea id="checkinMessage" class="feature-textarea" maxlength="500" placeholder="A few words for today..."></textarea>
+                <button class="feature-btn" data-action="save-checkin">💗 Save Today's Check-in</button>
+                <div class="checkin-list">${listHTML}</div>
+            </div>
+        `;
+        openFeature();
+    }
+
+    let selectedMood = "❤️";
+
+    function renderMemoryJar() {
+        const notes = sharedData.notes.slice().reverse();
+        const list = notes.length ? notes.map(note => `
+            <article class="jar-note"><span>💌</span><div><small>${escapeHTML(note.author || "Us")} · ${escapeHTML(sharedDate(note.date))}</small><p>${escapeHTML(note.text || "")}</p></div></article>
+        `).join("") : `<div class="feature-message">The jar is empty. Put the first little memory inside. 🫙❤️</div>`;
+
+        featureModalBody.innerHTML = `
+            <div class="feature-content">
+                <div class="big-icon">🫙❤️</div>
+                <h2>Memory Jar</h2>
+                <p class="feature-subtitle">Tiny things become important when we look back.</p>
+                ${authorSelector()}
+                <textarea id="jarInput" class="feature-textarea" maxlength="1000" placeholder="Something small I never want us to forget..."></textarea>
+                <button class="feature-btn" data-action="save-jar">💌 Put It in the Jar</button>
+                <div class="jar-list">${list}</div>
+            </div>
+        `;
+        openFeature();
+    }
+
     /* ============================================================
        MISS YOU
     ============================================================ */
@@ -1295,31 +1566,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function getNotes() {
-
-        try {
-
-            return JSON.parse(
-                localStorage.getItem(
-                    NOTES_KEY
-                ) || "[]"
-            );
-
-        } catch {
-
-            return [];
-
-        }
-
+        return Array.isArray(sharedData.notes)
+            ? sharedData.notes
+            : [];
     }
 
 
     function saveNotes(notes) {
-
-        localStorage.setItem(
-            NOTES_KEY,
-            JSON.stringify(notes)
-        );
-
+        sharedData.notes = notes;
+        cacheSharedData();
     }
 
 
@@ -1399,7 +1654,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </h2>
 
                 <p class="feature-subtitle">
-                    These notes are saved on this device.
+                    These notes live in our shared memory. ❤️
                 </p>
 
                 <textarea
@@ -1915,6 +2170,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             break;
 
+                        case "dashboard":
+                            renderDashboard();
+                            break;
+
+                        case "diary":
+                            renderDiary();
+                            break;
+
+                        case "bucket":
+                            renderBucket();
+                            break;
+
+                        case "capsule":
+                            renderCapsule();
+                            break;
+
+                        case "checkin":
+                            selectedMood = "❤️";
+                            renderCheckin();
+                            break;
+
+                        case "memoryJar":
+                            renderMemoryJar();
+                            break;
+
                     }
 
                 }
@@ -2054,32 +2334,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
 
-                    const notes =
-                        getNotes();
+                    const item = {
+                        id: makeId("note"),
+                        text,
+                        author: authorName(),
+                        date: new Date().toISOString()
+                    };
 
-
-                    notes.push({
-
-                        id:
-                            Date.now(),
-
-                        text:
-                            text,
-
-                        date:
-                            new Date()
-                                .toLocaleString()
-
-                    });
-
-
-                    saveNotes(
-                        notes
-                    );
-
-
+                    upsertLocal("notes", item);
+                    await saveShared("note", item);
                     renderNotes();
-
                     createSpecialHearts();
 
                 }
@@ -2111,6 +2375,97 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     renderNotes();
 
+                }
+
+
+                /* NEW SHARED FEATURES */
+
+                if (action === "refresh-shared") {
+                    await loadSharedData();
+                    renderDashboard();
+                }
+
+                if (action === "save-diary") {
+                    const author = document.getElementById("featureAuthor")?.value || "Amine";
+                    const mood = document.getElementById("diaryMood")?.value || "❤️";
+                    const title = document.getElementById("diaryTitle")?.value.trim() || "A little moment";
+                    const text = document.getElementById("diaryText")?.value.trim() || "";
+                    if (!text) return alert("Write the memory first ❤️");
+                    setAuthor(author);
+                    const item = { id: makeId("diary"), date: new Date().toISOString(), author, mood, title, text };
+                    upsertLocal("diary", item);
+                    await saveShared("diary", item);
+                    renderDiary();
+                    createSpecialHearts();
+                }
+
+                if (action === "add-bucket") {
+                    const author = document.getElementById("featureAuthor")?.value || "Amine";
+                    const input = document.getElementById("bucketInput");
+                    const text = input?.value.trim() || "";
+                    if (!text) return alert("Add a dream first ✨");
+                    setAuthor(author);
+                    const item = { id: makeId("dream"), date: new Date().toISOString(), author, text, done: false, completedAt: "" };
+                    upsertLocal("bucket", item);
+                    await saveShared("bucket", item);
+                    renderBucket();
+                }
+
+                if (action === "toggle-bucket") {
+                    const id = button.dataset.id;
+                    const item = sharedData.bucket.find(x => String(x.id) === String(id));
+                    if (item) {
+                        item.done = !item.done;
+                        item.completedAt = item.done ? new Date().toISOString() : "";
+                        cacheSharedData();
+                        await saveShared("bucket", item);
+                        renderBucket();
+                        if (item.done) createSpecialHearts();
+                    }
+                }
+
+                if (action === "save-capsule") {
+                    const author = document.getElementById("featureAuthor")?.value || "Amine";
+                    const title = document.getElementById("capsuleTitle")?.value.trim() || "A message to future us";
+                    const openDate = document.getElementById("capsuleDate")?.value || "";
+                    const message = document.getElementById("capsuleMessage")?.value.trim() || "";
+                    if (!openDate || !message) return alert("Choose an opening date and write the message 🔐");
+                    if (new Date(openDate + "T00:00:00") <= new Date()) return alert("Choose a future date ❤️");
+                    setAuthor(author);
+                    const item = { id: makeId("capsule"), createdAt: new Date().toISOString(), author, title, openDate, message, locked: true };
+                    upsertLocal("capsules", item);
+                    await saveShared("capsule", item);
+                    renderCapsule();
+                    createSpecialHearts();
+                }
+
+                if (action === "save-checkin") {
+                    const author = document.getElementById("featureAuthor")?.value || "Amine";
+                    const message = document.getElementById("checkinMessage")?.value.trim() || "Just checking in ❤️";
+                    setAuthor(author);
+                    const item = { id: makeId("checkin"), date: new Date().toISOString(), author, mood: selectedMood, message };
+                    upsertLocal("checkins", item);
+                    await saveShared("checkin", item);
+                    renderCheckin();
+                    createSpecialHearts();
+                }
+
+                if (action === "save-jar") {
+                    const author = document.getElementById("featureAuthor")?.value || "Amine";
+                    const text = document.getElementById("jarInput")?.value.trim() || "";
+                    if (!text) return alert("Write a little memory first ❤️");
+                    setAuthor(author);
+                    const item = { id: makeId("note"), date: new Date().toISOString(), author, text };
+                    upsertLocal("notes", item);
+                    await saveShared("note", item);
+                    renderMemoryJar();
+                    createSpecialHearts();
+                }
+
+                if (action === "select-mood") {
+                    selectedMood = button.dataset.mood || "❤️";
+                    document.querySelectorAll(".mood-btn").forEach(btn => btn.classList.remove("selected"));
+                    button.classList.add("selected");
                 }
 
 
@@ -2838,5 +3193,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     );
+
+
+    // Load shared memories after the interface is ready.
+    loadSharedData().then(() => {
+        cacheSharedData();
+    });
 
 });
