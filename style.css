@@ -1,1074 +1,969 @@
-/* ===========================
-   GLOBAL STYLE
-=========================== */
+/* ============================================================
+   GLOBAL
+============================================================ */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-:root{
-
-    --bg:#fff8f8;
-    --white:#ffffff;
-    --pink:#ff4f8b;
-    --pink2:#ff85ad;
-    --light:#ffe8ef;
-    --dark:#1e1e1e;
-    --gray:#777;
-    --shadow:0 10px 25px rgba(0,0,0,.08);
-
-}
-
-html{
-
-    scroll-behavior:smooth;
-
-}
-
-body{
-
-    font-family:'Poppins',sans-serif;
-    background:var(--bg);
-    color:#444;
-    overflow-x:hidden;
-
-}
-
-/* ===========================
-   Floating Hearts
-=========================== */
-
-#hearts{
-
-    position:fixed;
-    width:100%;
-    height:100%;
-    left:0;
-    top:0;
-    pointer-events:none;
-    z-index:1;
-
-}
-
-.heart{
-
-    position:absolute;
-    color:#ff5c8d;
-    animation:float 8s linear infinite;
-
-}
-
-@keyframes float{
-
-0%{
-
-transform:translateY(100vh) scale(.5);
-opacity:0;
-
-}
-
-10%{
-
-opacity:1;
-
-}
-
-100%{
-
-transform:translateY(-120px) rotate(360deg);
-opacity:0;
-
-}
-
-}
-
-/* ===========================
-   PAGE
-=========================== */
-
-.page{
-
-display:none;
-min-height:100vh;
-padding:30px;
-animation:fade .6s ease;
-position:relative;
-z-index:10;
-
-}
-
-.page.active{
-
-display:block;
-
-}
-
-@keyframes fade{
-
-from{
-
-opacity:0;
-transform:translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-transform:translateY(0);
-
-}
-
-}
-
-/* ===========================
-   WELCOME
-=========================== */
-
-#welcome{
-
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-
-}
-
-.welcome-box{
-
-background:white;
-padding:40px 25px;
-border-radius:30px;
-box-shadow:var(--shadow);
-max-width:420px;
-width:100%;
-
-}
-
-.welcome-box h1{
-
-font-size:40px;
-color:var(--pink);
-margin-bottom:20px;
-
-}
-
-.subtitle{
-
-font-size:20px;
-line-height:35px;
-color:#666;
-margin-bottom:35px;
-
-}
-
-/* ===========================
-   BUTTON
-=========================== */
-
-.main-btn{
-
-width:100%;
-padding:18px;
-margin-top:18px;
-border:none;
-border-radius:50px;
-background:linear-gradient(135deg,var(--pink),var(--pink2));
-color:white;
-font-size:18px;
-font-weight:600;
-cursor:pointer;
-transition:.35s;
-box-shadow:0 10px 25px rgba(255,79,139,.25);
-
-}
-
-.main-btn:hover{
-
-transform:translateY(-3px);
-
-}
-
-.dark{
-
-background:#333;
-
-}
-
-/* ===========================
-   TITLES
-=========================== */
-
-h1{
-
-text-align:center;
-color:var(--pink);
-margin-bottom:25px;
-
-}
-
-h2{
-
-margin:25px 0 15px;
-color:var(--pink);
-
-}
-
-/* ===========================
-   HAPPY PAGE
-=========================== */
-
-#happy{
-
-max-width:450px;
-margin:auto;
-
-}
-
-#loveMessage{
-
-background:white;
-padding:22px;
-border-radius:20px;
-box-shadow:var(--shadow);
-font-size:18px;
-line-height:32px;
-text-align:center;
-margin-bottom:30px;
-
-}
-
-/* ===========================
-   COUNTER
-=========================== */
-
-.counter{
-
-background:white;
-padding:25px;
-border-radius:25px;
-box-shadow:var(--shadow);
-text-align:center;
-margin-bottom:30px;
-
-}
-
-#timer{
-
-display:flex;
-justify-content:space-around;
-margin-top:15px;
-flex-wrap:wrap;
-gap:15px;
-
-}
-
-#timer span{
-
-display:block;
-font-size:28px;
-font-weight:bold;
-color:var(--pink);
-
-}
-
-/* ===========================
-   GALLERY
-=========================== */
-
-.gallery{
-
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-
-}
-
-.gallery img{
-
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:18px;
-transition:.35s;
-cursor:pointer;
-box-shadow:var(--shadow);
-
-}
-
-.gallery img:hover{
-
-transform:scale(1.05);
-
-}
-
-/* ===========================
-   MUSIC
-=========================== */
-
-.music{
-
-margin-top:30px;
-
-}
-
-#playMusic{
-
-width:100%;
-padding:16px;
-border:none;
-border-radius:40px;
-background:#ff4f8b;
-color:white;
-font-size:17px;
-font-weight:600;
-cursor:pointer;
-transition:.3s;
-
-}
-
-#playMusic:hover{
-
-background:#ff2e73;
-
-}
-/* ===========================
-   DARK PAGES
-=========================== */
-
-.darkPage{
-
-    background:linear-gradient(180deg,#111,#1c1c1c);
-    color:white;
-    min-height:100vh;
-
-}
-
-.darkPage h1,
-.darkPage h2{
-
-    color:#ff7aa8;
-
-}
-
-/* ===========================
-   TYPEWRITER
-=========================== */
-
-.typewriter{
-
-    max-width:450px;
-    margin:80px auto;
-    text-align:center;
-
-}
-
-.typewriter p{
-
-    font-size:22px;
-    line-height:40px;
-    color:white;
-    animation:fadeText 2s ease;
-
-}
-
-@keyframes fadeText{
-
-    from{
-
-        opacity:0;
-        transform:translateY(30px);
-
-    }
-
-    to{
-
-        opacity:1;
-        transform:translateY(0);
-
-    }
-
-}
-
-/* ===========================
-   LETTER
-=========================== */
-
-.letter{
-
-    background:white;
-    color:#444;
-    border-radius:25px;
-    padding:30px;
-    margin:25px auto;
-    max-width:500px;
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
-
-}
-
-.letter h2{
-
-    text-align:center;
-    margin-bottom:20px;
-
-}
-
-.letter p{
-
-    line-height:34px;
-    font-size:17px;
-
-}
-
-/* ===========================
-   HEART GAME
-=========================== */
-
-#heartGame{
-
-    text-align:center;
-
-}
-
-#brokenHeart{
-
-    font-size:90px;
-    margin:40px auto;
-    cursor:pointer;
-    transition:.4s;
-
-}
-
-#brokenHeart:hover{
-
-    transform:scale(1.15);
-
-}
-
-#heartText{
-
-    font-size:20px;
-    color:#ff93b8;
-    margin-top:20px;
-
-}
-
-/* ===========================
-   LESSONS
-=========================== */
-
-.lesson{
-
-    background:white;
-    margin:18px 0;
-    padding:20px;
-    border-radius:18px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-    font-size:18px;
-
-}
-
-/* ===========================
-   ACTIVITIES
-=========================== */
-
-.activities{
-
-    margin-top:35px;
-
-}
-
-.card{
-
-    background:white;
-    border-radius:20px;
-    padding:20px;
-    margin-bottom:15px;
-    text-align:center;
-    font-size:18px;
-    box-shadow:var(--shadow);
-    transition:.3s;
-
-}
-
-.card:hover{
-
-    transform:translateY(-4px);
-
-}
-
-/* ===========================
-   FINAL PAGE
-=========================== */
-
-#final{
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-
-}
-
-#final h1{
-
-    font-size:45px;
-    line-height:60px;
-
-}
-
-#final p{
-
-    margin-top:25px;
-    font-size:20px;
-    line-height:35px;
-    color:white;
-
-}
-
-.finalHeart{
-
-    font-size:100px;
-    margin:40px 0;
-    animation:beat 1.2s infinite;
-
-}
-
-@keyframes beat{
-
-0%{
-
-transform:scale(1);
-
-}
-
-50%{
-
-transform:scale(1.25);
-
-}
-
-100%{
-
-transform:scale(1);
-
-}
-
-}
-
-/* ===========================
-   IMAGE MODAL
-=========================== */
-
-.gallery img{
-
-    transition:.35s;
-
-}
-
-.gallery img:active{
-
-    transform:scale(.95);
-
-}
-
-/* ===========================
-   SCROLLBAR
-=========================== */
-
-::-webkit-scrollbar{
-
-    width:8px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#ff7aa8;
-    border-radius:20px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:#f4f4f4;
-
-}
-
-/* ===========================
-   MOBILE
-=========================== */
-
-@media(max-width:768px){
-
-.welcome-box{
-
-padding:35px 20px;
-
-}
-
-.welcome-box h1{
-
-font-size:34px;
-
-}
-
-.subtitle{
-
-font-size:18px;
-
-}
-
-.gallery{
-
-grid-template-columns:1fr 1fr;
-
-}
-
-.gallery img{
-
-height:150px;
-
-}
-
-#timer{
-
-flex-direction:column;
-
-}
-
-#timer span{
-
-font-size:32px;
-
-}
-
-.main-btn{
-
-font-size:17px;
-
-}
-
-.letter{
-
-padding:22px;
-
-}
-
-.letter p{
-
-font-size:16px;
-
-line-height:30px;
-
-}
-
-.finalHeart{
-
-font-size:85px;
-
-}
-
-}
-
-/* ===========================
-   SMALL PHONES
-=========================== */
-
-@media(max-width:420px){
-
-.gallery img{
-
-height:135px;
-
-}
-
-.welcome-box{
-
-padding:28px 18px;
-
-}
-
-.main-btn{
-
-padding:16px;
-
-}
-
-h1{
-
-font-size:30px;
-
-}
-
-h2{
-
-font-size:22px;
-
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    font-family: "Poppins", sans-serif;
+    background: #fff7fa;
+    color: #444;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
-
-/* ===========================
-   SMOOTH ANIMATION
-=========================== */
 
 button,
-img,
-.card,
-.lesson{
-
-transition:all .3s ease;
-
-}
-/* LOVE BOX */
-
-.love-box-section{
-
-text-align:center;
-
-margin-top:50px;
-
+input,
+textarea {
+    font-family: inherit;
 }
 
-#giftBox{
-
-font-size:90px;
-
-cursor:pointer;
-
-transition:.3s;
-
-user-select:none;
-
-}
-
-#giftBox:hover{
-
-transform:scale(1.15);
-
-}
-
-.openGift{
-
-animation:shake .6s;
-
-}
-
-@keyframes shake{
-
-0%{transform:rotate(0)}
-
-20%{transform:rotate(12deg)}
-
-40%{transform:rotate(-12deg)}
-
-60%{transform:rotate(12deg)}
-
-80%{transform:rotate(-12deg)}
-
-100%{transform:rotate(0)}
-
-}
-
-#giftMessage{
-
-margin-top:20px;
-
-font-size:20px;
-
-font-weight:bold;
-
-color:#d81b60;
-
-min-height:80px;
-
-padding:10px;
-
-}
-
-#countdown{
-
-margin-top:10px;
-
-color:#888;
-
-font-size:14px;
-
-}
-.message-box{
-
-margin:30px auto;
-padding:25px;
-max-width:350px;
-
-background:rgba(255,255,255,0.15);
-
-border-radius:25px;
-
-backdrop-filter:blur(10px);
-
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-
-text-align:center;
-
+button {
+    cursor: pointer;
 }
 
 
-.message-box h2{
+/* ============================================================
+   PAGES
+============================================================ */
 
-color:#ff4d88;
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 45px 20px 70px;
+    position: relative;
+    z-index: 2;
+}
 
+.page.active {
+    display: block;
+}
+
+.page-content {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
 }
 
 
-.message-box textarea{
+/* ============================================================
+   WELCOME
+============================================================ */
 
-width:90%;
-height:120px;
+#welcome {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
-border:none;
+#welcome.active {
+    display: flex;
+}
 
-border-radius:20px;
+.welcome-box {
+    width: min(500px, 92%);
+    padding: 45px 30px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(255, 79, 139, 0.13);
+}
 
-padding:15px;
+.anniversary-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 50px;
+    background: #fff0f5;
+    color: #ff4f8b;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
 
-font-size:15px;
+.welcome-box h1 {
+    color: #ff4f8b;
+    font-size: clamp(32px, 7vw, 52px);
+    margin-bottom: 20px;
+}
 
-resize:none;
-
-outline:none;
-
+.subtitle {
+    color: #666;
+    line-height: 1.8;
+    font-size: 16px;
+    margin-bottom: 30px;
 }
 
 
-.message-box input{
+/* ============================================================
+   BUTTONS
+============================================================ */
 
-width:80%;
+.main-btn {
+    display: block;
+    width: min(330px, 90%);
+    margin: 14px auto;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 25px;
+    background: #ff4f8b;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.25s ease;
+    box-shadow: 0 8px 20px rgba(255, 79, 139, 0.20);
+}
 
-padding:12px;
+.main-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 79, 139, 0.28);
+}
 
-margin:15px;
+.main-btn.dark {
+    background: #555;
+}
 
-border-radius:20px;
-
-border:none;
-
-text-align:center;
-
+.main-btn:active {
+    transform: scale(0.97);
 }
 
 
-.message-box button{
+/* ============================================================
+   ANNIVERSARY TITLE
+============================================================ */
 
-background:#ff4d88;
+.anniversary-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
 
-color:white;
+.anniversary-title h1 {
+    color: #ff4f8b;
+    font-size: clamp(28px, 6vw, 45px);
+    font-weight: 700;
+}
 
-border:none;
+.anniversary-title span {
+    font-size: 28px;
+}
 
-padding:12px 30px;
-
-border-radius:30px;
-
-font-size:16px;
-
-cursor:pointer;
-
-transition:.3s;
-
+.anniversary-subtitle {
+    color: #777;
+    line-height: 1.8;
+    margin-bottom: 25px;
 }
 
 
-.message-box button:hover{
+/* ============================================================
+   LOVE MESSAGE
+============================================================ */
 
-transform:scale(1.05);
+.love-message-card {
+    background: white;
+    border-radius: 24px;
+    padding: 25px;
+    margin: 20px auto 30px;
+    max-width: 600px;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+}
 
+.love-message-card p {
+    font-size: 18px;
+    color: #555;
 }
 
 
-#sendStatus{
+/* ============================================================
+   COUNTER
+============================================================ */
 
-margin-top:15px;
-
-font-weight:bold;
-
-}
-body.blur{
-
-filter:blur(8px);
-
-overflow:hidden;
-
+.counter {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px 20px;
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 15px 40px rgba(255, 79, 139, 0.10);
 }
 
-#lightbox{
-
-position:fixed;
-
-inset:0;
-
-background:rgba(0,0,0,.85);
-
-display:none;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:9999;
-
+.counter h2 {
+    color: #ff4f8b;
+    font-size: 25px;
+    margin-bottom: 5px;
 }
 
-#lightbox img{
-
-max-width:85%;
-
-max-height:85%;
-
-border-radius:20px;
-
-}
-/* ==========================
-   Elegant Music Player
-========================== */
-
-.music-player{
-
-    margin:40px auto;
-    max-width:430px;
-
-    background:rgba(255,255,255,.85);
-
-    backdrop-filter:blur(15px);
-
-    border-radius:25px;
-
-    padding:25px;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
-
-    text-align:center;
-
+.counter-small {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 25px;
 }
 
-.music-cover{
-
-    width:90px;
-    height:90px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    background:linear-gradient(135deg,#ff4f8b,#ff9cc0);
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    font-size:42px;
-
-    color:white;
-
-    margin-bottom:18px;
-
-    animation:spin 8s linear infinite;
-
-    animation-play-state:paused;
-
+#timer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
 }
 
-.music-cover.playing{
-
-    animation-play-state:running;
-
+.time-box {
+    background: #fff5f8;
+    border-radius: 18px;
+    padding: 16px 8px;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.music-info h3{
-
-    color:#ff4f8b;
-    margin-bottom:5px;
-
+.time-box span {
+    color: #ff4f8b;
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 700;
 }
 
-.music-info p{
-
-    color:#777;
-    margin-bottom:20px;
-
+.time-box small {
+    color: #666;
+    font-size: 11px;
+    margin-top: 9px;
 }
 
-.play-btn{
 
-    width:65px;
-    height:65px;
+/* ============================================================
+   365 DAYS CARD
+============================================================ */
 
-    border:none;
-
-    border-radius:50%;
-
-    background:#ff4f8b;
-
-    color:white;
-
-    font-size:26px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    margin-bottom:20px;
-
+.year-card {
+    max-width: 650px;
+    margin: 35px auto;
+    padding: 25px;
+    background: linear-gradient(
+        135deg,
+        #fff,
+        #fff1f6
+    );
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-align: left;
+    box-shadow: 0 15px 35px rgba(255, 79, 139, 0.09);
 }
 
-.play-btn:hover{
-
-    transform:scale(1.08);
-
-    background:#ff2f75;
-
+.year-number {
+    min-width: 120px;
+    color: #ff4f8b;
+    font-size: 55px;
+    font-weight: 700;
+    text-align: center;
 }
 
-#progress{
-
-    width:100%;
-    margin-bottom:20px;
-
+.year-text h3 {
+    color: #ff4f8b;
+    margin-bottom: 8px;
 }
 
-.volume-box{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
+.year-text p {
+    color: #666;
+    line-height: 1.7;
 }
 
-.volume-box input{
 
-    width:100%;
+/* ============================================================
+   SECTION TITLES
+============================================================ */
 
+.section-title {
+    color: #ff4f8b;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    font-size: 28px;
 }
 
-@keyframes spin{
-
-from{
-
-transform:rotate(0deg);
-
+.section-subtitle {
+    color: #888;
+    margin-bottom: 20px;
 }
 
-to{
 
-transform:rotate(360deg);
+/* ============================================================
+   GALLERY
+============================================================ */
 
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 750px;
+    margin: 20px auto 35px;
 }
 
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.35s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+
+/* ============================================================
+   MUSIC
+============================================================ */
+
+.music-player {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.music-cover {
+    width: 55px;
+    height: 55px;
+    background: #fff0f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.music-cover.playing {
+    animation: musicSpin 3s linear infinite;
+}
+
+@keyframes musicSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-info {
+    flex: 1;
+    text-align: left;
+}
+
+.music-info h3 {
+    font-size: 15px;
+    color: #444;
+}
+
+.music-info p {
+    font-size: 12px;
+    color: #ff4f8b;
+}
+
+.play-btn {
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #ff4f8b;
+    color: white;
+    font-size: 17px;
+}
+
+#progress {
+    width: 100%;
+    accent-color: #ff4f8b;
+}
+
+.volume-box {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+#volume {
+    width: 90px;
+    accent-color: #ff4f8b;
+}
+
+
+/* ============================================================
+   CARDS
+============================================================ */
+
+.activities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 30px auto;
+    max-width: 850px;
+}
+
+.card {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+.card-icon {
+    font-size: 30px;
+}
+
+.card h3 {
+    color: #ff4f8b;
+    margin: 12px 0 8px;
+    font-size: 17px;
+}
+
+.card p {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* ============================================================
+   ANNIVERSARY LETTER
+============================================================ */
+
+.anniversary-letter {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 35px 30px;
+    background: white;
+    border-radius: 28px;
+    text-align: left;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+.anniversary-letter h2 {
+    color: #ff4f8b;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.anniversary-letter p {
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.special-line {
+    color: #ff4f8b !important;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+/* ============================================================
+   LOVE BOX
+============================================================ */
+
+.love-box-section {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 35px 20px;
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 15px 40px rgba(255, 79, 139, 0.08);
+}
+
+.love-box-section h2 {
+    color: #ff4f8b;
+}
+
+.love-box-section > p {
+    color: #888;
+    margin: 10px 0 20px;
+}
+
+#giftBox {
+    font-size: 75px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.3s ease;
+    user-select: none;
+}
+
+#giftBox:hover {
+    transform: scale(1.1) rotate(-4deg);
+}
+
+#giftBox.openGift {
+    animation: giftOpen 0.6s ease;
+}
+
+@keyframes giftOpen {
+    50% {
+        transform: scale(1.3) rotate(10deg);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#giftMessage {
+    max-width: 500px;
+    margin: 15px auto;
+    color: #555;
+    line-height: 1.8;
+    min-height: 30px;
+}
+
+#countdown {
+    color: #ff4f8b;
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   MESSAGE BOX
+============================================================ */
+
+.message-box {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 30px 20px;
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+.message-box h2 {
+    color: #ff4f8b;
+    margin-bottom: 8px;
+}
+
+.message-box p {
+    color: #888;
+    margin-bottom: 15px;
+}
+
+#rymeMessage,
+#passwordInput {
+    display: block;
+    width: 100%;
+    border: 2px solid #ffe0eb;
+    outline: none;
+    border-radius: 15px;
+    padding: 14px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+#rymeMessage {
+    min-height: 120px;
+}
+
+#rymeMessage:focus,
+#passwordInput:focus {
+    border-color: #ff4f8b;
+}
+
+#sendMessageBtn {
+    border: none;
+    border-radius: 50px;
+    background: #ff4f8b;
+    color: white;
+    padding: 13px 25px;
+    font-weight: 600;
+}
+
+#sendStatus {
+    margin-top: 15px;
+}
+
+
+/* ============================================================
+   QUIZ
+============================================================ */
+
+.quiz-question {
+    margin: 20px;
+    font-size: 20px;
+}
+
+.quizBtn {
+    display: block;
+    width: min(350px, 90%);
+    margin: 12px auto;
+    padding: 15px;
+    border: 2px solid #ffb5cd;
+    border-radius: 50px;
+    background: white;
+    color: #ff4f8b;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.quizBtn:hover {
+    background: #fff0f5;
+    transform: translateY(-2px);
+}
+
+#quizResult {
+    color: #ff4f8b;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 25px;
+}
+
+
+/* ============================================================
+   DARK PAGES
+============================================================ */
+
+.darkPage {
+    background:
+        radial-gradient(
+            circle at top,
+            #351a2a,
+            #130b11
+        );
+    color: white;
+}
+
+.dark-content {
+    width: min(750px, 95%);
+    margin: auto;
+    text-align: center;
+}
+
+.dark-content h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.dark-content h2 {
+    margin-bottom: 20px;
+}
+
+.dark-content p {
+    line-height: 1.9;
+    color: #f2dce5;
+}
+
+
+/* ============================================================
+   LETTER
+============================================================ */
+
+.letter {
+    max-width: 750px;
+    margin: 25px auto;
+    padding: 35px 30px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    text-align: left;
+}
+
+.letter h2 {
+    color: #ff7eaa;
+    margin-bottom: 25px;
+}
+
+.letter p {
+    line-height: 2;
+    margin-bottom: 16px;
+}
+
+
+/* ============================================================
+   BROKEN HEART
+============================================================ */
+
+#brokenHeart {
+    font-size: 100px;
+    cursor: pointer;
+    margin: 30px;
+    transition: 0.4s;
+    display: inline-block;
+}
+
+#brokenHeart:hover {
+    transform: scale(1.1);
+}
+
+#heartText {
+    min-height: 40px;
+    margin-bottom: 20px;
+}
+
+
+/* ============================================================
+   LESSONS
+============================================================ */
+
+.lesson {
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 18px;
+    color: #555;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ============================================================
+   FINAL
+============================================================ */
+
+.final-content {
+    width: min(700px, 95%);
+    margin: auto;
+    text-align: center;
+}
+
+.final-content h1 {
+    color: #ff6f9f;
+    font-size: clamp(35px, 8vw, 65px);
+    line-height: 1.3;
+    margin-bottom: 25px;
+}
+
+.final-stars {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.finalHeart {
+    font-size: 100px;
+    margin: 30px;
+    animation: heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.final-content h2 {
+    color: #ff7eaa;
+    margin: 20px 0;
+}
+
+.final-content p {
+    margin: 12px 0;
+}
+
+.always {
+    font-size: 22px;
+    color: #ff7eaa !important;
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   FLOATING HEARTS
+============================================================ */
+
+#hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    bottom: -40px;
+    color: #ff9fbd;
+    animation: floatHeart linear forwards;
+    opacity: 0.8;
+}
+
+@keyframes floatHeart {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* ============================================================
+   LIGHTBOX
+============================================================ */
+
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.90);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+#lightbox.active {
+    display: flex;
+}
+
+#lightboxImg {
+    max-width: 75vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+#lightbox button {
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #ff4f8b;
+    color: white;
+    font-size: 18px;
+}
+
+#closeLightbox {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 700px) {
+
+    .page {
+        padding: 30px 15px 60px;
+    }
+
+    #timer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .time-box:last-child {
+        grid-column: 1 / -1;
+        width: 50%;
+        margin: auto;
+    }
+
+    .activities {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .gallery img {
+        height: 180px;
+    }
+
+    .year-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .year-number {
+        font-size: 48px;
+    }
+
+    .music-player {
+        justify-content: center;
+    }
+
+    .music-info {
+        min-width: 130px;
+    }
+
+    .anniversary-title {
+        flex-wrap: wrap;
+    }
+
+    .anniversary-title h1 {
+        font-size: 30px;
+    }
+
+    #lightbox {
+        gap: 8px;
+    }
+
+    #lightboxImg {
+        max-width: 75vw;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .welcome-box {
+        padding: 35px 20px;
+    }
+
+    .counter {
+        padding: 25px 12px;
+    }
+
+    .time-box span {
+        font-size: 26px;
+    }
+
+    .time-box {
+        min-height: 80px;
+    }
+
+    .gallery img {
+        height: 145px;
+        border-radius: 15px;
+    }
+
+    .anniversary-letter {
+        padding: 25px 20px;
+    }
+
+    .finalHeart {
+        font-size: 80px;
+    }
 }
