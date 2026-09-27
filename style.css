@@ -1,6 +1,6 @@
-/* ============================================================
+/* =========================================================
    GLOBAL
-============================================================ */
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -31,9 +31,9 @@ button {
 }
 
 
-/* ============================================================
+/* =========================================================
    PAGES
-============================================================ */
+========================================================= */
 
 .page {
     display: none;
@@ -55,9 +55,9 @@ button {
 }
 
 
-/* ============================================================
+/* =========================================================
    WELCOME
-============================================================ */
+========================================================= */
 
 #welcome {
     display: none;
@@ -103,9 +103,9 @@ button {
 }
 
 
-/* ============================================================
+/* =========================================================
    BUTTONS
-============================================================ */
+========================================================= */
 
 .main-btn {
     display: block;
@@ -135,10 +135,34 @@ button {
     transform: scale(0.97);
 }
 
+.secondary-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 12px 22px;
+    background: #fff0f5;
+    color: #ff4f8b;
+    font-weight: 600;
+    transition: .2s;
+}
 
-/* ============================================================
-   ANNIVERSARY TITLE
-============================================================ */
+.secondary-btn:hover {
+    transform: translateY(-2px);
+}
+
+.back-btn {
+    display: block;
+    margin: 30px auto 0;
+    border: none;
+    background: transparent;
+    color: #ff4f8b;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   ANNIVERSARY
+========================================================= */
 
 .anniversary-title {
     display: flex;
@@ -151,7 +175,6 @@ button {
 .anniversary-title h1 {
     color: #ff4f8b;
     font-size: clamp(28px, 6vw, 45px);
-    font-weight: 700;
 }
 
 .anniversary-title span {
@@ -165,9 +188,9 @@ button {
 }
 
 
-/* ============================================================
+/* =========================================================
    LOVE MESSAGE
-============================================================ */
+========================================================= */
 
 .love-message-card {
     background: white;
@@ -188,9 +211,9 @@ button {
 }
 
 
-/* ============================================================
+/* =========================================================
    COUNTER
-============================================================ */
+========================================================= */
 
 .counter {
     max-width: 700px;
@@ -208,8 +231,8 @@ button {
 }
 
 .counter-small {
-    color: #999;
-    font-size: 13px;
+    color: #888;
+    font-size: 14px;
     margin-bottom: 25px;
 }
 
@@ -220,107 +243,203 @@ button {
 }
 
 .time-box {
-    background: #fff5f8;
-    border-radius: 18px;
-    padding: 16px 8px;
-    min-height: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .time-box span {
     color: #ff4f8b;
-    font-size: 30px;
-    line-height: 1;
+    font-size: clamp(25px, 5vw, 40px);
     font-weight: 700;
 }
 
 .time-box small {
-    color: #666;
-    font-size: 11px;
-    margin-top: 9px;
+    color: #555;
 }
 
 
-/* ============================================================
-   365 DAYS CARD
-============================================================ */
+/* =========================================================
+   YEAR CARD
+========================================================= */
 
 .year-card {
-    max-width: 650px;
-    margin: 35px auto;
+    max-width: 700px;
+    margin: 25px auto 40px;
     padding: 25px;
-    background: linear-gradient(
-        135deg,
-        #fff,
-        #fff1f6
-    );
+    background: white;
     border-radius: 25px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 25px;
-    text-align: left;
-    box-shadow: 0 15px 35px rgba(255, 79, 139, 0.09);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .05);
 }
 
 .year-number {
-    min-width: 120px;
     color: #ff4f8b;
     font-size: 55px;
     font-weight: 700;
-    text-align: center;
+}
+
+.year-text {
+    text-align: left;
 }
 
 .year-text h3 {
     color: #ff4f8b;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .year-text p {
-    color: #666;
+    color: #777;
     line-height: 1.7;
 }
 
 
-/* ============================================================
+/* =========================================================
+   OUR PLACE
+========================================================= */
+
+.our-place-intro {
+    margin: 45px auto 20px;
+    text-align: center;
+}
+
+.place-heart {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 5px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.our-place-intro h2 {
+    color: #ff4f8b;
+    font-size: 30px;
+}
+
+.our-place-intro p {
+    color: #888;
+    margin-top: 5px;
+}
+
+.our-place-grid {
+    max-width: 760px;
+    margin: 25px auto 35px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.place-card {
+    border: none;
+    background: white;
+    border-radius: 24px;
+    padding: 25px 18px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(0,0,0,.05);
+    transition: .25s;
+}
+
+.place-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(255,79,139,.13);
+}
+
+.place-card span {
+    display: block;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.place-card strong {
+    display: block;
+    color: #ff4f8b;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.place-card small {
+    color: #888;
+}
+
+
+/* =========================================================
+   STREAK
+========================================================= */
+
+.streak-card {
+    max-width: 650px;
+    margin: 30px auto 45px;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, #fff, #fff0f5);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 15px 35px rgba(255,79,139,.08);
+}
+
+.streak-icon {
+    font-size: 35px;
+}
+
+.streak-card h3 {
+    color: #ff4f8b;
+}
+
+.streak-card p {
+    font-size: 13px;
+    color: #888;
+}
+
+.streak-card strong {
+    margin-left: auto;
+    color: #ff4f8b;
+    font-size: 35px;
+}
+
+.streak-card > small {
+    color: #777;
+}
+
+
+/* =========================================================
    SECTION TITLES
-============================================================ */
+========================================================= */
 
 .section-title {
     color: #ff4f8b;
-    margin-top: 40px;
-    margin-bottom: 5px;
-    font-size: 28px;
+    margin-top: 25px;
+    font-size: 30px;
 }
 
 .section-subtitle {
     color: #888;
-    margin-bottom: 20px;
+    margin: 7px 0 25px;
 }
 
 
-/* ============================================================
+/* =========================================================
    GALLERY
-============================================================ */
+========================================================= */
 
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 750px;
-    margin: 20px auto 35px;
+    gap: 14px;
+    max-width: 800px;
+    margin: auto;
 }
 
 .gallery img {
     width: 100%;
-    height: 220px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 20px;
     cursor: pointer;
-    transition: 0.35s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: .25s;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
 
 .gallery img:hover {
@@ -328,31 +447,30 @@ button {
 }
 
 
-/* ============================================================
+/* =========================================================
    MUSIC
-============================================================ */
+========================================================= */
 
 .music-player {
-    max-width: 650px;
-    margin: 30px auto;
-    padding: 20px;
+    max-width: 700px;
+    margin: 35px auto;
     background: white;
     border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
-    display: flex;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 15px;
-    flex-wrap: wrap;
+    box-shadow: 0 15px 35px rgba(0,0,0,.06);
 }
 
 .music-cover {
     width: 55px;
     height: 55px;
+    border-radius: 15px;
     background: #fff0f5;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
     font-size: 25px;
 }
 
@@ -360,25 +478,17 @@ button {
     animation: musicSpin 3s linear infinite;
 }
 
-@keyframes musicSpin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .music-info {
-    flex: 1;
     text-align: left;
 }
 
 .music-info h3 {
-    font-size: 15px;
-    color: #444;
+    color: #ff4f8b;
 }
 
 .music-info p {
-    font-size: 12px;
-    color: #ff4f8b;
+    font-size: 13px;
+    color: #888;
 }
 
 .play-btn {
@@ -388,10 +498,10 @@ button {
     border-radius: 50%;
     background: #ff4f8b;
     color: white;
-    font-size: 17px;
 }
 
 #progress {
+    grid-column: 1 / -1;
     width: 100%;
     accent-color: #ff4f8b;
 }
@@ -399,32 +509,32 @@ button {
 .volume-box {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
 }
 
 #volume {
-    width: 90px;
+    width: 80px;
     accent-color: #ff4f8b;
 }
 
 
-/* ============================================================
+/* =========================================================
    CARDS
-============================================================ */
+========================================================= */
 
 .activities {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
-    margin: 30px auto;
+    margin: 35px auto;
     max-width: 850px;
 }
 
 .card {
     background: white;
     padding: 25px 20px;
-    border-radius: 22px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.05);
 }
 
 .card-icon {
@@ -433,363 +543,564 @@ button {
 
 .card h3 {
     color: #ff4f8b;
-    margin: 12px 0 8px;
-    font-size: 17px;
+    margin: 10px 0;
 }
 
 .card p {
     color: #777;
-    font-size: 14px;
     line-height: 1.7;
 }
 
 
-/* ============================================================
-   ANNIVERSARY LETTER
-============================================================ */
+/* =========================================================
+   LETTER / LOVE BOX / MESSAGE
+========================================================= */
 
-.anniversary-letter {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 35px 30px;
+.anniversary-letter,
+.love-box-section,
+.message-box {
+    max-width: 760px;
+    margin: 35px auto;
     background: white;
     border-radius: 28px;
-    text-align: left;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    padding: 35px 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.05);
 }
 
-.anniversary-letter h2 {
+.anniversary-letter h2,
+.love-box-section h2,
+.message-box h2 {
     color: #ff4f8b;
-    text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .anniversary-letter p {
     line-height: 1.9;
-    color: #555;
-    margin-bottom: 15px;
+    color: #666;
+    margin: 13px 0;
 }
 
 .special-line {
     color: #ff4f8b !important;
-    font-size: 19px;
-    font-weight: 700;
-    text-align: center;
-}
-
-
-/* ============================================================
-   LOVE BOX
-============================================================ */
-
-.love-box-section {
-    max-width: 650px;
-    margin: 40px auto;
-    padding: 35px 20px;
-    background: white;
-    border-radius: 28px;
-    box-shadow: 0 15px 40px rgba(255, 79, 139, 0.08);
-}
-
-.love-box-section h2 {
-    color: #ff4f8b;
-}
-
-.love-box-section > p {
-    color: #888;
-    margin: 10px 0 20px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 #giftBox {
-    font-size: 75px;
+    font-size: 80px;
     cursor: pointer;
-    display: inline-block;
-    transition: 0.3s ease;
-    user-select: none;
+    margin: 20px;
+    transition: .3s;
 }
 
 #giftBox:hover {
-    transform: scale(1.1) rotate(-4deg);
-}
-
-#giftBox.openGift {
-    animation: giftOpen 0.6s ease;
-}
-
-@keyframes giftOpen {
-    50% {
-        transform: scale(1.3) rotate(10deg);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+    transform: scale(1.1) rotate(4deg);
 }
 
 #giftMessage {
-    max-width: 500px;
-    margin: 15px auto;
-    color: #555;
-    line-height: 1.8;
+    color: #ff4f8b;
+    font-weight: 600;
     min-height: 30px;
 }
 
 #countdown {
+    margin-top: 10px;
+    color: #999;
+}
+
+.message-box textarea,
+#questionAnswer,
+#noteInput {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    border: 2px solid #ffe0eb;
+    border-radius: 18px;
+    padding: 15px;
+    outline: none;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.message-box textarea:focus,
+#questionAnswer:focus,
+#noteInput:focus {
+    border-color: #ff8db3;
+}
+
+#passwordInput {
+    width: 100%;
+    padding: 14px;
+    border-radius: 15px;
+    border: 2px solid #ffe0eb;
+    outline: none;
+    margin: 5px 0 12px;
+}
+
+
+/* =========================================================
+   SPECIAL PAGES
+========================================================= */
+
+.special-page {
+    background: #fff7fa;
+}
+
+.special-box {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.big-emoji {
+    font-size: 60px;
+    margin: 15px 0;
+    animation: heartbeat 1.7s infinite;
+}
+
+.special-box h1 {
     color: #ff4f8b;
+    font-size: clamp(30px, 7vw, 45px);
+}
+
+.special-subtitle {
+    color: #888;
+    line-height: 1.8;
+    margin: 10px auto 25px;
+}
+
+
+/* =========================================================
+   MISS YOU
+========================================================= */
+
+.miss-card {
+    background: white;
+    border-radius: 30px;
+    min-height: 190px;
+    padding: 40px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 45px rgba(255,79,139,.10);
+    margin: 25px auto;
+}
+
+#missMessage {
+    color: #555;
+    font-size: 20px;
+    line-height: 1.9;
+}
+
+.miss-counter {
+    margin: 25px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #ff4f8b;
+}
+
+.miss-counter strong {
+    font-size: 25px;
+}
+
+.miss-counter small {
+    color: #999;
+}
+
+
+/* =========================================================
+   DAILY
+========================================================= */
+
+.daily-card {
+    background: white;
+    border-radius: 30px;
+    padding: 40px 25px;
+    box-shadow: 0 20px 45px rgba(255,79,139,.10);
+}
+
+#dailyIcon {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+#dailyMessage {
+    font-size: 19px;
+    line-height: 1.9;
+    color: #555;
+}
+
+.daily-note {
+    color: #aaa;
+    margin: 20px;
     font-size: 13px;
 }
 
 
-/* ============================================================
-   MESSAGE BOX
-============================================================ */
+/* =========================================================
+   QUESTIONS
+========================================================= */
 
-.message-box {
-    max-width: 650px;
-    margin: 30px auto;
-    padding: 30px 20px;
+.question-card {
     background: white;
-    border-radius: 28px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    border-radius: 30px;
+    padding: 35px 25px;
+    box-shadow: 0 20px 45px rgba(255,79,139,.10);
+    margin: 25px auto;
 }
 
-.message-box h2 {
-    color: #ff4f8b;
-    margin-bottom: 8px;
+.question-card span {
+    font-size: 35px;
 }
 
-.message-box p {
-    color: #888;
-    margin-bottom: 15px;
-}
-
-#rymeMessage,
-#passwordInput {
-    display: block;
-    width: 100%;
-    border: 2px solid #ffe0eb;
-    outline: none;
-    border-radius: 15px;
-    padding: 14px;
-    margin-bottom: 12px;
-    font-size: 14px;
-    resize: vertical;
-}
-
-#rymeMessage {
-    min-height: 120px;
-}
-
-#rymeMessage:focus,
-#passwordInput:focus {
-    border-color: #ff4f8b;
-}
-
-#sendMessageBtn {
-    border: none;
-    border-radius: 50px;
-    background: #ff4f8b;
-    color: white;
-    padding: 13px 25px;
-    font-weight: 600;
-}
-
-#sendStatus {
+.question-card p {
+    color: #555;
+    font-size: 20px;
+    line-height: 1.7;
     margin-top: 15px;
 }
 
-
-/* ============================================================
-   QUIZ
-============================================================ */
-
-.quiz-question {
-    margin: 20px;
-    font-size: 20px;
+#answerStatus,
+#secretStatus,
+#sendStatus {
+    min-height: 25px;
+    margin-top: 10px;
+    color: #ff4f8b;
 }
+
+
+/* =========================================================
+   SECRET
+========================================================= */
+
+.lock-icon {
+    font-size: 65px;
+    margin: 20px;
+}
+
+#secretPin {
+    width: 100%;
+    max-width: 250px;
+    display: block;
+    margin: 20px auto;
+    padding: 15px;
+    border: 2px solid #ffe0eb;
+    border-radius: 15px;
+    text-align: center;
+    letter-spacing: 8px;
+    font-size: 20px;
+    outline: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.secret-content {
+    margin-top: 25px;
+}
+
+.secret-content h2 {
+    color: #ff4f8b;
+}
+
+.secret-content > p {
+    color: #888;
+    margin: 10px 0 20px;
+}
+
+.secret-note {
+    background: white;
+    border-radius: 22px;
+    padding: 25px;
+    margin: 15px 0;
+    color: #666;
+    line-height: 1.9;
+    box-shadow: 0 12px 30px rgba(0,0,0,.05);
+}
+
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+#notesList {
+    margin: 25px auto;
+    text-align: left;
+}
+
+.saved-note {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 12px 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,.05);
+}
+
+.saved-note p {
+    color: #555;
+    line-height: 1.7;
+}
+
+.saved-note small {
+    display: block;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline {
+    position: relative;
+    text-align: left;
+    margin: 35px 0;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 23px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ffc1d4;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 18px;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.timeline-item > span {
+    min-width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 5px 15px rgba(255,79,139,.15);
+    z-index: 1;
+}
+
+.timeline-item > div {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.05);
+}
+
+.timeline-item small {
+    color: #ff4f8b;
+}
+
+.timeline-item h3 {
+    margin: 5px 0;
+    color: #555;
+}
+
+.timeline-item p {
+    color: #888;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
 
 .quizBtn {
     display: block;
-    width: min(350px, 90%);
+    width: min(400px, 90%);
     margin: 12px auto;
-    padding: 15px;
-    border: 2px solid #ffb5cd;
+    padding: 14px;
+    border: none;
     border-radius: 50px;
     background: white;
     color: #ff4f8b;
-    font-size: 16px;
     font-weight: 600;
-    transition: 0.25s;
+    box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    transition: .2s;
 }
 
 .quizBtn:hover {
-    background: #fff0f5;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 #quizResult {
     color: #ff4f8b;
-    font-size: 18px;
     font-weight: 600;
-    margin: 25px;
+    margin: 20px;
+    min-height: 45px;
 }
 
 
-/* ============================================================
+/* =========================================================
    DARK PAGES
-============================================================ */
+========================================================= */
 
 .darkPage {
-    background:
-        radial-gradient(
-            circle at top,
-            #351a2a,
-            #130b11
-        );
+    background: #222;
     color: white;
 }
 
 .dark-content {
-    width: min(750px, 95%);
+    max-width: 750px;
     margin: auto;
     text-align: center;
 }
 
 .dark-content h1 {
-    font-size: 50px;
-    margin-bottom: 20px;
-}
-
-.dark-content h2 {
-    margin-bottom: 20px;
-}
-
-.dark-content p {
-    line-height: 1.9;
-    color: #f2dce5;
-}
-
-
-/* ============================================================
-   LETTER
-============================================================ */
-
-.letter {
-    max-width: 750px;
-    margin: 25px auto;
-    padding: 35px 30px;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    text-align: left;
-}
-
-.letter h2 {
-    color: #ff7eaa;
+    font-size: 60px;
     margin-bottom: 25px;
 }
 
-.letter p {
-    line-height: 2;
-    margin-bottom: 16px;
+.typewriter {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 25px;
+    background: rgba(255,255,255,.07);
 }
 
+.typewriter p {
+    line-height: 2;
+    color: #eee;
+}
 
-/* ============================================================
-   BROKEN HEART
-============================================================ */
+.letter {
+    background: #fff;
+    color: #555;
+    padding: 35px;
+    border-radius: 25px;
+    text-align: left;
+    line-height: 1.9;
+    box-shadow: 0 20px 50px rgba(0,0,0,.2);
+}
+
+.letter h2 {
+    color: #ff4f8b;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.letter p {
+    margin: 15px 0;
+}
 
 #brokenHeart {
     font-size: 100px;
     cursor: pointer;
     margin: 30px;
-    transition: 0.4s;
-    display: inline-block;
-}
-
-#brokenHeart:hover {
-    transform: scale(1.1);
+    transition: .4s;
 }
 
 #heartText {
-    min-height: 40px;
-    margin-bottom: 20px;
+    min-height: 50px;
+    color: #ff8db3;
+    line-height: 1.8;
 }
 
 
-/* ============================================================
-   LESSONS
-============================================================ */
-
-.lesson {
-    max-width: 600px;
-    margin: 15px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 18px;
-    color: #555;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-}
-
-
-/* ============================================================
+/* =========================================================
    FINAL
-============================================================ */
+========================================================= */
 
 .final-content {
-    width: min(700px, 95%);
+    max-width: 700px;
     margin: auto;
     text-align: center;
-}
-
-.final-content h1 {
-    color: #ff6f9f;
-    font-size: clamp(35px, 8vw, 65px);
-    line-height: 1.3;
-    margin-bottom: 25px;
+    padding-top: 50px;
 }
 
 .final-stars {
     font-size: 30px;
-    margin-bottom: 20px;
 }
 
-.finalHeart {
-    font-size: 100px;
-    margin: 30px;
-    animation: heartbeat 1.3s infinite;
-}
-
-@keyframes heartbeat {
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.15);
-    }
-}
-
-.final-content h2 {
-    color: #ff7eaa;
-    margin: 20px 0;
+.final-content h1 {
+    color: #ff8db3;
+    font-size: clamp(38px, 8vw, 65px);
+    margin: 30px 0;
 }
 
 .final-content p {
-    margin: 12px 0;
+    color: #ddd;
+    line-height: 2;
+    font-size: 18px;
+}
+
+.finalHeart {
+    font-size: 90px;
+    margin: 30px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.final-content h2 {
+    color: #ff8db3;
+    margin: 20px 0;
 }
 
 .always {
-    font-size: 22px;
-    color: #ff7eaa !important;
-    font-weight: 600;
+    color: #ff8db3 !important;
+    font-size: 22px !important;
 }
 
 
-/* ============================================================
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+#lightbox.active {
+    display: flex;
+}
+
+#lightboxImg {
+    max-width: min(80vw, 800px);
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 15px;
+}
+
+#lightbox button {
+    border: none;
+    background: rgba(255,255,255,.15);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+#closeLightbox {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
+/* =========================================================
    FLOATING HEARTS
-============================================================ */
+========================================================= */
 
 #hearts {
     position: fixed;
@@ -801,20 +1112,21 @@ button {
 
 .heart {
     position: absolute;
-    bottom: -40px;
-    color: #ff9fbd;
+    bottom: -30px;
+    color: #ff9abc;
     animation: floatHeart linear forwards;
-    opacity: 0.8;
+    opacity: .7;
 }
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
 
 @keyframes floatHeart {
     from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 0.8;
+        transform: translateY(0) rotate(0);
+        opacity: .8;
     }
 
     to {
@@ -823,82 +1135,44 @@ button {
     }
 }
 
+@keyframes heartbeat {
 
-/* ============================================================
-   LIGHTBOX
-============================================================ */
+    0%, 100% {
+        transform: scale(1);
+    }
 
-#lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.90);
-    z-index: 99999;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    padding: 20px;
+    50% {
+        transform: scale(1.12);
+    }
+
 }
 
-#lightbox.active {
-    display: flex;
-}
+@keyframes musicSpin {
 
-#lightboxImg {
-    max-width: 75vw;
-    max-height: 80vh;
-    object-fit: contain;
-    border-radius: 15px;
-}
+    from {
+        transform: rotate(0);
+    }
 
-#lightbox button {
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #ff4f8b;
-    color: white;
-    font-size: 18px;
-}
+    to {
+        transform: rotate(360deg);
+    }
 
-#closeLightbox {
-    position: absolute;
-    top: 25px;
-    right: 25px;
 }
 
 
-/* ============================================================
-   RESPONSIVE
-============================================================ */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 700px) {
 
     .page {
-        padding: 30px 15px 60px;
+        padding: 30px 14px 55px;
     }
 
     #timer {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .time-box:last-child {
-        grid-column: 1 / -1;
-        width: 50%;
-        margin: auto;
-    }
-
-    .activities {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .gallery img {
-        height: 180px;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 20px;
     }
 
     .year-card {
@@ -906,64 +1180,78 @@ button {
         text-align: center;
     }
 
-    .year-number {
-        font-size: 48px;
+    .year-text {
+        text-align: center;
+    }
+
+    .our-place-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .place-card {
+        padding: 20px 10px;
+    }
+
+    .place-card span {
+        font-size: 28px;
+    }
+
+    .place-card strong {
+        font-size: 14px;
+    }
+
+    .place-card small {
+        font-size: 11px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .activities {
+        grid-template-columns: 1fr;
     }
 
     .music-player {
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .volume-box {
+        grid-column: 1 / -1;
         justify-content: center;
     }
 
-    .music-info {
-        min-width: 130px;
+    #volume {
+        width: 120px;
     }
 
-    .anniversary-title {
-        flex-wrap: wrap;
-    }
-
-    .anniversary-title h1 {
-        font-size: 30px;
-    }
-
-    #lightbox {
-        gap: 8px;
-    }
-
-    #lightboxImg {
-        max-width: 75vw;
-    }
-}
-
-
-@media (max-width: 420px) {
-
-    .welcome-box {
-        padding: 35px 20px;
-    }
-
-    .counter {
-        padding: 25px 12px;
-    }
-
-    .time-box span {
-        font-size: 26px;
-    }
-
-    .time-box {
-        min-height: 80px;
-    }
-
-    .gallery img {
-        height: 145px;
-        border-radius: 15px;
-    }
-
-    .anniversary-letter {
+    .letter {
         padding: 25px 20px;
     }
 
-    .finalHeart {
-        font-size: 80px;
+    .timeline-item > div {
+        padding: 15px;
     }
+
+}
+
+@media (max-width: 420px) {
+
+    .our-place-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .counter {
+        padding: 25px 10px;
+    }
+
+    .time-box span {
+        font-size: 25px;
+    }
+
+    .time-box small {
+        font-size: 11px;
+    }
+
 }
