@@ -1,28 +1,32 @@
-// ============================================================
-// LOVE WEBSITE - CLEANED & FIXED JAVASCRIPT
-// ============================================================
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ============================================================
-    // Pages
-    // ============================================================
+    /* ============================================================
+       PAGE NAVIGATION
+    ============================================================ */
 
     const pages = document.querySelectorAll(".page");
 
     function showPage(id) {
-        pages.forEach(page => page.classList.remove("active"));
 
-        const targetPage = document.getElementById(id);
+        pages.forEach(page => {
+            page.classList.remove("active");
+        });
 
-        if (targetPage) {
-            targetPage.classList.add("active");
+        const target = document.getElementById(id);
+
+        if (target) {
+            target.classList.add("active");
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         }
     }
 
-    // ============================================================
-    // Navigation Buttons
-    // ============================================================
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
 
     const happyBtn = document.getElementById("happyBtn");
     const sadBtn = document.getElementById("sadBtn");
@@ -33,641 +37,841 @@ document.addEventListener("DOMContentLoaded", () => {
     const next3 = document.getElementById("next3");
     const next4 = document.getElementById("next4");
 
+    const quizStart = document.getElementById("quizStart");
+    const quizNext = document.getElementById("quizNext");
+
+
     if (happyBtn) {
-        happyBtn.addEventListener("click", () => showPage("happy"));
+        happyBtn.addEventListener("click", () => {
+            showPage("happy");
+        });
     }
+
 
     if (sadBtn) {
-        sadBtn.addEventListener("click", () => showPage("sad"));
+        sadBtn.addEventListener("click", () => {
+            showPage("sad");
+        });
     }
+
 
     if (continueBtn) {
-        continueBtn.addEventListener("click", () => showPage("letter"));
+        continueBtn.addEventListener("click", () => {
+            showPage("letter");
+        });
     }
+
 
     if (next1) {
-        next1.addEventListener("click", () => showPage("heartGame"));
+        next1.addEventListener("click", () => {
+            showPage("heartGame");
+        });
     }
+
 
     if (next2) {
-        next2.addEventListener("click", () => showPage("lessons"));
+        next2.addEventListener("click", () => {
+            showPage("lessons");
+        });
     }
+
 
     if (next3) {
-        next3.addEventListener("click", () => showPage("memories"));
+        next3.addEventListener("click", () => {
+            showPage("memories");
+        });
     }
+
 
     if (next4) {
-        next4.addEventListener("click", () => showPage("final"));
+        next4.addEventListener("click", () => {
+            showPage("final");
+        });
     }
 
-    // ============================================================
-    // Random Love Message
-    // ============================================================
+
+    if (quizStart) {
+        quizStart.addEventListener("click", () => {
+            showPage("quiz");
+        });
+    }
+
+
+    if (quizNext) {
+        quizNext.addEventListener("click", () => {
+            showPage("final");
+        });
+    }
+
+
+    /* ============================================================
+       LOVE MESSAGES
+    ============================================================ */
 
     const messages = [
+
         "You are my favorite person ❤️",
+
         "I smile every time I think about you.",
+
         "My best memories always include you.",
+
         "You make ordinary days feel special.",
+
         "Thank you for being part of my life.",
+
         "I'd choose you again and again.",
+
         "You are my safe place.",
-        "You are the most beautiful chapter of my story.",
+
+        "You are one of the most beautiful chapters of my story.",
+
         "You mean more to me than words can say.",
-        "Every day with you is a gift."
+
+        "One year later, I still choose you. ❤️"
+
     ];
 
-    const loveMessage = document.getElementById("loveMessage");
+
+    const loveMessage =
+        document.getElementById("loveMessage");
+
 
     if (loveMessage) {
+
         loveMessage.textContent =
-            messages[Math.floor(Math.random() * messages.length)];
+            messages[
+                Math.floor(
+                    Math.random() * messages.length
+                )
+            ];
+
     }
 
-    // ============================================================
-    // Relationship Counter
-    // ============================================================
 
-    const startDate = new Date("September 27, 2025 00:00:00");
+    /* ============================================================
+       ANNIVERSARY COUNTER
+       
+       CHANGE THIS DATE ONLY IF YOUR REAL MEETING DATE IS DIFFERENT.
+    ============================================================ */
+
+    const startDate =
+        new Date("September 27, 2025 00:00:00");
+
 
     function updateCounter() {
-        const yearEl = document.getElementById("year");
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
 
-        if (
-            !yearEl &&
-            !daysEl &&
-            !hoursEl &&
-            !minutesEl &&
-            !secondsEl
-        ) {
-            return;
-        }
+        const yearsEl =
+            document.getElementById("years");
+
+        const daysEl =
+            document.getElementById("days");
+
+        const hoursEl =
+            document.getElementById("hours");
+
+        const minutesEl =
+            document.getElementById("minutes");
+
+        const secondsEl =
+            document.getElementById("seconds");
+
 
         const now = new Date();
 
+
         if (now < startDate) {
-            if (yearEl) yearEl.textContent = "0";
+
+            if (yearsEl) yearsEl.textContent = "0";
             if (daysEl) daysEl.textContent = "0";
             if (hoursEl) hoursEl.textContent = "0";
             if (minutesEl) minutesEl.textContent = "0";
             if (secondsEl) secondsEl.textContent = "0";
+
             return;
         }
 
-        let years = now.getFullYear() - startDate.getFullYear();
 
-        const anniversary = new Date(startDate);
-        anniversary.setFullYear(startDate.getFullYear() + years);
+        let years =
+            now.getFullYear() -
+            startDate.getFullYear();
+
+
+        const anniversary =
+            new Date(startDate);
+
+
+        anniversary.setFullYear(
+            startDate.getFullYear() + years
+        );
+
 
         if (anniversary > now) {
+
             years--;
-            anniversary.setFullYear(startDate.getFullYear() + years);
+
+            anniversary.setFullYear(
+                startDate.getFullYear() + years
+            );
         }
 
-        const remaining = now - anniversary;
 
-        const days = Math.floor(
-            remaining / (1000 * 60 * 60 * 24)
-        );
+        const remaining =
+            now - anniversary;
 
-        const hours = Math.floor(
-            (remaining / (1000 * 60 * 60)) % 24
-        );
 
-        const minutes = Math.floor(
-            (remaining / (1000 * 60)) % 60
-        );
+        const days =
+            Math.floor(
+                remaining /
+                (1000 * 60 * 60 * 24)
+            );
 
-        const seconds = Math.floor(
-            (remaining / 1000) % 60
-        );
 
-        if (yearEl) yearEl.textContent = years;
-        if (daysEl) daysEl.textContent = days;
-        if (hoursEl) hoursEl.textContent = hours;
-        if (minutesEl) minutesEl.textContent = minutes;
-        if (secondsEl) secondsEl.textContent = seconds;
+        const hours =
+            Math.floor(
+                (
+                    remaining /
+                    (1000 * 60 * 60)
+                ) % 24
+            );
+
+
+        const minutes =
+            Math.floor(
+                (
+                    remaining /
+                    (1000 * 60)
+                ) % 60
+            );
+
+
+        const seconds =
+            Math.floor(
+                (
+                    remaining /
+                    1000
+                ) % 60
+            );
+
+
+        if (yearsEl) {
+            yearsEl.textContent = years;
+        }
+
+        if (daysEl) {
+            daysEl.textContent = days;
+        }
+
+        if (hoursEl) {
+            hoursEl.textContent = hours;
+        }
+
+        if (minutesEl) {
+            minutesEl.textContent = minutes;
+        }
+
+        if (secondsEl) {
+            secondsEl.textContent = seconds;
+        }
+
     }
 
+
     updateCounter();
+
     setInterval(updateCounter, 1000);
 
-    // ============================================================
-    // Music
-    // ============================================================
 
-    const music = document.getElementById("music");
-    const playBtn = document.getElementById("playMusic");
-    const progress = document.getElementById("progress");
-    const volume = document.getElementById("volume");
-    const cover = document.querySelector(".music-cover");
+    /* ============================================================
+       MUSIC
+    ============================================================ */
 
-    function updatePlayButton() {
-        if (!playBtn) return;
+    const music =
+        document.getElementById("music");
 
-        if (music && !music.paused) {
-            playBtn.innerHTML = "⏸ Pause";
+    const playBtn =
+        document.getElementById("playMusic");
+
+    const progress =
+        document.getElementById("progress");
+
+    const volume =
+        document.getElementById("volume");
+
+    const cover =
+        document.querySelector(".music-cover");
+
+
+    function updateMusicUI() {
+
+        if (!playBtn || !music) {
+            return;
+        }
+
+
+        if (!music.paused) {
+
+            playBtn.textContent = "⏸";
 
             if (cover) {
                 cover.classList.add("playing");
             }
+
         } else {
-            playBtn.innerHTML = "▶️ Play";
+
+            playBtn.textContent = "▶";
 
             if (cover) {
                 cover.classList.remove("playing");
             }
+
         }
+
     }
+
 
     if (playBtn && music) {
-        playBtn.addEventListener("click", async () => {
-            try {
-                if (music.paused) {
-                    await music.play();
-                } else {
-                    music.pause();
+
+        playBtn.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    if (music.paused) {
+
+                        await music.play();
+
+                    } else {
+
+                        music.pause();
+
+                    }
+
+                    updateMusicUI();
+
+                } catch (error) {
+
+                    console.log(
+                        "Music could not start:",
+                        error
+                    );
+
                 }
 
-                updatePlayButton();
-
-            } catch (error) {
-                console.warn(
-                    "Music could not be played:",
-                    error
-                );
             }
-        });
+        );
 
-        music.addEventListener("play", updatePlayButton);
-        music.addEventListener("pause", updatePlayButton);
-        music.addEventListener("ended", updatePlayButton);
+
+        music.addEventListener(
+            "play",
+            updateMusicUI
+        );
+
+
+        music.addEventListener(
+            "pause",
+            updateMusicUI
+        );
+
+
+        music.addEventListener(
+            "ended",
+            updateMusicUI
+        );
+
     }
 
-    if (progress && music) {
 
-        music.addEventListener("loadedmetadata", () => {
-            progress.value = 0;
-        });
+    if (music && progress) {
 
-        music.addEventListener("timeupdate", () => {
+        music.addEventListener(
+            "timeupdate",
+            () => {
 
-            if (
-                !Number.isFinite(music.duration) ||
-                music.duration <= 0
-            ) {
-                return;
+                if (
+                    !Number.isFinite(
+                        music.duration
+                    ) ||
+                    music.duration <= 0
+                ) {
+
+                    return;
+
+                }
+
+
+                progress.value =
+                    (
+                        music.currentTime /
+                        music.duration
+                    ) * 100;
+
             }
+        );
 
-            progress.value =
-                (music.currentTime / music.duration) * 100;
-        });
 
-        progress.addEventListener("input", () => {
+        progress.addEventListener(
+            "input",
+            () => {
 
-            if (
-                !Number.isFinite(music.duration) ||
-                music.duration <= 0
-            ) {
-                return;
+                if (
+                    !Number.isFinite(
+                        music.duration
+                    ) ||
+                    music.duration <= 0
+                ) {
+
+                    return;
+
+                }
+
+
+                music.currentTime =
+                    (
+                        Number(progress.value) /
+                        100
+                    ) * music.duration;
+
             }
+        );
 
-            music.currentTime =
-                (Number(progress.value) / 100) *
-                music.duration;
-        });
     }
 
-    if (volume && music) {
 
-        volume.addEventListener("input", () => {
+    if (music && volume) {
 
-            const value = Number(volume.value);
-
-            if (Number.isFinite(value)) {
+        volume.addEventListener(
+            "input",
+            () => {
 
                 music.volume =
-                    value > 1 ? value / 100 : value;
+                    Number(volume.value);
+
             }
-        });
+        );
+
     }
 
-    // ============================================================
-    // Heart Game
-    // ============================================================
+
+    /* ============================================================
+       BROKEN HEART GAME
+    ============================================================ */
 
     const brokenHeart =
-        document.getElementById("brokenHeart");
+        document.getElementById(
+            "brokenHeart"
+        );
 
     const heartText =
-        document.getElementById("heartText");
+        document.getElementById(
+            "heartText"
+        );
+
 
     let fixed = false;
 
+
     if (brokenHeart) {
 
-        brokenHeart.addEventListener("click", () => {
+        brokenHeart.addEventListener(
+            "click",
+            () => {
 
-            if (fixed) return;
+                if (fixed) {
+                    return;
+                }
 
-            fixed = true;
 
-            brokenHeart.innerHTML = "❤️";
+                fixed = true;
 
-            brokenHeart.style.transform =
-                "scale(1.3)";
 
-            if (heartText) {
+                brokenHeart.textContent =
+                    "❤️";
 
-                heartText.innerHTML =
-                    "Thank you... ❤️<br>" +
-                    "Even if you are not ready to forgive me today.";
+
+                brokenHeart.style.transform =
+                    "scale(1.3)";
+
+
+                if (heartText) {
+
+                    heartText.innerHTML =
+                        "You fixed it... ❤️<br>" +
+                        "Maybe hearts can heal when we choose to care.";
+
+                }
+
             }
-        });
+        );
+
     }
 
-    // ============================================================
-    // Floating Hearts
-    // ============================================================
+
+    /* ============================================================
+       FLOATING HEARTS
+    ============================================================ */
 
     function createHeart() {
 
-        const heartsContainer =
-            document.getElementById("hearts");
+        const container =
+            document.getElementById(
+                "hearts"
+            );
 
-        if (!heartsContainer) return;
+
+        if (!container) {
+            return;
+        }
+
 
         const heart =
             document.createElement("div");
 
+
         heart.className = "heart";
 
-        heart.innerHTML = "❤";
+        heart.textContent = "❤";
+
 
         heart.style.left =
             Math.random() * 100 + "vw";
 
+
         heart.style.fontSize =
-            15 + Math.random() * 25 + "px";
+            15 +
+            Math.random() * 25 +
+            "px";
+
 
         heart.style.animationDuration =
-            5 + Math.random() * 5 + "s";
+            5 +
+            Math.random() * 5 +
+            "s";
 
-        heartsContainer.appendChild(heart);
+
+        container.appendChild(heart);
+
 
         setTimeout(() => {
+
             heart.remove();
+
         }, 10000);
+
     }
 
-    setInterval(createHeart, 400);
 
-    // ============================================================
-    // Gallery Click Effect
-    // ============================================================
+    setInterval(createHeart, 500);
 
-    const images =
-        document.querySelectorAll(".gallery img");
 
-    images.forEach(img => {
-
-        img.addEventListener("click", () => {
-
-            img.style.transform =
-                "scale(1.15)";
-
-            img.style.zIndex = "999";
-
-            setTimeout(() => {
-
-                img.style.transform =
-                    "scale(1)";
-
-                img.style.zIndex = "1";
-
-            }, 350);
-        });
-    });
-
-    // ============================================================
-    // Smooth Button Press
-    // ============================================================
-
-    const buttons =
-        document.querySelectorAll("button");
-
-    buttons.forEach(btn => {
-
-        btn.addEventListener("mousedown", () => {
-            btn.style.transform = "scale(.96)";
-        });
-
-        btn.addEventListener("mouseup", () => {
-            btn.style.transform = "scale(1)";
-        });
-
-        btn.addEventListener("mouseleave", () => {
-            btn.style.transform = "scale(1)";
-        });
-
-        btn.addEventListener("touchend", () => {
-            btn.style.transform = "scale(1)";
-        });
-    });
-
-    // ============================================================
-    // Welcome Animation
-    // ============================================================
-
-    const welcomeBox =
-        document.querySelector(".welcome-box");
-
-    if (welcomeBox) {
-
-        welcomeBox.style.opacity = "0";
-
-        welcomeBox.style.transform =
-            "translateY(40px)";
-
-        setTimeout(() => {
-
-            welcomeBox.style.transition = ".8s";
-
-            welcomeBox.style.opacity = "1";
-
-            welcomeBox.style.transform =
-                "translateY(0)";
-
-        }, 300);
-    }
-
-    // ============================================================
-    // Random Background Glow
-    // ============================================================
-
-    setInterval(() => {
-
-        document.body.style.backgroundPosition =
-            Math.random() * 100 +
-            "% " +
-            Math.random() * 100 +
-            "%";
-
-    }, 5000);
-
-    // ============================================================
-    // Love Box Messages
-    // ============================================================
+    /* ============================================================
+       LOVE BOX
+    ============================================================ */
 
     const loveMessages = [
 
-        "❤️ Every day with you is my favorite day.",
+        "❤️ One year down, and I still get butterflies because of you.",
 
-        "🌹 You are my safest place.",
+        "🌹 Thank you for making this year unforgettable.",
 
-        "💖 Thank you for being in my life.",
+        "💖 If I could relive this year, I would choose you again.",
 
-        "🥹 Your smile makes everything better.",
+        "🥹 You are one of my favorite parts of life.",
 
-        "✨ I choose you. Every single day.",
+        "✨ One year. Countless memories. One special girl.",
 
-        "💕 You are my favorite notification.",
+        "💕 You made ordinary days feel extraordinary.",
 
-        "🌸 I hope today makes you smile.",
+        "🌸 I hope we create many more beautiful memories together.",
 
-        "❤️ You are my little miracle.",
+        "❤️ My favorite chapter is the one where I met you.",
 
-        "🌹 Forever starts with you.",
+        "🌙 Even on difficult days, you are still precious to me.",
 
-        "💌 Amine loves you more than words.",
+        "💌 Happy first anniversary, my beautiful Rymaa.",
 
-        "❤️ Every day with you feels like a beautiful gift. Thank you for bringing happiness, warmth, and love into my life.",
+        "🌹 Thank you for every laugh, every conversation and every memory.",
 
-        "🌹 You are not just a person I love, you are the place where my heart feels safe and peaceful.",
+        "💗 One year with you will always be a year I treasure.",
 
-        "💖 Thank you for every smile, every moment, and every little thing you do that makes my world brighter.",
+        "❤️ I choose you today, tomorrow and every day after.",
 
-        "🥹 Your smile has a special power. It can turn my worst days into moments I want to remember forever.",
+        "✨ Our story has only just begun.",
 
-        "✨ I choose you today, tomorrow, and every day after. My heart always finds its way back to you.",
+        "🥰 You are my favorite person and my sweetest memory.",
 
-        "💕 You are my favorite message, my favorite thought, and the person I want to share my beautiful moments with.",
+        "💖 Thank you for being you.",
 
-        "🌸 I hope you always remember how special you are and how much happiness your existence brings to my life.",
+        "🌷 Here's to the first year and all the beautiful moments ahead.",
 
-        "❤️ You are my little miracle, the beautiful surprise that made my life more meaningful.",
+        "💌 Amine loves you more than words can explain."
 
-        "🌹 Forever is a long time, but I would still choose to spend every moment of it with you.",
-
-        "💌 Amine loves you more than words can explain. You are a precious part of my heart.",
-
-        "🌙 Even when we are far apart, you are always close to my heart and always in my thoughts.",
-
-        "💗 You make ordinary days feel magical just by being yourself. Never forget how amazing you are.",
-
-        "🌷 Your happiness matters to me more than anything. I always want to see you smiling.",
-
-        "❤️ If I could give you one thing, I would give you the ability to see yourself through my eyes, so you could understand how beautiful you truly are.",
-
-        "✨ You are the reason behind many of my smiles and one of the most beautiful chapters of my story.",
-
-        "🌹 No matter what happens, I will always appreciate the moments, memories, and feelings we share together.",
-
-        "💖 Your voice, your smile, and your presence have a way of making everything feel better.",
-
-        "🥰 I hope you know that someone out there is always thinking about you and wishing you happiness.",
-
-        "🌸 You are more than a dream. You are a beautiful reality that I am grateful for every day.",
-
-        "❤️ Loving you is not just a feeling, it is a choice I happily make again and again.",
-
-        "💌 Every memory with you is something I keep carefully in my heart because you make moments special.",
-
-        "🌹 You deserve all the love, kindness, and happiness that this world can offer.",
-
-        "✨ Thank you for being yourself. The real you is the person my heart admires the most.",
-
-        "💖 Sometimes I just stop and smile because I realize how lucky I am to have someone like you in my life.",
-
-        "🌙 You are the calm in my chaos, the light in my dark moments, and the smile in my heart.",
-
-        "❤️ I don't need perfect days. I just need beautiful moments with you.",
-
-        "🌷 Your presence makes my life softer, happier, and more beautiful than before.",
-
-        "🥹 I hope every day reminds you that you are loved, appreciated, and never forgotten.",
-
-        "💗 You are my favorite person, my sweetest thought, and a beautiful reason to keep smiling.",
-
-        "💌 No matter how many words I write, they will never be enough to describe how special you are to me."
     ];
 
+
     const gift =
-        document.getElementById("giftBox");
+        document.getElementById(
+            "giftBox"
+        );
 
-    const msg =
-        document.getElementById("giftMessage");
+    const giftMessage =
+        document.getElementById(
+            "giftMessage"
+        );
 
-    const timer =
-        document.getElementById("countdown");
+    const countdownText =
+        document.getElementById(
+            "countdown"
+        );
 
-    let waiting = false;
+
+    let giftWaiting = false;
+
 
     if (gift) {
 
-        gift.addEventListener("click", () => {
+        gift.addEventListener(
+            "click",
+            () => {
 
-            if (waiting) return;
-
-            waiting = true;
-
-            gift.classList.add("openGift");
-
-            const randomMessage =
-                loveMessages[
-                    Math.floor(
-                        Math.random() *
-                        loveMessages.length
-                    )
-                ];
-
-            setTimeout(() => {
-
-                gift.classList.remove("openGift");
-
-                gift.innerHTML = "💝";
-
-                if (msg) {
-                    msg.textContent =
-                        randomMessage;
+                if (giftWaiting) {
+                    return;
                 }
 
-                sendTelegram(
-                    "🎁 Ryma opened Love Box ❤️\n\n" +
-                    randomMessage
+
+                giftWaiting = true;
+
+
+                gift.classList.add(
+                    "openGift"
                 );
 
-                createHearts();
 
-            }, 600);
+                const randomMessage =
+                    loveMessages[
+                        Math.floor(
+                            Math.random() *
+                            loveMessages.length
+                        )
+                    ];
 
-            let remaining = 10;
 
-            if (timer) {
-                timer.textContent =
-                    "Next gift in 10s";
+                setTimeout(() => {
+
+                    gift.classList.remove(
+                        "openGift"
+                    );
+
+
+                    gift.textContent =
+                        "💝";
+
+
+                    if (giftMessage) {
+
+                        giftMessage.textContent =
+                            randomMessage;
+
+                    }
+
+
+                    createSpecialHearts();
+
+                }, 500);
+
+
+                let remaining = 10;
+
+
+                if (countdownText) {
+
+                    countdownText.textContent =
+                        "Next gift in 10s";
+
+                }
+
+
+                const countdown =
+                    setInterval(
+                        () => {
+
+                            remaining--;
+
+
+                            if (countdownText) {
+
+                                countdownText.textContent =
+                                    "Next gift in " +
+                                    remaining +
+                                    "s";
+
+                            }
+
+
+                            if (
+                                remaining <= 0
+                            ) {
+
+                                clearInterval(
+                                    countdown
+                                );
+
+
+                                gift.textContent =
+                                    "🎁";
+
+
+                                if (countdownText) {
+
+                                    countdownText.textContent =
+                                        "";
+
+                                }
+
+
+                                giftWaiting =
+                                    false;
+
+                            }
+
+                        },
+                        1000
+                    );
+
             }
+        );
 
-            const countdown =
-                setInterval(() => {
-
-                    remaining--;
-
-                    if (timer) {
-                        timer.textContent =
-                            "Next gift in " +
-                            remaining +
-                            "s";
-                    }
-
-                    if (remaining <= 0) {
-
-                        clearInterval(countdown);
-
-                        gift.innerHTML = "🎁";
-
-                        if (timer) {
-                            timer.textContent = "";
-                        }
-
-                        waiting = false;
-                    }
-
-                }, 1000);
-        });
     }
 
-    // ============================================================
-    // Gift Heart Animation
-    // ============================================================
 
-    function createHearts() {
+    /* ============================================================
+       SPECIAL HEART BURST
+    ============================================================ */
 
-        for (let i = 0; i < 25; i++) {
+    function createSpecialHearts() {
+
+        for (
+            let i = 0;
+            i < 25;
+            i++
+        ) {
 
             const heart =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
-            heart.innerHTML = "❤️";
 
-            heart.style.position = "fixed";
+            heart.textContent = "❤️";
+
+
+            heart.style.position =
+                "fixed";
+
 
             heart.style.left =
-                Math.random() * 100 + "vw";
+                Math.random() *
+                100 +
+                "vw";
 
-            heart.style.top = "100vh";
+
+            heart.style.top =
+                "100vh";
+
 
             heart.style.fontSize =
-                20 + Math.random() * 20 + "px";
+                18 +
+                Math.random() *
+                25 +
+                "px";
 
-            heart.style.transition = "3s";
 
-            heart.style.pointerEvents = "none";
+            heart.style.zIndex =
+                "99999";
 
-            heart.style.zIndex = "9999";
 
-            document.body.appendChild(heart);
+            heart.style.pointerEvents =
+                "none";
+
+
+            heart.style.transition =
+                "3s ease";
+
+
+            document.body.appendChild(
+                heart
+            );
+
 
             setTimeout(() => {
 
                 heart.style.transform =
-                    "translateY(-120vh)";
+                    "translateY(-120vh) rotate(360deg)";
 
-                heart.style.opacity = "0";
+                heart.style.opacity =
+                    "0";
 
             }, 50);
 
+
             setTimeout(() => {
+
                 heart.remove();
+
             }, 3000);
+
         }
+
     }
 
-    // ============================================================
-    // Quiz
-    // ============================================================
 
-    document
-        .querySelectorAll(".quizBtn")
-        .forEach(btn => {
+    /* ============================================================
+       QUIZ
+    ============================================================ */
 
-            btn.addEventListener("click", () => {
+    const quizButtons =
+        document.querySelectorAll(
+            ".quizBtn"
+        );
 
-                const quizResult =
-                    document.getElementById(
-                        "quizResult"
-                    );
 
-                if (quizResult) {
+    const quizResult =
+        document.getElementById(
+            "quizResult"
+        );
 
-                    quizResult.innerHTML =
-                        "🥰 Correct! Amine loves you more than anything ❤️";
+
+    quizButtons.forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if (quizResult) {
+
+                        quizResult.innerHTML =
+                            "🥰 Obviously Amine! ❤️<br>" +
+                            "You knew the answer all along 😂";
+
+                    }
+
+
+                    createSpecialHearts();
+
                 }
+            );
 
-                createHearts();
-            });
-        });
+        }
+    );
 
-    // ============================================================
-    // Ryme Message + Password
-    // ============================================================
 
-    const sendBtn =
+    /* ============================================================
+       MESSAGE BOX
+    ============================================================ */
+
+    const sendMessageBtn =
         document.getElementById(
             "sendMessageBtn"
         );
@@ -677,19 +881,20 @@ document.addEventListener("DOMContentLoaded", () => {
             "rymeMessage"
         );
 
-    const passwordBox =
+    const passwordInput =
         document.getElementById(
             "passwordInput"
         );
 
-    const status =
+    const sendStatus =
         document.getElementById(
             "sendStatus"
         );
 
-    if (sendBtn) {
 
-        sendBtn.addEventListener(
+    if (sendMessageBtn) {
+
+        sendMessageBtn.addEventListener(
             "click",
             () => {
 
@@ -698,120 +903,389 @@ document.addEventListener("DOMContentLoaded", () => {
                         ? messageBox.value.trim()
                         : "";
 
+
                 const password =
-                    passwordBox
-                        ? passwordBox.value
+                    passwordInput
+                        ? passwordInput.value
                         : "";
+
 
                 if (password !== "ryma") {
 
-                    if (status) {
-                        status.innerHTML =
+                    if (sendStatus) {
+
+                        sendStatus.textContent =
                             "❌ Try again babe ❤️";
+
                     }
 
                     return;
+
                 }
 
-                if (message === "") {
 
-                    if (status) {
-                        status.innerHTML =
-                            "✍️ Write a beautiful message.";
+                if (!message) {
+
+                    if (sendStatus) {
+
+                        sendStatus.textContent =
+                            "✍️ Write something first ❤️";
+
                     }
 
                     return;
+
                 }
 
-                sendTelegram(
-                    "💌 Message from Rymaa ❤️\n\n" +
-                    message
-                );
 
-                if (status) {
+                /*
+                    IMPORTANT:
 
-                    status.innerHTML =
-                        "✅ I received it, honey ❤️";
+                    Do NOT put your Telegram Bot Token
+                    inside this JavaScript file.
+
+                    If you want Telegram messages,
+                    connect this button to your backend.
+
+                    Example endpoint:
+
+                    /api/send-telegram
+                */
+
+
+                if (sendStatus) {
+
+                    sendStatus.textContent =
+                        "💖 Your message is saved in my heart ❤️";
+
                 }
+
 
                 if (messageBox) {
                     messageBox.value = "";
                 }
 
-                if (passwordBox) {
-                    passwordBox.value = "";
+
+                if (passwordInput) {
+                    passwordInput.value = "";
                 }
+
+
+                createSpecialHearts();
+
             }
         );
+
     }
 
-    // ============================================================
-    // Telegram
-    // ============================================================
-    //
-    // IMPORTANT:
-    // Never put your Telegram Bot Token in browser JavaScript.
-    //
-    // The old token was exposed to anyone opening DevTools.
-    //
-    // This code expects a backend endpoint:
-    //
-    // POST /api/send-telegram
-    //
-    // JSON:
-    // {
-    //     "text": "message here"
-    // }
-    //
-    // ============================================================
 
-    const TELEGRAM_ENDPOINT =
-        "/api/send-telegram";
+    /* ============================================================
+       GALLERY + LIGHTBOX
+    ============================================================ */
 
-    async function sendTelegram(text) {
+    const galleryImages =
+        Array.from(
+            document.querySelectorAll(
+                ".gallery img"
+            )
+        );
 
-        if (!text) {
-            return false;
+
+    const lightbox =
+        document.getElementById(
+            "lightbox"
+        );
+
+    const lightboxImg =
+        document.getElementById(
+            "lightboxImg"
+        );
+
+    const previousButton =
+        document.getElementById(
+            "prev"
+        );
+
+    const nextButton =
+        document.getElementById(
+            "next"
+        );
+
+    const closeButton =
+        document.getElementById(
+            "closeLightbox"
+        );
+
+
+    let currentImage = 0;
+
+
+    function openLightbox(index) {
+
+        if (
+            !galleryImages.length ||
+            !lightbox ||
+            !lightboxImg
+        ) {
+            return;
         }
 
-        try {
 
-            const response =
-                await fetch(
-                    TELEGRAM_ENDPOINT,
-                    {
-                        method: "POST",
+        currentImage = index;
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
 
-                        body: JSON.stringify({
-                            text: text
-                        })
-                    }
-                );
+        lightboxImg.src =
+            galleryImages[
+                currentImage
+            ].src;
 
-            if (!response.ok) {
 
-                throw new Error(
-                    "Telegram request failed: " +
-                    response.status
-                );
-            }
+        lightbox.classList.add(
+            "active"
+        );
 
-            return true;
+    }
 
-        } catch (error) {
 
-            console.error(
-                "Telegram message could not be sent:",
-                error
+    function closeLightbox() {
+
+        if (lightbox) {
+
+            lightbox.classList.remove(
+                "active"
             );
 
-            return false;
         }
+
+    }
+
+
+    function changeImage(direction) {
+
+        if (!galleryImages.length) {
+            return;
+        }
+
+
+        currentImage += direction;
+
+
+        if (
+            currentImage < 0
+        ) {
+
+            currentImage =
+                galleryImages.length - 1;
+
+        }
+
+
+        if (
+            currentImage >=
+            galleryImages.length
+        ) {
+
+            currentImage = 0;
+
+        }
+
+
+        if (lightboxImg) {
+
+            lightboxImg.src =
+                galleryImages[
+                    currentImage
+                ].src;
+
+        }
+
+    }
+
+
+    galleryImages.forEach(
+        (img, index) => {
+
+            img.addEventListener(
+                "click",
+                () => {
+                    openLightbox(index);
+                }
+            );
+
+        }
+    );
+
+
+    if (previousButton) {
+
+        previousButton.addEventListener(
+            "click",
+            () => {
+                changeImage(-1);
+            }
+        );
+
+    }
+
+
+    if (nextButton) {
+
+        nextButton.addEventListener(
+            "click",
+            () => {
+                changeImage(1);
+            }
+        );
+
+    }
+
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+    }
+
+
+    if (lightbox) {
+
+        lightbox.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                !lightbox ||
+                !lightbox.classList.contains(
+                    "active"
+                )
+            ) {
+                return;
+            }
+
+
+            if (
+                event.key ===
+                "ArrowLeft"
+            ) {
+
+                changeImage(-1);
+
+            }
+
+
+            if (
+                event.key ===
+                "ArrowRight"
+            ) {
+
+                changeImage(1);
+
+            }
+
+
+            if (
+                event.key ===
+                "Escape"
+            ) {
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+
+    /* ============================================================
+       BUTTON ANIMATION
+    ============================================================ */
+
+    document
+        .querySelectorAll("button")
+        .forEach(button => {
+
+            button.addEventListener(
+                "mousedown",
+                () => {
+                    button.style.transform =
+                        "scale(.97)";
+                }
+            );
+
+
+            button.addEventListener(
+                "mouseup",
+                () => {
+                    button.style.transform =
+                        "";
+                }
+            );
+
+
+            button.addEventListener(
+                "mouseleave",
+                () => {
+                    button.style.transform =
+                        "";
+                }
+            );
+
+        });
+
+
+    /* ============================================================
+       WELCOME ANIMATION
+    ============================================================ */
+
+    const welcomeBox =
+        document.querySelector(
+            ".welcome-box"
+        );
+
+
+    if (welcomeBox) {
+
+        welcomeBox.style.opacity = "0";
+
+        welcomeBox.style.transform =
+            "translateY(25px)";
+
+
+        setTimeout(() => {
+
+            welcomeBox.style.transition =
+                "0.8s ease";
+
+            welcomeBox.style.opacity =
+                "1";
+
+            welcomeBox.style.transform =
+                "translateY(0)";
+
+        }, 200);
+
     }
 
 });
