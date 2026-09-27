@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,1020 +10,978 @@
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+        rel="stylesheet">
 </head>
 
 <body>
 
-<audio id="music" loop>
-    <source src="music/bali-maak.mp3" type="audio/mpeg">
-</audio>
+    <!-- MUSIC -->
+    <audio id="music" loop>
+        <source src="music/bali-maak.mp3" type="audio/mpeg">
+    </audio>
 
-<div id="hearts"></div>
-
-<!-- =========================================================
-     WELCOME
-========================================================= -->
-
-<section id="welcome" class="page active">
-
-    <div class="welcome-box">
-
-        <div class="anniversary-badge">
-            ❤️ 1 YEAR ❤️
-        </div>
-
-        <h1>One Year of Us 🌸</h1>
-
-        <p class="subtitle">
-            One beautiful year...
-            <br>
-            countless memories, smiles & moments with you. ❤️
-        </p>
-
-        <button id="happyBtn" class="main-btn">
-            💖 Celebrate With Me
-        </button>
-
-        <button id="sadBtn" class="main-btn dark">
-            🌙 Take a Moment
-        </button>
-
-    </div>
-
-</section>
+    <!-- FLOATING HEARTS -->
+    <div id="hearts"></div>
 
 
-<!-- =========================================================
-     HAPPY PAGE
-========================================================= -->
+    <!-- =========================================================
+         WELCOME
+    ========================================================== -->
 
-<section id="happy" class="page">
+    <section id="welcome" class="page active">
 
-    <div class="page-content">
+        <div class="welcome-box">
 
-        <div class="anniversary-title">
-            <span>🌷</span>
-            <h1>Happy 1st Anniversary</h1>
-            <span>❤️</span>
-        </div>
-
-        <p class="anniversary-subtitle">
-            One year ago, our story began...
-            <br>
-            and I would choose you all over again.
-        </p>
-
-
-        <div class="love-message-card">
-            <p id="loveMessage">
-                You are my favorite person ❤️
-            </p>
-        </div>
-
-
-        <!-- COUNTER -->
-
-        <div class="counter">
-
-            <h2>Since We Met ❤️</h2>
-
-            <p class="counter-small">
-                Our first year together
-            </p>
-
-            <div id="timer">
-
-                <div class="time-box">
-                    <span id="years">0</span>
-                    <small>Years</small>
-                </div>
-
-                <div class="time-box">
-                    <span id="days">0</span>
-                    <small>Days</small>
-                </div>
-
-                <div class="time-box">
-                    <span id="hours">0</span>
-                    <small>Hours</small>
-                </div>
-
-                <div class="time-box">
-                    <span id="minutes">0</span>
-                    <small>Minutes</small>
-                </div>
-
-                <div class="time-box">
-                    <span id="seconds">0</span>
-                    <small>Seconds</small>
-                </div>
-
+            <div class="anniversary-badge">
+                ❤️ 1 YEAR ❤️
             </div>
 
+            <h1>
+                One Year of Us 🌸
+            </h1>
+
+            <p class="subtitle">
+                One beautiful year...
+                <br>
+                countless memories, smiles & moments with you. ❤️
+            </p>
+
+            <button id="happyBtn" class="main-btn">
+                💖 Celebrate With Me
+            </button>
+
+            <button id="sadBtn" class="main-btn dark">
+                🌙 Take a Moment
+            </button>
+
         </div>
 
+    </section>
 
-        <!-- YEAR CARD -->
 
-        <div class="year-card">
+    <!-- =========================================================
+         HAPPY PAGE
+    ========================================================== -->
 
-            <div class="year-number">
-                365
+    <section id="happy" class="page">
+
+        <div class="page-content">
+
+            <div class="anniversary-title">
+                <span>🌷</span>
+
+                <h1>
+                    Happy 1st Anniversary
+                </h1>
+
+                <span>❤️</span>
             </div>
 
-            <div class="year-text">
+            <p class="anniversary-subtitle">
+                One year ago, our story began...
+                <br>
+                and I would choose you all over again.
+            </p>
 
-                <h3>Days of Us ❤️</h3>
 
-                <p>
-                    365 days of memories,
-                    conversations, smiles,
-                    laughs and beautiful moments.
+            <!-- RANDOM LOVE MESSAGE -->
+
+            <div class="love-message-card">
+
+                <p id="loveMessage">
+                    You are my favorite person ❤️
                 </p>
 
             </div>
 
-        </div>
+
+            <!-- COUNTER -->
+
+            <div class="counter">
+
+                <h2>
+                    Since We Met ❤️
+                </h2>
+
+                <p class="counter-small">
+                    Our first year together
+                </p>
+
+                <div id="timer">
+
+                    <div class="time-box">
+                        <span id="years">0</span>
+                        <small>Years</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="days">0</span>
+                        <small>Days</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="hours">0</span>
+                        <small>Hours</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="minutes">0</span>
+                        <small>Minutes</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="seconds">0</span>
+                        <small>Seconds</small>
+                    </div>
+
+                </div>
+
+            </div>
 
 
-        <!-- =================================================
-             OUR PLACE
-        ================================================== -->
+            <!-- 365 DAYS -->
 
-        <div class="our-place-intro">
+            <div class="year-card">
 
-            <span class="place-heart">❤️</span>
+                <div class="year-number">
+                    365
+                </div>
 
-            <h2>Our Little Place</h2>
+                <div class="year-text">
 
-            <p>
-                A little corner of the internet that belongs only to us.
+                    <h3>
+                        Days of Us ❤️
+                    </h3>
+
+                    <p>
+                        365 days of memories,
+                        conversations, smiles,
+                        laughs and beautiful moments.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 OUR PRIVATE PLACE
+            ====================================================== -->
+
+            <div class="private-place-section">
+
+                <div class="private-place-title">
+                    <span>🔐</span>
+
+                    <div>
+                        <h2>
+                            Our Private Place
+                        </h2>
+
+                        <p>
+                            A little corner of the internet
+                            that feels like ours. ❤️
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="private-grid">
+
+
+                    <!-- MISS YOU -->
+
+                    <button class="private-card"
+                        data-feature="missYou">
+
+                        <div class="private-icon">
+                            🥺❤️
+                        </div>
+
+                        <h3>
+                            I Miss You
+                        </h3>
+
+                        <p>
+                            For the moments you miss me.
+                        </p>
+
+                    </button>
+
+
+                    <!-- DAILY -->
+
+                    <button class="private-card"
+                        data-feature="daily">
+
+                        <div class="private-icon">
+                            🌸
+                        </div>
+
+                        <h3>
+                            Today's Surprise
+                        </h3>
+
+                        <p>
+                            One little surprise every day.
+                        </p>
+
+                    </button>
+
+
+                    <!-- QUESTIONS -->
+
+                    <button class="private-card"
+                        data-feature="questions">
+
+                        <div class="private-icon">
+                            💬
+                        </div>
+
+                        <h3>
+                            Our Questions
+                        </h3>
+
+                        <p>
+                            Questions only we understand.
+                        </p>
+
+                    </button>
+
+
+                    <!-- NOTES -->
+
+                    <button class="private-card"
+                        data-feature="notes">
+
+                        <div class="private-icon">
+                            💌
+                        </div>
+
+                        <h3>
+                            Our Love Notes
+                        </h3>
+
+                        <p>
+                            Leave something from your heart.
+                        </p>
+
+                    </button>
+
+
+                    <!-- SECRET -->
+
+                    <button class="private-card"
+                        data-feature="secret">
+
+                        <div class="private-icon">
+                            🔐
+                        </div>
+
+                        <h3>
+                            Secret Room
+                        </h3>
+
+                        <p>
+                            A tiny room just for us.
+                        </p>
+
+                    </button>
+
+
+                    <!-- TIMELINE -->
+
+                    <button class="private-card"
+                        data-feature="timeline">
+
+                        <div class="private-icon">
+                            🕰️
+                        </div>
+
+                        <h3>
+                            Our Story
+                        </h3>
+
+                        <p>
+                            Little chapters of us.
+                        </p>
+
+                    </button>
+
+
+                    <!-- STREAK -->
+
+                    <button class="private-card"
+                        data-feature="streak">
+
+                        <div class="private-icon">
+                            🔥
+                        </div>
+
+                        <h3>
+                            Love Streak
+                        </h3>
+
+                        <p>
+                            Don't miss a day together.
+                        </p>
+
+                    </button>
+
+
+                    <!-- MESSAGE -->
+
+                    <button class="private-card"
+                        data-feature="message">
+
+                        <div class="private-icon">
+                            📩
+                        </div>
+
+                        <h3>
+                            Send Me a Message
+                        </h3>
+
+                        <p>
+                            This one really reaches me.
+                        </p>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 MEMORIES
+            ====================================================== -->
+
+            <h2 class="section-title">
+                Our First Year 📸
+            </h2>
+
+            <p class="section-subtitle">
+                Some of the moments I never want to forget.
             </p>
 
-        </div>
+            <div class="gallery">
 
-
-        <div class="our-place-grid">
-
-            <button class="place-card" id="missYouBtn">
-                <span>🥺</span>
-                <strong>I Miss You</strong>
-                <small>For the moments you miss me.</small>
-            </button>
-
-            <button class="place-card" id="dailyBtn">
-                <span>🎁</span>
-                <strong>Today's Surprise</strong>
-                <small>Something special for today.</small>
-            </button>
-
-            <button class="place-card" id="questionsBtn">
-                <span>💭</span>
-                <strong>Let's Talk</strong>
-                <small>A question for the two of us.</small>
-            </button>
-
-            <button class="place-card" id="secretBtn">
-                <span>🔐</span>
-                <strong>Our Secret</strong>
-                <small>A little room just for us.</small>
-            </button>
-
-            <button class="place-card" id="notesBtn">
-                <span>💌</span>
-                <strong>Love Notes</strong>
-                <small>Leave something from your heart.</small>
-            </button>
-
-            <button class="place-card" id="timelineBtn">
-                <span>📖</span>
-                <strong>Our Story</strong>
-                <small>One year of memories.</small>
-            </button>
-
-        </div>
-
-
-        <!-- LOVE STREAK -->
-
-        <div class="streak-card">
-
-            <div class="streak-icon">
-                🔥
-            </div>
-
-            <div>
-
-                <h3>
-                    Our Love Streak
-                </h3>
-
-                <p>
-                    We showed up for each other
-                </p>
+                <img src="photos/1.jpeg" alt="Memory 1">
+                <img src="photos/2.jpeg" alt="Memory 2">
+                <img src="photos/3.jpeg" alt="Memory 3">
+                <img src="photos/4.jpeg" alt="Memory 4">
+                <img src="photos/5.jpeg" alt="Memory 5">
+                <img src="photos/6.jpeg" alt="Memory 6">
 
             </div>
 
-            <strong id="streakNumber">
-                0
-            </strong>
 
-            <small>
-                days
-            </small>
+            <!-- MUSIC -->
 
-        </div>
+            <div class="music-player">
 
+                <div class="music-cover">
+                    🎵
+                </div>
 
-        <!-- MEMORIES -->
+                <div class="music-info">
 
-        <h2 class="section-title">
-            Our First Year 📸
-        </h2>
+                    <h3>
+                        cest pas joli
+                    </h3>
 
-        <p class="section-subtitle">
-            Some of the moments I never want to forget.
-        </p>
+                    <p>
+                        Our Song ❤️
+                    </p>
 
-        <div class="gallery">
+                </div>
 
-            <img src="photos/1.jpeg" alt="Memory 1">
-            <img src="photos/2.jpeg" alt="Memory 2">
-            <img src="photos/3.jpeg" alt="Memory 3">
-            <img src="photos/4.jpeg" alt="Memory 4">
-            <img src="photos/5.jpeg" alt="Memory 5">
-            <img src="photos/6.jpeg" alt="Memory 6">
-
-        </div>
-
-
-        <!-- MUSIC -->
-
-        <div class="music-player">
-
-            <div class="music-cover">
-                🎵
-            </div>
-
-            <div class="music-info">
-
-                <h3>cest pas joli</h3>
-
-                <p>
-                    Our Song ❤️
-                </p>
-
-            </div>
-
-            <button id="playMusic" class="play-btn">
-                ▶
-            </button>
-
-            <input
-                type="range"
-                id="progress"
-                value="0"
-                min="0"
-                max="100"
-                step="0.1">
-
-            <div class="volume-box">
-
-                🔊
+                <button id="playMusic"
+                    class="play-btn">
+                    ▶
+                </button>
 
                 <input
                     type="range"
-                    id="volume"
+                    id="progress"
+                    value="0"
                     min="0"
-                    max="1"
-                    step="0.01"
-                    value="1">
+                    max="100"
+                    step="0.1">
+
+                <div class="volume-box">
+
+                    🔊
+
+                    <input
+                        type="range"
+                        id="volume"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="1">
+
+                </div>
 
             </div>
+
+
+            <!-- SPECIAL CARDS -->
+
+            <div class="activities">
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        ❤️
+                    </span>
+
+                    <h3>
+                        I Love You More Every Day
+                    </h3>
+
+                    <p>
+                        One year later, and my heart still
+                        chooses you.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        🌹
+                    </span>
+
+                    <h3>
+                        Thank You For Existing
+                    </h3>
+
+                    <p>
+                        You made this year more beautiful
+                        simply by being part of it.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        😊
+                    </span>
+
+                    <h3>
+                        You Make My World Better
+                    </h3>
+
+                    <p>
+                        Your smile is still one of my
+                        favorite things in the world.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANNIVERSARY LETTER -->
+
+            <div class="anniversary-letter">
+
+                <h2>
+                    💖 Happy First Anniversary, My Rymaa 💖
+                </h2>
+
+                <p>
+                    One year.
+                </p>
+
+                <p>
+                    It sounds like just two words, but behind
+                    them are hundreds of moments, conversations,
+                    laughs, memories and feelings that I will
+                    always carry in my heart.
+                </p>
+
+                <p>
+                    One year ago, I didn't know how important
+                    you would become to me.
+                </p>
+
+                <p>
+                    Today, I know that meeting you was one of
+                    the most beautiful things that happened
+                    in my life.
+                </p>
+
+                <p>
+                    Thank you for every smile, every laugh,
+                    every conversation, every little moment
+                    and every memory we created together.
+                </p>
+
+                <p>
+                    This first year will always have a special
+                    place in my heart.
+                </p>
+
+                <p>
+                    And if I could go back to the beginning,
+                    knowing everything I know today...
+                </p>
+
+                <p class="special-line">
+                    I would still choose you. ❤️
+                </p>
+
+                <p>
+                    Forever yours,
+                    <br>
+                    <strong>
+                        Amine ❤️
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <!-- LOVE BOX -->
+
+            <div class="love-box-section">
+
+                <h2>
+                    🎁 Our Anniversary Box
+                </h2>
+
+                <p>
+                    A little gift for the girl who made
+                    this year special. 🥰❤️
+                </p>
+
+                <div id="giftBox">
+                    🎁
+                </div>
+
+                <div id="giftMessage">
+                    Open your gift... 😘
+                </div>
+
+                <div id="countdown"></div>
+
+            </div>
+
+
+            <!-- MESSAGE BOX -->
+
+            <div class="message-box">
+
+                <h2>
+                    💌 A Message From You
+                </h2>
+
+                <p>
+                    Write something from your heart ❤️
+                </p>
+
+                <textarea
+                    id="rymeMessage"
+                    maxlength="1000"
+                    placeholder="Write your message here..."></textarea>
+
+                <input
+                    id="passwordInput"
+                    type="password"
+                    placeholder="Enter Love Code 😉❤️">
+
+                <button id="sendMessageBtn">
+                    💖 Send With Love
+                </button>
+
+                <p id="sendStatus"></p>
+
+            </div>
+
+
+            <!-- QUIZ -->
+
+            <button id="quizStart"
+                class="main-btn">
+
+                💕 Our Little Love Quiz
+
+            </button>
 
         </div>
 
-
-        <!-- SPECIAL CARDS -->
-
-        <div class="activities">
-
-            <div class="card">
-
-                <span class="card-icon">
-                    ❤️
-                </span>
-
-                <h3>
-                    I Love You More Every Day
-                </h3>
-
-                <p>
-                    One year later, and my heart still chooses you.
-                </p>
-
-            </div>
+    </section>
 
 
-            <div class="card">
+    <!-- =========================================================
+         QUIZ
+    ========================================================== -->
 
-                <span class="card-icon">
-                    🌹
-                </span>
+    <section id="quiz" class="page">
 
-                <h3>
-                    Thank You For Existing
-                </h3>
+        <div class="page-content">
 
-                <p>
-                    You made this year more beautiful simply by being part of it.
-                </p>
+            <h1>
+                ❤️ Our Love Quiz ❤️
+            </h1>
 
-            </div>
+            <p class="quiz-question">
+                Who loves you the most?
+            </p>
 
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
 
-            <div class="card">
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
 
-                <span class="card-icon">
-                    😊
-                </span>
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
 
-                <h3>
-                    You Make My World Better
-                </h3>
+            <button class="quizBtn">
+                Obviously Amine 😂❤️
+            </button>
 
-                <p>
-                    Your smile is still one of my favorite things in the world.
-                </p>
+            <p id="quizResult"></p>
 
-            </div>
+            <button id="quizNext"
+                class="main-btn">
+                Continue ❤️
+            </button>
 
         </div>
 
+    </section>
 
-        <!-- ANNIVERSARY LETTER -->
 
-        <div class="anniversary-letter">
+    <!-- =========================================================
+         SAD PAGE
+    ========================================================== -->
+
+    <section id="sad"
+        class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                🌙
+            </h1>
+
+            <div class="typewriter">
+
+                <p>
+                    If you are here...
+
+                    <br><br>
+
+                    maybe you just need
+                    a quiet moment.
+
+                    <br><br>
+
+                    Take your time.
+
+                    <br><br>
+
+                    There is no pressure.
+                </p>
+
+            </div>
+
+            <button id="continueBtn"
+                class="main-btn">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         LETTER
+    ========================================================== -->
+
+    <section id="letter"
+        class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                💌
+            </h1>
+
+            <div class="letter">
+
+                <h2>
+                    To My Rymaa
+                </h2>
+
+                <p>
+                    My love mima 🥺,
+                </p>
+
+                <p>
+                    One year ago, I met you.
+                    I didn't know then how many memories,
+                    smiles and emotions would become part
+                    of our story.
+                </p>
+
+                <p>
+                    Looking back at this year, I am grateful
+                    for every beautiful moment we shared.
+                </p>
+
+                <p>
+                    You have become one of the most precious
+                    people in my life.
+                </p>
+
+                <p>
+                    I know that no relationship is perfect,
+                    but I believe that what makes love special
+                    is choosing each other and learning together.
+                </p>
+
+                <p>
+                    Thank you for every laugh,
+                    every conversation,
+                    every memory and every moment.
+                </p>
+
+                <p>
+                    Happy first anniversary, my love.
+                </p>
+
+                <p>
+                    Always yours,
+                    <br>
+                    Amine ❤️
+                </p>
+
+            </div>
+
+            <button id="next1"
+                class="main-btn">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         BROKEN HEART
+    ========================================================== -->
+
+    <section id="heartGame"
+        class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                💔
+            </h1>
 
             <h2>
-                💖 Happy First Anniversary, My Rymaa 💖
+                Can You Fix My Heart?
             </h2>
 
             <p>
+                Tap the broken heart.
+            </p>
+
+            <div id="brokenHeart">
+                💔
+            </div>
+
+            <p id="heartText"></p>
+
+            <button id="next2"
+                class="main-btn">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         LESSONS
+    ========================================================== -->
+
+    <section id="lessons"
+        class="page">
+
+        <div class="page-content">
+
+            <h1>
+                Things This Year Taught Me ❤️
+            </h1>
+
+            <div class="lesson">
+                ❤️ Love needs patience.
+            </div>
+
+            <div class="lesson">
+                ❤️ Words matter.
+            </div>
+
+            <div class="lesson">
+                ❤️ Actions matter more than promises.
+            </div>
+
+            <div class="lesson">
+                ❤️ Communication makes love stronger.
+            </div>
+
+            <div class="lesson">
+                ❤️ The little moments become the biggest memories.
+            </div>
+
+            <div class="lesson">
+                ❤️ I never want to take you for granted.
+            </div>
+
+            <button id="next3"
+                class="main-btn">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         MEMORIES
+    ========================================================== -->
+
+    <section id="memories"
+        class="page">
+
+        <div class="page-content">
+
+            <h1>
+                Our Memories 📸
+            </h1>
+
+            <p class="section-subtitle">
                 One year.
+                So many memories.
+                And hopefully many more to come. ❤️
             </p>
 
-            <p>
-                It sounds like just two words, but behind them are hundreds
-                of moments, conversations, laughs, memories and feelings
-                that I will always carry in my heart.
-            </p>
+            <div class="gallery">
 
-            <p>
-                One year ago, I didn't know how important you would become to me.
-            </p>
+                <img src="photos/7.jpeg"
+                    alt="Memory 7">
 
-            <p>
-                Today, I know that meeting you was one of the most beautiful
-                things that happened in my life.
-            </p>
+                <img src="photos/8.jpeg"
+                    alt="Memory 8">
 
-            <p>
-                Thank you for every smile, every laugh, every conversation,
-                every little moment and every memory we created together.
-            </p>
+                <img src="photos/9.jpeg"
+                    alt="Memory 9">
 
-            <p>
-                This first year will always have a special place in my heart.
-            </p>
+                <img src="photos/10.jpeg"
+                    alt="Memory 10">
 
-            <p>
-                And if I could go back to the beginning,
-                knowing everything I know today...
-            </p>
+                <img src="photos/11.jpeg"
+                    alt="Memory 11">
 
-            <p class="special-line">
-                I would still choose you. ❤️
-            </p>
+                <img src="photos/12.jpeg"
+                    alt="Memory 12">
 
-            <p>
-                Forever yours,
+            </div>
+
+            <button id="next4"
+                class="main-btn">
+
+                Last Page ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FINAL
+    ========================================================== -->
+
+    <section id="final"
+        class="page darkPage">
+
+        <div class="final-content">
+
+            <div class="final-stars">
+                ✨ ❤️ ✨
+            </div>
+
+            <h1>
+                One Year.
                 <br>
-                <strong>Amine ❤️</strong>
-            </p>
-
-        </div>
-
-
-        <!-- LOVE BOX -->
-
-        <div class="love-box-section">
-
-            <h2>
-                🎁 Our Anniversary Box
-            </h2>
+                One Story.
+                <br>
+                One You. ❤️
+            </h1>
 
             <p>
-                A little gift for the girl who made this year special. 🥰❤️
+                I won't stop choosing you.
             </p>
-
-            <div id="giftBox">
-                🎁
-            </div>
-
-            <div id="giftMessage">
-                Open your gift... 😘
-            </div>
-
-            <div id="countdown"></div>
-
-        </div>
-
-
-        <!-- MESSAGE -->
-
-        <div class="message-box">
-
-            <h2>
-                💌 A Message From You
-            </h2>
 
             <p>
-                Tell me something from your heart ❤️
+                Not because I have to...
             </p>
 
-            <textarea
-                id="rymeMessage"
-                placeholder="Write your message here..."></textarea>
+            <p>
+                But because I want to.
+            </p>
 
-            <input
-                id="passwordInput"
-                type="password"
-                placeholder="Enter Love Code 😉❤️">
-
-            <button id="sendMessageBtn">
-                💖 Save With Love
-            </button>
-
-            <p id="sendStatus"></p>
-
-        </div>
-
-
-        <button id="quizStart" class="main-btn">
-            💕 Our Little Love Quiz
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     I MISS YOU
-========================================================= -->
-
-<section id="missYou" class="page special-page">
-
-    <div class="special-box">
-
-        <div class="big-emoji">
-            🥺❤️
-        </div>
-
-        <h1>I Miss You</h1>
-
-        <p class="special-subtitle">
-            If you came here because you miss me...
-            <br>
-            I made something for you.
-        </p>
-
-        <div class="miss-card">
-
-            <div id="missMessage">
-                Close your eyes for a second...
-            </div>
-
-        </div>
-
-        <button id="anotherMiss" class="main-btn">
-            🥺 I Miss You Again
-        </button>
-
-        <div class="miss-counter">
-
-            <span>
+            <div class="finalHeart">
                 ❤️
-            </span>
-
-            <strong id="missCount">
-                0
-            </strong>
-
-            <small>
-                times you missed me on this device
-            </small>
-
-        </div>
-
-        <button class="back-btn" data-back="happy">
-            ← Back To Our Place
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DAILY SURPRISE
-========================================================= -->
-
-<section id="daily" class="page special-page">
-
-    <div class="special-box">
-
-        <div class="big-emoji">
-            🎁
-        </div>
-
-        <h1>Today's Surprise</h1>
-
-        <p class="special-subtitle">
-            One little surprise for you.
-        </p>
-
-        <div class="daily-card">
-
-            <div id="dailyIcon">
-                🎁
             </div>
-
-            <p id="dailyMessage">
-                Your surprise is waiting...
-            </p>
-
-        </div>
-
-        <p class="daily-note">
-            Come back tomorrow for another one. ❤️
-        </p>
-
-        <button class="back-btn" data-back="happy">
-            ← Back To Our Place
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     QUESTIONS
-========================================================= -->
-
-<section id="questions" class="page special-page">
-
-    <div class="special-box">
-
-        <div class="big-emoji">
-            💭
-        </div>
-
-        <h1>Let's Talk</h1>
-
-        <p class="special-subtitle">
-            Sometimes one question can create a beautiful conversation.
-        </p>
-
-        <div class="question-card">
-
-            <span>
-                💕
-            </span>
-
-            <p id="questionText">
-                What is your favorite memory of us?
-            </p>
-
-        </div>
-
-        <button id="newQuestion" class="main-btn">
-            💭 Another Question
-        </button>
-
-        <textarea
-            id="questionAnswer"
-            placeholder="Write your answer here..."></textarea>
-
-        <button id="saveAnswer" class="secondary-btn">
-            ❤️ Save My Answer
-        </button>
-
-        <p id="answerStatus"></p>
-
-        <button class="back-btn" data-back="happy">
-            ← Back To Our Place
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     SECRET ROOM
-========================================================= -->
-
-<section id="secret" class="page special-page">
-
-    <div class="special-box">
-
-        <div class="big-emoji">
-            🔐❤️
-        </div>
-
-        <h1>Our Secret Room</h1>
-
-        <p class="special-subtitle">
-            A little place that only knows our secret.
-        </p>
-
-        <div id="secretLocked">
-
-            <div class="lock-icon">
-                🔒
-            </div>
-
-            <input
-                id="secretPin"
-                type="password"
-                maxlength="4"
-                inputmode="numeric"
-                placeholder="Enter 4-digit code">
-
-            <button id="unlockSecret" class="main-btn">
-                🔓 Open Our Secret
-            </button>
-
-            <p id="secretStatus"></p>
-
-        </div>
-
-
-        <div id="secretContent" class="secret-content hidden">
 
             <h2>
-                💌 Welcome To Our Little Secret
+                Happy First Anniversary,
+                Rymaa ❤️
             </h2>
 
             <p>
-                This is a place for the things that belong only to us.
+                Here's to our first year...
+                <br>
+                and every beautiful memory still waiting for us.
             </p>
 
-            <div class="secret-note">
-                ❤️ Mima, b'outa dyali, bentena dyali ❤️
-                <br><br>
-                No matter how many days pass,
-                there will always be a little corner of my heart
-                that feels like home when I think of you.
-            </div>
-
-            <div class="secret-note">
-                🫂 If you ever miss me,
-                remember that somewhere in this world,
-                there is someone who is thinking about you too.
-            </div>
-
-            <button id="lockSecret" class="secondary-btn">
-                🔒 Lock Again
-            </button>
-
-        </div>
-
-        <button class="back-btn" data-back="happy">
-            ← Back To Our Place
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     LOVE NOTES
-========================================================= -->
-
-<section id="notes" class="page special-page">
-
-    <div class="special-box">
-
-        <div class="big-emoji">
-            💌
-        </div>
-
-        <h1>Love Notes</h1>
-
-        <p class="special-subtitle">
-            Write something you don't want to forget.
-        </p>
-
-        <textarea
-            id="noteInput"
-            placeholder="Dear Rymaa... ❤️"></textarea>
-
-        <button id="saveNote" class="main-btn">
-            💖 Save This Moment
-        </button>
-
-        <div id="notesList"></div>
-
-        <button id="clearNotes" class="secondary-btn">
-            🗑 Clear My Notes
-        </button>
-
-        <button class="back-btn" data-back="happy">
-            ← Back To Our Place
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     TIMELINE
-========================================================= -->
-
-<section id="timeline" class="page special-page">
-
-    <div class="special-box timeline-box">
-
-        <div class="big-emoji">
-            📖❤️
-        </div>
-
-        <h1>Our Story</h1>
-
-        <p class="special-subtitle">
-            One year. One story. So many little moments.
-        </p>
-
-        <div class="timeline">
-
-            <div class="timeline-item">
-
-                <span>
-                    ❤️
-                </span>
-
-                <div>
-                    <small>September 27, 2025</small>
-                    <h3>The Beginning</h3>
-                    <p>
-                        The day our story began.
-                        One meeting that became a whole year of memories.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="timeline-item">
-
-                <span>
-                    💬
-                </span>
-
-                <div>
-                    <small>Our Everyday</small>
-                    <h3>Little Conversations</h3>
-                    <p>
-                        The random messages, the good mornings,
-                        the good nights and all the little things.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="timeline-item">
-
-                <span>
-                    🥺
-                </span>
-
-                <div>
-                    <small>Our Hard Days</small>
-                    <h3>Learning Together</h3>
-                    <p>
-                        We learned that love isn't only about perfect days.
-                        It's also about patience, communication and choosing each other.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="timeline-item">
-
-                <span>
-                    📸
-                </span>
-
-                <div>
-                    <small>365 Days</small>
-                    <h3>Our First Year</h3>
-                    <p>
-                        365 days of memories, conversations, laughs,
-                        emotions and moments worth keeping.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="timeline-item">
-
-                <span>
-                    ♾️
-                </span>
-
-                <div>
-                    <small>Today</small>
-                    <h3>And We're Still Here</h3>
-                    <p>
-                        One year completed.
-                        And there are still so many memories waiting for us.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <button class="back-btn" data-back="happy">
-            ← Back To Our Place
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     QUIZ
-========================================================= -->
-
-<section id="quiz" class="page">
-
-    <div class="page-content">
-
-        <h1>
-            ❤️ Our Love Quiz ❤️
-        </h1>
-
-        <p class="quiz-question">
-            Who loves you the most?
-        </p>
-
-        <button class="quizBtn">
-            Amine ❤️
-        </button>
-
-        <button class="quizBtn">
-            Amine ❤️
-        </button>
-
-        <button class="quizBtn">
-            Amine ❤️
-        </button>
-
-        <button class="quizBtn">
-            Obviously Amine 😂❤️
-        </button>
-
-        <p id="quizResult"></p>
-
-        <button id="quizNext" class="main-btn">
-            Continue ❤️
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     SAD PAGE
-========================================================= -->
-
-<section id="sad" class="page darkPage">
-
-    <div class="dark-content">
-
-        <h1>
-            🌙
-        </h1>
-
-        <div class="typewriter">
-
-            <p>
-
-                If you are here...
-
-                <br><br>
-
-                maybe you just need
-                a quiet moment.
-
-                <br><br>
-
-                Take your time.
-
-                <br><br>
-
-                There is no pressure.
-
+            <p class="always">
+                Always.
+                <br>
+                Forever.
             </p>
-
-        </div>
-
-        <button id="continueBtn" class="main-btn">
-            Continue ❤️
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     LETTER
-========================================================= -->
-
-<section id="letter" class="page darkPage">
-
-    <div class="dark-content">
-
-        <h1>
-            💌
-        </h1>
-
-        <div class="letter">
-
-            <h2>
-                To My Rymaa
-            </h2>
-
-            <p>
-                My love mima 🥺,
-            </p>
-
-            <p>
-                One year ago, I met you.
-                I didn't know then how many memories,
-                smiles and emotions would become part
-                of our story.
-            </p>
-
-            <p>
-                Looking back at this year, I am grateful
-                for every beautiful moment we shared.
-            </p>
-
-            <p>
-                You have become one of the most precious
-                people in my life.
-            </p>
-
-            <p>
-                I know that no relationship is perfect,
-                but I believe that what makes love special
-                is choosing each other and learning together.
-            </p>
-
-            <p>
-                Thank you for every laugh,
-                every conversation,
-                every memory and every moment.
-            </p>
-
-            <p>
-                Happy first anniversary, my love.
-            </p>
-
-            <p class="special-line">
-                One year with you...
-                and I would choose you again. ❤️
-            </p>
-
-            <br>
 
             <strong>
                 Amine ❤️
@@ -1030,219 +989,60 @@
 
         </div>
 
-        <button id="next1" class="main-btn">
-            Next ❤️
+    </section>
+
+
+    <!-- =========================================================
+         PRIVATE FEATURE MODAL
+    ========================================================== -->
+
+    <div id="featureModal"
+        class="feature-modal">
+
+        <div class="feature-modal-box">
+
+            <button id="closeFeatureModal"
+                class="feature-close">
+                ✕
+            </button>
+
+            <div id="featureModalBody">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         LIGHTBOX
+    ========================================================== -->
+
+    <div id="lightbox">
+
+        <button id="prev">
+            ⬅
+        </button>
+
+        <img id="lightboxImg"
+            src=""
+            alt="Memory">
+
+        <button id="next">
+            ➡
+        </button>
+
+        <button id="closeLightbox">
+            ✕
         </button>
 
     </div>
 
-</section>
 
+    <!-- JAVASCRIPT -->
 
-<!-- =========================================================
-     BROKEN HEART
-========================================================= -->
-
-<section id="heartGame" class="page darkPage">
-
-    <div class="dark-content">
-
-        <h1>
-            💔
-        </h1>
-
-        <h2>
-            Can You Fix My Heart?
-        </h2>
-
-        <p>
-            Tap the broken heart.
-        </p>
-
-        <div id="brokenHeart">
-            💔
-        </div>
-
-        <p id="heartText"></p>
-
-        <button id="next2" class="main-btn">
-            Continue ❤️
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     LESSONS
-========================================================= -->
-
-<section id="lessons" class="page">
-
-    <div class="page-content">
-
-        <h1>
-            Things This Year Taught Me ❤️
-        </h1>
-
-        <div class="lesson">
-            ❤️ Love needs patience.
-        </div>
-
-        <div class="lesson">
-            ❤️ Words matter.
-        </div>
-
-        <div class="lesson">
-            ❤️ Actions matter more than promises.
-        </div>
-
-        <div class="lesson">
-            ❤️ Communication makes love stronger.
-        </div>
-
-        <div class="lesson">
-            ❤️ The little moments become the biggest memories.
-        </div>
-
-        <div class="lesson">
-            ❤️ I never want to take you for granted.
-        </div>
-
-        <button id="next3" class="main-btn">
-            Continue ❤️
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     MEMORIES
-========================================================= -->
-
-<section id="memories" class="page">
-
-    <div class="page-content">
-
-        <h1>
-            Our Memories 📸
-        </h1>
-
-        <p class="section-subtitle">
-            One year.
-            So many memories.
-            And hopefully many more to come. ❤️
-        </p>
-
-        <div class="gallery">
-
-            <img src="photos/7.jpeg" alt="Memory 7">
-            <img src="photos/8.jpeg" alt="Memory 8">
-            <img src="photos/9.jpeg" alt="Memory 9">
-            <img src="photos/10.jpeg" alt="Memory 10">
-            <img src="photos/11.jpeg" alt="Memory 11">
-            <img src="photos/12.jpeg" alt="Memory 12">
-
-        </div>
-
-        <button id="next4" class="main-btn">
-            Last Page ❤️
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     FINAL
-========================================================= -->
-
-<section id="final" class="page darkPage">
-
-    <div class="final-content">
-
-        <div class="final-stars">
-            ✨ ❤️ ✨
-        </div>
-
-        <h1>
-            One Year.
-            <br>
-            One Story.
-            <br>
-            One You. ❤️
-        </h1>
-
-        <p>
-            I won't stop choosing you.
-        </p>
-
-        <p>
-            Not because I have to...
-        </p>
-
-        <p>
-            But because I want to.
-        </p>
-
-        <div class="finalHeart">
-            ❤️
-        </div>
-
-        <h2>
-            Happy First Anniversary,
-            Rymaa ❤️
-        </h2>
-
-        <p>
-            Here's to our first year...
-            <br>
-            and every beautiful memory still waiting for us.
-        </p>
-
-        <p class="always">
-            Always.
-            <br>
-            Forever.
-        </p>
-
-        <strong>
-            Amine ❤️
-        </strong>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     LIGHTBOX
-========================================================= -->
-
-<div id="lightbox">
-
-    <button id="prev">
-        ⬅
-    </button>
-
-    <img id="lightboxImg" src="" alt="Memory">
-
-    <button id="next">
-        ➡
-    </button>
-
-    <button id="closeLightbox">
-        ✕
-    </button>
-
-</div>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
