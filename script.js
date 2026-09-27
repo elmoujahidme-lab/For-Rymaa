@@ -1,10 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================================
-       PAGE NAVIGATION
-    ========================================================= */
 
-    const pages = document.querySelectorAll(".page");
+    /* ============================================================
+       CONFIGURATION
+    ============================================================ */
+
+    /*
+       IMPORTANT:
+
+       After creating your Google Apps Script Web App,
+       paste its /exec URL here.
+
+       Example:
+
+       const API_URL =
+       "https://script.google.com/macros/s/XXXXXXXXXXXX/exec";
+    */
+
+    const API_URL =
+        "PUT_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+
+
+    /*
+       This is NOT your Telegram token.
+
+       It is simply an extra value used by the website
+       to identify requests coming from this version.
+    */
+
+    const SITE_KEY =
+        "RYMAA_PRIVATE_PLACE_2026";
+
+
+    /*
+       Love Code used by Rymaa.
+
+       You can change it if you want.
+    */
+
+    const LOVE_CODE =
+        "ryma";
+
+
+    /* ============================================================
+       PAGE NAVIGATION
+    ============================================================ */
+
+    const pages =
+        document.querySelectorAll(".page");
+
 
     function showPage(id) {
 
@@ -12,182 +56,340 @@ document.addEventListener("DOMContentLoaded", () => {
             page.classList.remove("active");
         });
 
-        const target = document.getElementById(id);
+        const target =
+            document.getElementById(id);
 
-        if (!target) return;
+        if (target) {
 
-        target.classList.add("active");
+            target.classList.add("active");
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
     }
 
 
-    /* =========================================================
+    /* ============================================================
        MAIN NAVIGATION
-    ========================================================= */
+    ============================================================ */
 
-    const navigation = {
+    const happyBtn =
+        document.getElementById("happyBtn");
 
-        happyBtn: "happy",
-        sadBtn: "sad",
-        continueBtn: "letter",
-        next1: "heartGame",
-        next2: "lessons",
-        next3: "memories",
-        next4: "final",
-        quizStart: "quiz",
-        quizNext: "final"
+    const sadBtn =
+        document.getElementById("sadBtn");
 
-    };
+    const continueBtn =
+        document.getElementById("continueBtn");
 
-    Object.entries(navigation).forEach(([buttonId, pageId]) => {
+    const next1 =
+        document.getElementById("next1");
 
-        const button = document.getElementById(buttonId);
+    const next2 =
+        document.getElementById("next2");
 
-        if (button) {
-            button.addEventListener("click", () => {
-                showPage(pageId);
-            });
-        }
+    const next3 =
+        document.getElementById("next3");
 
-    });
+    const next4 =
+        document.getElementById("next4");
 
+    const quizStart =
+        document.getElementById("quizStart");
 
-    /* =========================================================
-       OUR PLACE BUTTONS
-    ========================================================= */
-
-    const placeNavigation = {
-
-        missYouBtn: "missYou",
-        dailyBtn: "daily",
-        questionsBtn: "questions",
-        secretBtn: "secret",
-        notesBtn: "notes",
-        timelineBtn: "timeline"
-
-    };
-
-    Object.entries(placeNavigation).forEach(([buttonId, pageId]) => {
-
-        const button = document.getElementById(buttonId);
-
-        if (button) {
-            button.addEventListener("click", () => {
-                showPage(pageId);
-            });
-        }
-
-    });
+    const quizNext =
+        document.getElementById("quizNext");
 
 
-    document.querySelectorAll("[data-back]").forEach(button => {
+    if (happyBtn) {
 
-        button.addEventListener("click", () => {
+        happyBtn.addEventListener(
+            "click",
+            () => {
 
-            const page = button.dataset.back;
+                showPage("happy");
 
-            showPage(page);
+            }
+        );
 
-        });
-
-    });
+    }
 
 
-    /* =========================================================
-       LOVE MESSAGES
-    ========================================================= */
+    if (sadBtn) {
 
-    const messages = [
+        sadBtn.addEventListener(
+            "click",
+            () => {
 
-        "You are my favorite person ❤️",
+                showPage("sad");
 
-        "I smile every time I think about you.",
+            }
+        );
 
-        "My best memories always include you.",
+    }
 
-        "You make ordinary days feel special.",
 
-        "Thank you for being part of my life.",
+    if (continueBtn) {
 
-        "I'd choose you again and again.",
+        continueBtn.addEventListener(
+            "click",
+            () => {
 
-        "You are my safe place.",
+                showPage("letter");
 
-        "You mean more to me than words can say.",
+            }
+        );
 
-        "One year later, I still choose you. ❤️",
+    }
 
-        "Mima, you make my world softer. 🌸",
 
-        "B'outa dyali ❤️",
+    if (next1) {
 
-        "Bentena dyali, always. ❤️"
+        next1.addEventListener(
+            "click",
+            () => {
+
+                showPage("heartGame");
+
+            }
+        );
+
+    }
+
+
+    if (next2) {
+
+        next2.addEventListener(
+            "click",
+            () => {
+
+                showPage("lessons");
+
+            }
+        );
+
+    }
+
+
+    if (next3) {
+
+        next3.addEventListener(
+            "click",
+            () => {
+
+                showPage("memories");
+
+            }
+        );
+
+    }
+
+
+    if (next4) {
+
+        next4.addEventListener(
+            "click",
+            () => {
+
+                showPage("final");
+
+            }
+        );
+
+    }
+
+
+    if (quizStart) {
+
+        quizStart.addEventListener(
+            "click",
+            () => {
+
+                showPage("quiz");
+
+            }
+        );
+
+    }
+
+
+    if (quizNext) {
+
+        quizNext.addEventListener(
+            "click",
+            () => {
+
+                showPage("final");
+
+            }
+        );
+
+    }
+
+
+    /* ============================================================
+       RANDOM LOVE MESSAGE
+    ============================================================ */
+
+    const loveMessages = [
+
+        "❤️ You are my favorite person.",
+
+        "🌹 Thank you for making this year unforgettable.",
+
+        "💖 If I could relive this year, I would choose you again.",
+
+        "🥹 You are one of my favorite parts of life.",
+
+        "✨ One year. Countless memories. One special girl.",
+
+        "💕 You made ordinary days feel extraordinary.",
+
+        "🌸 I hope we create many more beautiful memories together.",
+
+        "❤️ My favorite chapter is the one where I met you.",
+
+        "🌙 Even on difficult days, you are still precious to me.",
+
+        "💌 Happy first anniversary, my beautiful Rymaa.",
+
+        "🌹 Thank you for every laugh, conversation and memory.",
+
+        "💗 One year with you will always be a year I treasure.",
+
+        "❤️ I choose you today, tomorrow and every day after.",
+
+        "✨ Our story has only just begun.",
+
+        "🥰 You are my favorite person and my sweetest memory.",
+
+        "💖 Thank you for being you.",
+
+        "🌷 Here's to the first year and all the beautiful moments ahead.",
+
+        "💌 Amine loves you more than words can explain."
 
     ];
 
-    const loveMessage = document.getElementById("loveMessage");
 
-    if (loveMessage) {
+    const loveMessage =
+        document.getElementById("loveMessage");
+
+
+    function randomLoveMessage() {
+
+        if (!loveMessage) {
+            return;
+        }
+
+        const random =
+            Math.floor(
+                Math.random() *
+                loveMessages.length
+            );
 
         loveMessage.textContent =
-            messages[Math.floor(Math.random() * messages.length)];
+            loveMessages[random];
 
     }
 
 
-    /* =========================================================
+    randomLoveMessage();
+
+
+    setInterval(
+        randomLoveMessage,
+        8000
+    );
+
+
+    /* ============================================================
        ANNIVERSARY COUNTER
-    ========================================================= */
+    ============================================================ */
 
     const startDate =
-        new Date("September 27, 2025 00:00:00");
+        new Date(
+            "September 27, 2025 00:00:00"
+        );
+
+
+    const yearsEl =
+        document.getElementById("years");
+
+    const daysEl =
+        document.getElementById("days");
+
+    const hoursEl =
+        document.getElementById("hours");
+
+    const minutesEl =
+        document.getElementById("minutes");
+
+    const secondsEl =
+        document.getElementById("seconds");
 
 
     function updateCounter() {
 
-        const yearsEl = document.getElementById("years");
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
-
-        const now = new Date();
+        const now =
+            new Date();
 
         if (now < startDate) {
 
-            if (yearsEl) yearsEl.textContent = "0";
-            if (daysEl) daysEl.textContent = "0";
-            if (hoursEl) hoursEl.textContent = "0";
-            if (minutesEl) minutesEl.textContent = "0";
-            if (secondsEl) secondsEl.textContent = "0";
+            if (yearsEl)
+                yearsEl.textContent = "0";
+
+            if (daysEl)
+                daysEl.textContent = "0";
+
+            if (hoursEl)
+                hoursEl.textContent = "0";
+
+            if (minutesEl)
+                minutesEl.textContent = "0";
+
+            if (secondsEl)
+                secondsEl.textContent = "0";
 
             return;
 
         }
 
+
         let years =
-            now.getFullYear() - startDate.getFullYear();
+            now.getFullYear() -
+            startDate.getFullYear();
+
 
         const anniversary =
             new Date(startDate);
 
+
         anniversary.setFullYear(
-            startDate.getFullYear() + years
+            startDate.getFullYear() +
+            years
         );
 
+
         if (anniversary > now) {
+
             years--;
+
             anniversary.setFullYear(
-                startDate.getFullYear() + years
+                startDate.getFullYear() +
+                years
             );
+
         }
+
 
         const remaining =
             now - anniversary;
+
 
         const days =
             Math.floor(
@@ -195,50 +397,86 @@ document.addEventListener("DOMContentLoaded", () => {
                 (1000 * 60 * 60 * 24)
             );
 
+
         const hours =
             Math.floor(
-                (remaining /
-                    (1000 * 60 * 60)) % 24
+                (
+                    remaining /
+                    (1000 * 60 * 60)
+                ) % 24
             );
+
 
         const minutes =
             Math.floor(
-                (remaining /
-                    (1000 * 60)) % 60
+                (
+                    remaining /
+                    (1000 * 60)
+                ) % 60
             );
+
 
         const seconds =
             Math.floor(
-                (remaining / 1000) % 60
+                (
+                    remaining /
+                    1000
+                ) % 60
             );
 
-        if (yearsEl) yearsEl.textContent = years;
-        if (daysEl) daysEl.textContent = days;
-        if (hoursEl) hoursEl.textContent = hours;
-        if (minutesEl) minutesEl.textContent = minutes;
-        if (secondsEl) secondsEl.textContent = seconds;
+
+        if (yearsEl)
+            yearsEl.textContent = years;
+
+        if (daysEl)
+            daysEl.textContent = days;
+
+        if (hoursEl)
+            hoursEl.textContent = hours;
+
+        if (minutesEl)
+            minutesEl.textContent = minutes;
+
+        if (secondsEl)
+            secondsEl.textContent = seconds;
 
     }
 
+
     updateCounter();
 
-    setInterval(updateCounter, 1000);
+    setInterval(
+        updateCounter,
+        1000
+    );
 
 
-    /* =========================================================
+    /* ============================================================
        MUSIC
-    ========================================================= */
+    ============================================================ */
 
-    const music = document.getElementById("music");
-    const playBtn = document.getElementById("playMusic");
-    const progress = document.getElementById("progress");
-    const volume = document.getElementById("volume");
-    const cover = document.querySelector(".music-cover");
+    const music =
+        document.getElementById("music");
+
+    const playBtn =
+        document.getElementById("playMusic");
+
+    const progress =
+        document.getElementById("progress");
+
+    const volume =
+        document.getElementById("volume");
+
+    const cover =
+        document.querySelector(".music-cover");
 
 
     function updateMusicUI() {
 
-        if (!music || !playBtn) return;
+        if (!playBtn || !music) {
+            return;
+        }
+
 
         if (!music.paused) {
 
@@ -263,150 +501,253 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (playBtn && music) {
 
-        playBtn.addEventListener("click", async () => {
+        playBtn.addEventListener(
+            "click",
+            async () => {
 
-            try {
+                try {
 
-                if (music.paused) {
-                    await music.play();
-                } else {
-                    music.pause();
+                    if (music.paused) {
+
+                        await music.play();
+
+                    } else {
+
+                        music.pause();
+
+                    }
+
+                    updateMusicUI();
+
+                } catch (error) {
+
+                    console.log(
+                        "Music could not start:",
+                        error
+                    );
+
                 }
 
-                updateMusicUI();
+            }
+        );
 
-            } catch (error) {
 
-                console.log("Music error:", error);
+        music.addEventListener(
+            "play",
+            updateMusicUI
+        );
+
+
+        music.addEventListener(
+            "pause",
+            updateMusicUI
+        );
+
+
+        music.addEventListener(
+            "timeupdate",
+            () => {
+
+                if (
+                    progress &&
+                    music.duration
+                ) {
+
+                    progress.value =
+                        (
+                            music.currentTime /
+                            music.duration
+                        ) * 100;
+
+                }
 
             }
-
-        });
-
-        music.addEventListener("play", updateMusicUI);
-        music.addEventListener("pause", updateMusicUI);
-        music.addEventListener("ended", updateMusicUI);
-
-    }
+        );
 
 
-    if (music && progress) {
+        if (progress) {
 
-        music.addEventListener("timeupdate", () => {
+            progress.addEventListener(
+                "input",
+                () => {
 
-            if (!music.duration) return;
+                    if (!music.duration) {
+                        return;
+                    }
 
-            progress.value =
-                (music.currentTime / music.duration) * 100;
+                    music.currentTime =
+                        (
+                            progress.value /
+                            100
+                        ) *
+                        music.duration;
 
-        });
+                }
+            );
 
-
-        progress.addEventListener("input", () => {
-
-            if (!music.duration) return;
-
-            music.currentTime =
-                (progress.value / 100) * music.duration;
-
-        });
-
-    }
+        }
 
 
-    if (music && volume) {
+        if (volume) {
 
-        volume.addEventListener("input", () => {
+            volume.addEventListener(
+                "input",
+                () => {
 
-            music.volume =
-                Number(volume.value);
+                    music.volume =
+                        volume.value;
 
-        });
+                }
+            );
+
+        }
 
     }
 
 
-    /* =========================================================
+    /* ============================================================
        FLOATING HEARTS
-    ========================================================= */
+    ============================================================ */
 
     function createHeart() {
 
         const container =
             document.getElementById("hearts");
 
-        if (!container) return;
+        if (!container) {
+            return;
+        }
+
 
         const heart =
             document.createElement("div");
 
-        heart.className = "heart";
-        heart.textContent = "❤";
+        heart.className =
+            "heart";
+
+        heart.textContent =
+            "❤";
 
         heart.style.left =
-            Math.random() * 100 + "vw";
+            Math.random() *
+            100 +
+            "vw";
 
         heart.style.fontSize =
-            15 + Math.random() * 25 + "px";
+            15 +
+            Math.random() *
+            25 +
+            "px";
 
         heart.style.animationDuration =
-            5 + Math.random() * 5 + "s";
+            5 +
+            Math.random() *
+            5 +
+            "s";
 
-        container.appendChild(heart);
+        container.appendChild(
+            heart
+        );
 
-        setTimeout(() => {
-            heart.remove();
-        }, 10000);
+
+        setTimeout(
+            () => {
+                heart.remove();
+            },
+            10000
+        );
 
     }
 
-    setInterval(createHeart, 650);
+
+    setInterval(
+        createHeart,
+        650
+    );
 
 
-    /* =========================================================
+    /* ============================================================
+       SPECIAL HEARTS
+    ============================================================ */
+
+    function createSpecialHearts() {
+
+        for (
+            let i = 0;
+            i < 18;
+            i++
+        ) {
+
+            const heart =
+                document.createElement("div");
+
+            heart.textContent =
+                Math.random() > 0.5
+                    ? "❤️"
+                    : "💗";
+
+            heart.style.position =
+                "fixed";
+
+            heart.style.left =
+                Math.random() *
+                100 +
+                "vw";
+
+            heart.style.bottom =
+                "-30px";
+
+            heart.style.fontSize =
+                18 +
+                Math.random() *
+                25 +
+                "px";
+
+            heart.style.zIndex =
+                "99999";
+
+            heart.style.pointerEvents =
+                "none";
+
+            heart.style.transition =
+                "3s ease";
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(
+                () => {
+
+                    heart.style.transform =
+                        "translateY(-120vh) rotate(360deg)";
+
+                    heart.style.opacity =
+                        "0";
+
+                },
+                50
+            );
+
+
+            setTimeout(
+                () => {
+
+                    heart.remove();
+
+                },
+                3000
+            );
+
+        }
+
+    }
+
+
+    /* ============================================================
        LOVE BOX
-    ========================================================= */
-
-    const loveMessages = [
-
-        "❤️ One year down, and I still get butterflies because of you.",
-
-        "🌹 Thank you for making this year unforgettable.",
-
-        "💖 If I could relive this year, I would choose you again.",
-
-        "🥹 You are one of my favorite parts of life.",
-
-        "✨ One year. Countless memories. One special girl.",
-
-        "💕 You made ordinary days feel extraordinary.",
-
-        "🌸 I hope we create many more beautiful memories together.",
-
-        "❤️ My favorite chapter is the one where I met you.",
-
-        "🌙 Even on difficult days, you are still precious to me.",
-
-        "💌 Happy first anniversary, my beautiful Rymaa.",
-
-        "🌹 Thank you for every laugh, every conversation and every memory.",
-
-        "💗 One year with you will always be a year I treasure.",
-
-        "❤️ I choose you today, tomorrow and every day after.",
-
-        "✨ Our story has only just begun.",
-
-        "🥰 You are my favorite person and my sweetest memory.",
-
-        "💖 Thank you for being you.",
-
-        "🌷 Here's to the first year and all the beautiful moments ahead.",
-
-        "💌 Amine loves you more than words can explain."
-
-    ];
-
+    ============================================================ */
 
     const gift =
         document.getElementById("giftBox");
@@ -414,712 +755,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const giftMessage =
         document.getElementById("giftMessage");
 
-    const countdownText =
-        document.getElementById("countdown");
-
 
     if (gift) {
 
-        gift.addEventListener("click", () => {
+        gift.addEventListener(
+            "click",
+            () => {
 
-            const random =
-                loveMessages[
+                const random =
                     Math.floor(
                         Math.random() *
                         loveMessages.length
-                    )
-                ];
-
-            gift.style.transform =
-                "scale(1.2) rotate(5deg)";
-
-            setTimeout(() => {
-                gift.style.transform = "";
-            }, 300);
-
-            if (giftMessage) {
-                giftMessage.textContent = random;
-            }
-
-            createSpecialHearts();
-
-        });
-
-    }
-
-
-    /* =========================================================
-       SPECIAL HEARTS
-    ========================================================= */
-
-    function createSpecialHearts() {
-
-        for (let i = 0; i < 20; i++) {
-
-            const heart =
-                document.createElement("div");
-
-            heart.textContent = "❤️";
-
-            heart.style.position = "fixed";
-            heart.style.left =
-                Math.random() * 100 + "vw";
-            heart.style.top = "100vh";
-            heart.style.fontSize =
-                18 + Math.random() * 25 + "px";
-            heart.style.zIndex = "99999";
-            heart.style.pointerEvents = "none";
-            heart.style.transition = "3s ease";
-
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-
-                heart.style.transform =
-                    "translateY(-120vh) rotate(360deg)";
-
-                heart.style.opacity = "0";
-
-            }, 50);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 3200);
-
-        }
-
-    }
-
-
-    /* =========================================================
-       I MISS YOU
-    ========================================================= */
-
-    const missMessages = [
-
-        "Close your eyes for a second... imagine me giving you the biggest hug. 🫂❤️",
-
-        "If you miss me, just remember: I'm probably thinking about you too. ❤️",
-
-        "Come here, b'outa dyali... you deserve a hug. 🫂",
-
-        "Mima, I wish I could teleport to you right now. 🥺❤️",
-
-        "If I could be anywhere right now, I'd choose to be beside you.",
-
-        "You don't have to say anything. Just stay here with me for a moment. ❤️",
-
-        "I miss your smile. I miss your voice. I miss you. 🥺",
-
-        "A virtual kiss until I can give you a real one. 💋❤️",
-
-        "Bentenа dyali, don't forget that you're loved. ❤️",
-
-        "One day we'll look back at all these moments and smile. 🌸",
-
-        "I wish I could pause the world and keep one moment with you forever.",
-
-        "Missing you is just another way of realizing how much you mean to me. ❤️"
-
-    ];
-
-
-    const missMessage =
-        document.getElementById("missMessage");
-
-    const anotherMiss =
-        document.getElementById("anotherMiss");
-
-    const missCount =
-        document.getElementById("missCount");
-
-
-    let savedMissCount =
-        Number(localStorage.getItem("rymaaMissCount")) || 0;
-
-
-    function showMissMessage() {
-
-        const random =
-            missMessages[
-                Math.floor(
-                    Math.random() *
-                    missMessages.length
-                )
-            ];
-
-        if (missMessage) {
-            missMessage.textContent = random;
-        }
-
-        savedMissCount++;
-
-        localStorage.setItem(
-            "rymaaMissCount",
-            savedMissCount
-        );
-
-        if (missCount) {
-            missCount.textContent = savedMissCount;
-        }
-
-        createSpecialHearts();
-
-    }
-
-
-    if (missCount) {
-        missCount.textContent = savedMissCount;
-    }
-
-
-    if (anotherMiss) {
-
-        anotherMiss.addEventListener(
-            "click",
-            showMissMessage
-        );
-
-    }
-
-
-    /* =========================================================
-       DAILY SURPRISE
-    ========================================================= */
-
-    const dailySurprises = [
-
-        {
-            icon: "💌",
-            text: "Today I want you to know that you are still one of my favorite people in this world."
-        },
-
-        {
-            icon: "🥺",
-            text: "Your mission today: smile at least once and remember that someone loves that smile."
-        },
-
-        {
-            icon: "🌹",
-            text: "A little reminder: beautiful things take time. So let's keep creating ours."
-        },
-
-        {
-            icon: "🫂",
-            text: "Today's surprise is a virtual hug. Don't escape. You're stuck here. 😂❤️"
-        },
-
-        {
-            icon: "💋",
-            text: "Today's official message: one kiss for Rymaa. No refunds. 😌❤️"
-        },
-
-        {
-            icon: "🌙",
-            text: "Tonight, before sleeping, remember one beautiful moment between us."
-        },
-
-        {
-            icon: "📸",
-            text: "Today, look at one of our pictures and remember how far our story has come."
-        },
-
-        {
-            icon: "❤️",
-            text: "365 days later... and I would still choose you."
-        },
-
-        {
-            icon: "🎵",
-            text: "Listen to our song today and pretend I'm sitting beside you."
-        },
-
-        {
-            icon: "🥰",
-            text: "Your daily reminder: Mima is loved. Very, very much."
-        }
-
-    ];
-
-
-    const dailyIcon =
-        document.getElementById("dailyIcon");
-
-    const dailyMessage =
-        document.getElementById("dailyMessage");
-
-
-    function getTodayKey() {
-
-        const today = new Date();
-
-        return today.getFullYear() +
-            "-" +
-            String(today.getMonth() + 1).padStart(2, "0") +
-            "-" +
-            String(today.getDate()).padStart(2, "0");
-
-    }
-
-
-    function showDailySurprise() {
-
-        const todayKey =
-            getTodayKey();
-
-        let saved =
-            localStorage.getItem(
-                "rymaaDailySurprise"
-            );
-
-        if (!saved) {
-
-            const randomIndex =
-                Math.floor(
-                    Math.random() *
-                    dailySurprises.length
-                );
-
-            saved = JSON.stringify({
-                date: todayKey,
-                index: randomIndex
-            });
-
-            localStorage.setItem(
-                "rymaaDailySurprise",
-                saved
-            );
-
-        }
-
-        const data =
-            JSON.parse(saved);
-
-        if (data.date !== todayKey) {
-
-            const randomIndex =
-                Math.floor(
-                    Math.random() *
-                    dailySurprises.length
-                );
-
-            saved = JSON.stringify({
-                date: todayKey,
-                index: randomIndex
-            });
-
-            localStorage.setItem(
-                "rymaaDailySurprise",
-                saved
-            });
-
-            data.date = todayKey;
-            data.index = randomIndex;
-
-        }
-
-        const surprise =
-            dailySurprises[data.index];
-
-        if (dailyIcon) {
-            dailyIcon.textContent =
-                surprise.icon;
-        }
-
-        if (dailyMessage) {
-            dailyMessage.textContent =
-                surprise.text;
-        }
-
-    }
-
-
-    showDailySurprise();
-
-
-    /* =========================================================
-       QUESTIONS
-    ========================================================= */
-
-    const questions = [
-
-        "What is your favorite memory of us?",
-
-        "What was the first thing you noticed about me?",
-
-        "What is one thing you want us to do together this year?",
-
-        "Where would you take me if we could travel tomorrow?",
-
-        "What song reminds you of us?",
-
-        "What little thing I do makes you smile?",
-
-        "What moment with me do you wish you could relive?",
-
-        "What is something you want us to learn together?",
-
-        "What is your favorite nickname I call you?",
-
-        "What do you hope our next anniversary looks like?",
-
-        "What's one dream you want us to achieve together?",
-
-        "What makes you feel most loved by me?",
-
-        "What's one place you want us to visit together?",
-
-        "What is something you never want us to stop doing?",
-
-        "If our relationship was a movie, what would its title be?"
-
-    ];
-
-
-    const questionText =
-        document.getElementById("questionText");
-
-    const newQuestion =
-        document.getElementById("newQuestion");
-
-    const questionAnswer =
-        document.getElementById("questionAnswer");
-
-    const saveAnswer =
-        document.getElementById("saveAnswer");
-
-    const answerStatus =
-        document.getElementById("answerStatus");
-
-
-    function showRandomQuestion() {
-
-        if (!questionText) return;
-
-        questionText.textContent =
-            questions[
-                Math.floor(
-                    Math.random() *
-                    questions.length
-                )
-            ];
-
-        if (questionAnswer) {
-            questionAnswer.value = "";
-        }
-
-        if (answerStatus) {
-            answerStatus.textContent = "";
-        }
-
-    }
-
-
-    if (newQuestion) {
-        newQuestion.addEventListener(
-            "click",
-            showRandomQuestion
-        );
-    }
-
-
-    if (saveAnswer) {
-
-        saveAnswer.addEventListener("click", () => {
-
-            const answer =
-                questionAnswer
-                    ? questionAnswer.value.trim()
-                    : "";
-
-            if (!answer) {
-
-                if (answerStatus) {
-                    answerStatus.textContent =
-                        "Write something from your heart first ❤️";
-                }
-
-                return;
-
-            }
-
-            const savedAnswers =
-                JSON.parse(
-                    localStorage.getItem(
-                        "rymaaAnswers"
-                    ) || "[]"
-                );
-
-            savedAnswers.push({
-
-                question:
-                    questionText.textContent,
-
-                answer,
-
-                date:
-                    new Date().toLocaleString()
-
-            });
-
-            localStorage.setItem(
-                "rymaaAnswers",
-                JSON.stringify(savedAnswers)
-            );
-
-            if (answerStatus) {
-                answerStatus.textContent =
-                    "❤️ Saved. Keep this little moment.";
-            }
-
-        });
-
-    }
-
-
-    /* =========================================================
-       SECRET ROOM
-    ========================================================= */
-
-    const secretPin =
-        document.getElementById("secretPin");
-
-    const unlockSecret =
-        document.getElementById("unlockSecret");
-
-    const secretStatus =
-        document.getElementById("secretStatus");
-
-    const secretLocked =
-        document.getElementById("secretLocked");
-
-    const secretContent =
-        document.getElementById("secretContent");
-
-    const lockSecret =
-        document.getElementById("lockSecret");
-
-
-    /*
-       Change this PIN if you want.
-       IMPORTANT:
-       Because this is a GitHub Pages website,
-       this is NOT real security.
-       It is only a cute private-room lock.
-    */
-
-    const SECRET_PIN = "2709";
-
-
-    function unlockRoom() {
-
-        if (!secretPin) return;
-
-        if (secretPin.value === SECRET_PIN) {
-
-            secretLocked.classList.add("hidden");
-            secretContent.classList.remove("hidden");
-
-            secretPin.value = "";
-
-            createSpecialHearts();
-
-        } else {
-
-            if (secretStatus) {
-                secretStatus.textContent =
-                    "❌ That's not our secret ❤️";
-            }
-
-        }
-
-    }
-
-
-    if (unlockSecret) {
-        unlockSecret.addEventListener(
-            "click",
-            unlockRoom
-        );
-    }
-
-
-    if (secretPin) {
-
-        secretPin.addEventListener(
-            "keydown",
-            event => {
-
-                if (event.key === "Enter") {
-                    unlockRoom();
-                }
-
-            }
-        );
-
-    }
-
-
-    if (lockSecret) {
-
-        lockSecret.addEventListener(
-            "click",
-            () => {
-
-                secretContent.classList.add("hidden");
-                secretLocked.classList.remove("hidden");
-
-                if (secretStatus) {
-                    secretStatus.textContent = "";
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================================
-       LOVE NOTES
-    ========================================================= */
-
-    const noteInput =
-        document.getElementById("noteInput");
-
-    const saveNote =
-        document.getElementById("saveNote");
-
-    const notesList =
-        document.getElementById("notesList");
-
-    const clearNotes =
-        document.getElementById("clearNotes");
-
-
-    function getNotes() {
-
-        return JSON.parse(
-            localStorage.getItem(
-                "rymaaLoveNotes"
-            ) || "[]"
-        );
-
-    }
-
-
-    function renderNotes() {
-
-        if (!notesList) return;
-
-        const notes =
-            getNotes();
-
-        notesList.innerHTML = "";
-
-        if (!notes.length) {
-
-            notesList.innerHTML = `
-                <div class="saved-note">
-                    <p>
-                        Your little love notes will appear here. ❤️
-                    </p>
-                </div>
-            `;
-
-            return;
-
-        }
-
-
-        [...notes]
-            .reverse()
-            .forEach(note => {
-
-                const element =
-                    document.createElement("div");
-
-                element.className =
-                    "saved-note";
-
-                const p =
-                    document.createElement("p");
-
-                p.textContent =
-                    note.text;
-
-                const small =
-                    document.createElement("small");
-
-                small.textContent =
-                    note.date;
-
-                element.appendChild(p);
-                element.appendChild(small);
-
-                notesList.appendChild(element);
-
-            });
-
-    }
-
-
-    if (saveNote) {
-
-        saveNote.addEventListener("click", () => {
-
-            const text =
-                noteInput
-                    ? noteInput.value.trim()
-                    : "";
-
-            if (!text) return;
-
-            const notes =
-                getNotes();
-
-            notes.push({
-
-                text,
-
-                date:
-                    new Date().toLocaleString()
-
-            });
-
-            localStorage.setItem(
-                "rymaaLoveNotes",
-                JSON.stringify(notes)
-            );
-
-            noteInput.value = "";
-
-            renderNotes();
-
-            createSpecialHearts();
-
-        });
-
-    }
-
-
-    if (clearNotes) {
-
-        clearNotes.addEventListener(
-            "click",
-            () => {
-
-                const confirmed =
-                    confirm(
-                        "Clear all your saved love notes?"
                     );
 
-                if (!confirmed) return;
+                if (giftMessage) {
 
-                localStorage.removeItem(
-                    "rymaaLoveNotes"
-                );
+                    giftMessage.textContent =
+                        loveMessages[random];
 
-                renderNotes();
+                }
+
+                createSpecialHearts();
 
             }
         );
@@ -1127,88 +783,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    renderNotes();
-
-
-    /* =========================================================
-       LOVE STREAK
-    ========================================================= */
-
-    const streakNumber =
-        document.getElementById("streakNumber");
-
-
-    function updateStreak() {
-
-        const today =
-            new Date();
-
-        const todayKey =
-            today.toISOString().slice(0, 10);
-
-        const yesterday =
-            new Date(today);
-
-        yesterday.setDate(
-            yesterday.getDate() - 1
-        );
-
-        const yesterdayKey =
-            yesterday.toISOString().slice(0, 10);
-
-        let streak =
-            Number(
-                localStorage.getItem(
-                    "rymaaStreak"
-                )
-            ) || 0;
-
-        const lastVisit =
-            localStorage.getItem(
-                "rymaaLastVisit"
-            );
-
-
-        if (lastVisit === todayKey) {
-
-            // Already counted today.
-
-        } else if (lastVisit === yesterdayKey) {
-
-            streak++;
-
-        } else {
-
-            streak = 1;
-
-        }
-
-
-        localStorage.setItem(
-            "rymaaStreak",
-            streak
-        );
-
-        localStorage.setItem(
-            "rymaaLastVisit",
-            todayKey
-        );
-
-
-        if (streakNumber) {
-            streakNumber.textContent =
-                streak;
-        }
-
-    }
-
-
-    updateStreak();
-
-
-    /* =========================================================
+    /* ============================================================
        QUIZ
-    ========================================================= */
+    ============================================================ */
 
     const quizButtons =
         document.querySelectorAll(
@@ -1221,50 +798,1713 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    quizButtons.forEach(button => {
+    quizButtons.forEach(
+        button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                if (quizResult) {
+                    if (quizResult) {
 
-                    quizResult.innerHTML =
-                        "🥰 Obviously Amine! ❤️<br>" +
-                        "You knew the answer all along 😂";
+                        quizResult.innerHTML =
+                            "🥰 Obviously Amine! ❤️<br>" +
+                            "You knew the answer all along 😂";
+
+                    }
+
+                    createSpecialHearts();
 
                 }
+            );
 
-                createSpecialHearts();
+        }
+    );
+
+
+    /* ============================================================
+       PRIVATE PLACE MODAL
+    ============================================================ */
+
+    const featureModal =
+        document.getElementById(
+            "featureModal"
+        );
+
+    const featureModalBody =
+        document.getElementById(
+            "featureModalBody"
+        );
+
+    const closeFeatureModal =
+        document.getElementById(
+            "closeFeatureModal"
+        );
+
+
+    function openFeature() {
+
+        if (!featureModal) {
+            return;
+        }
+
+        featureModal.classList.add(
+            "active"
+        );
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    function closeFeature() {
+
+        if (!featureModal) {
+            return;
+        }
+
+        featureModal.classList.remove(
+            "active"
+        );
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    if (closeFeatureModal) {
+
+        closeFeatureModal.addEventListener(
+            "click",
+            closeFeature
+        );
+
+    }
+
+
+    if (featureModal) {
+
+        featureModal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    featureModal
+                ) {
+
+                    closeFeature();
+
+                }
 
             }
         );
 
-    });
+    }
 
 
-    /* =========================================================
-       MESSAGE BOX
-    ========================================================= */
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape" &&
+                featureModal &&
+                featureModal.classList.contains(
+                    "active"
+                )
+            ) {
+
+                closeFeature();
+
+            }
+
+        }
+    );
+
+
+    /* ============================================================
+       MISS YOU
+    ============================================================ */
+
+    const missMessages = [
+
+        "If you miss me right now, just know I'm probably missing you too. ❤️",
+
+        "Close your eyes for a second... imagine me holding your hand. 🥺❤️",
+
+        "Distance can make a moment feel long, but it cannot make you less important to me. 💗",
+
+        "If I could appear beside you right now, I would. No questions asked. ❤️",
+
+        "You don't have to say anything. Just remember that you are loved. 🌷",
+
+        "One little message from you can change my whole day. 💌",
+
+        "Come here... imaginary hug incoming. 🫂❤️",
+
+        "If you miss me, send a little kiss into the screen. I'll catch it. 😘"
+
+    ];
+
+
+    let missIndex = 0;
+
+
+    function renderMissYou() {
+
+        if (!featureModalBody) {
+            return;
+        }
+
+
+        const count =
+            Number(
+                localStorage.getItem(
+                    "rymaaMissCount"
+                ) || 0
+            );
+
+
+        featureModalBody.innerHTML = `
+
+            <div class="feature-content">
+
+                <div class="big-icon">
+                    🥺❤️
+                </div>
+
+                <h2>
+                    I Miss You
+                </h2>
+
+                <p class="feature-subtitle">
+                    For the moments when you wish
+                    I was right beside you.
+                </p>
+
+                <div class="feature-message"
+                     id="missMessage">
+
+                    ${missMessages[missIndex]}
+
+                </div>
+
+                <button class="feature-btn"
+                        data-action="new-miss">
+
+                    💌 Tell Me Again
+
+                </button>
+
+                <button class="feature-btn"
+                        data-action="kiss">
+
+                    😘 Send Me a Kiss
+
+                </button>
+
+                <p style="
+                    color:#aaa;
+                    font-size:12px;
+                    margin-top:15px;
+                ">
+
+                    You opened this little place
+                    ${count} time(s). ❤️
+
+                </p>
+
+            </div>
+
+        `;
+
+        openFeature();
+
+    }
+
+
+    /* ============================================================
+       DAILY SURPRISE
+    ============================================================ */
+
+    const dailyItems = [
+
+        {
+            title: "Today's Little Challenge 🌸",
+            text: "Tell me three little things that made you smile today."
+        },
+
+        {
+            title: "Today's Question 💭",
+            text: "What is one memory of us that you could live again?"
+        },
+
+        {
+            title: "Today's Mission ❤️",
+            text: "Send me one sentence that you would want me to remember forever."
+        },
+
+        {
+            title: "Today's Hug 🫂",
+            text: "Stop for a moment, breathe, and imagine the biggest hug from me."
+        },
+
+        {
+            title: "Today's Secret 💌",
+            text: "Think of one thing you love about us that you have never told me."
+        },
+
+        {
+            title: "Today's Smile 😊",
+            text: "Look at one of our photos and remember exactly how that moment felt."
+        },
+
+        {
+            title: "Today's Promise 🌷",
+            text: "Promise yourself to protect one beautiful memory of us today."
+        }
+
+    ];
+
+
+    function getTodayKey() {
+
+        const now =
+            new Date();
+
+        return (
+            now.getFullYear() +
+            "-" +
+            String(
+                now.getMonth() + 1
+            ).padStart(2, "0") +
+            "-" +
+            String(
+                now.getDate()
+            ).padStart(2, "0")
+        );
+
+    }
+
+
+    function renderDaily() {
+
+        const key =
+            "rymaaDaily-" +
+            getTodayKey();
+
+
+        let item =
+            localStorage.getItem(key);
+
+
+        if (item) {
+
+            item =
+                JSON.parse(item);
+
+        } else {
+
+            item =
+                dailyItems[
+                    Math.floor(
+                        Math.random() *
+                        dailyItems.length
+                    )
+                ];
+
+            localStorage.setItem(
+                key,
+                JSON.stringify(item)
+            );
+
+        }
+
+
+        featureModalBody.innerHTML = `
+
+            <div class="feature-content">
+
+                <div class="big-icon">
+                    🌸
+                </div>
+
+                <h2>
+                    Today's Surprise
+                </h2>
+
+                <p class="feature-subtitle">
+                    One little thing for today.
+                </p>
+
+                <div class="daily-box">
+
+                    <h3>
+                        ${item.title}
+                    </h3>
+
+                    <p>
+                        ${item.text}
+                    </p>
+
+                </div>
+
+                <button class="feature-btn"
+                        data-action="daily-done">
+
+                    ❤️ I Did It
+
+                </button>
+
+            </div>
+
+        `;
+
+        openFeature();
+
+    }
+
+
+    /* ============================================================
+       QUESTIONS
+    ============================================================ */
+
+    const questions = [
+
+        "What was the first thing that made you feel comfortable with me?",
+
+        "Which memory of us makes you smile immediately?",
+
+        "What is one place you would love for us to visit together?",
+
+        "What little thing do I do that secretly makes you happy?",
+
+        "If our story was a movie, what would you call it?",
+
+        "What song reminds you of us?",
+
+        "What is one thing you hope we experience together?",
+
+        "Which version of us do you love the most?",
+
+        "What was your favorite conversation between us?",
+
+        "If you could freeze one moment with me, which one would it be?",
+
+        "What is one thing you want us to learn together?",
+
+        "What makes our relationship feel special to you?",
+
+        "What is one silly memory you never want us to forget?",
+
+        "Where would you take me for our perfect day?",
+
+        "What do you want our next chapter to feel like?"
+
+    ];
+
+
+    let currentQuestion =
+        Math.floor(
+            Math.random() *
+            questions.length
+        );
+
+
+    function renderQuestion() {
+
+        featureModalBody.innerHTML = `
+
+            <div class="feature-content">
+
+                <div class="big-icon">
+                    💬
+                </div>
+
+                <h2>
+                    Our Little Question
+                </h2>
+
+                <p class="feature-subtitle">
+                    No perfect answers.
+                    Just honest ones.
+                </p>
+
+                <div class="question-box">
+
+                    <div class="question-text">
+
+                        ${questions[currentQuestion]}
+
+                    </div>
+
+                </div>
+
+                <button class="feature-btn"
+                        data-action="new-question">
+
+                    🔄 Another Question
+
+                </button>
+
+            </div>
+
+        `;
+
+        openFeature();
+
+    }
+
+
+    /* ============================================================
+       LOVE NOTES
+    ============================================================ */
+
+    const NOTES_KEY =
+        "rymaaLoveNotes";
+
+
+    function escapeHTML(text) {
+
+        return String(text)
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    function getNotes() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem(
+                    NOTES_KEY
+                ) || "[]"
+            );
+
+        } catch {
+
+            return [];
+
+        }
+
+    }
+
+
+    function saveNotes(notes) {
+
+        localStorage.setItem(
+            NOTES_KEY,
+            JSON.stringify(notes)
+        );
+
+    }
+
+
+    function renderNotes() {
+
+        const notes =
+            getNotes();
+
+
+        let notesHTML =
+            "";
+
+
+        if (!notes.length) {
+
+            notesHTML = `
+
+                <div class="feature-message">
+
+                    No little notes yet. ❤️
+                    <br>
+                    Write the first one.
+
+                </div>
+
+            `;
+
+        } else {
+
+            notesHTML =
+                `<div class="note-list">` +
+                notes
+                    .slice()
+                    .reverse()
+                    .map(
+                        note => `
+
+                            <div class="note-item">
+
+                                <button
+                                    class="delete-note"
+                                    data-action="delete-note"
+                                    data-id="${note.id}">
+
+                                    ✕
+
+                                </button>
+
+                                <small>
+                                    ${escapeHTML(note.date)}
+                                </small>
+
+                                <p>
+                                    ${escapeHTML(note.text)}
+                                </p>
+
+                            </div>
+
+                        `
+                    )
+                    .join("") +
+                `</div>`;
+
+        }
+
+
+        featureModalBody.innerHTML = `
+
+            <div class="feature-content">
+
+                <div class="big-icon">
+                    💌
+                </div>
+
+                <h2>
+                    Our Love Notes
+                </h2>
+
+                <p class="feature-subtitle">
+                    These notes are saved on this device.
+                </p>
+
+                <textarea
+                    id="noteInput"
+                    class="feature-textarea"
+                    maxlength="1000"
+                    placeholder="Write something you want us to remember..."></textarea>
+
+                <button class="feature-btn"
+                        data-action="save-note">
+
+                    💖 Save This Note
+
+                </button>
+
+                ${notesHTML}
+
+            </div>
+
+        `;
+
+        openFeature();
+
+    }
+
+
+    /* ============================================================
+       SECRET ROOM
+    ============================================================ */
+
+    let secretUnlocked =
+        false;
+
+
+    function renderSecret() {
+
+        if (secretUnlocked) {
+
+            featureModalBody.innerHTML = `
+
+                <div class="feature-content">
+
+                    <div class="big-icon">
+                        🔐❤️
+                    </div>
+
+                    <h2>
+                        Our Secret Room
+                    </h2>
+
+                    <div class="secret-success">
+
+                        <h3>
+                            Welcome back, Rymaa. ❤️
+                        </h3>
+
+                        <p>
+                            This little place is only for
+                            beautiful things, soft memories,
+                            and words we don't want to lose.
+                        </p>
+
+                        <br>
+
+                        <p>
+                            You are loved.
+                            You are remembered.
+                            And you are special to me.
+                            🌷❤️
+                        </p>
+
+                    </div>
+
+                    <button class="feature-btn"
+                            data-action="lock-secret">
+
+                        🔒 Lock Again
+
+                    </button>
+
+                </div>
+
+            `;
+
+        } else {
+
+            featureModalBody.innerHTML = `
+
+                <div class="feature-content">
+
+                    <div class="big-icon">
+                        🔐
+                    </div>
+
+                    <h2>
+                        Secret Room
+                    </h2>
+
+                    <p class="feature-subtitle">
+                        Enter our little love code.
+                    </p>
+
+                    <div class="secret-box">
+
+                        <input
+                            id="secretInput"
+                            class="feature-input"
+                            type="password"
+                            placeholder="Love Code">
+
+                        <button
+                            class="feature-btn"
+                            data-action="unlock-secret">
+
+                            ❤️ Unlock
+
+                        </button>
+
+                        <p id="secretStatus"
+                           style="
+                              color:#ff4f8b;
+                              min-height:22px;
+                              margin-top:8px;
+                           ">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+        openFeature();
+
+    }
+
+
+    /* ============================================================
+       TIMELINE
+    ============================================================ */
+
+    function renderTimeline() {
+
+        featureModalBody.innerHTML = `
+
+            <div class="feature-content">
+
+                <div class="big-icon">
+                    🕰️❤️
+                </div>
+
+                <h2>
+                    Our Story
+                </h2>
+
+                <p class="feature-subtitle">
+                    Little chapters that belong to us.
+                </p>
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+
+                        <h3>
+                            The Beginning 🌱
+                        </h3>
+
+                        <p>
+                            The chapter where two people
+                            became part of each other's story.
+                        </p>
+
+                    </div>
+
+                    <div class="timeline-item">
+
+                        <h3>
+                            The First Memories 📸
+                        </h3>
+
+                        <p>
+                            Conversations, jokes,
+                            smiles and moments that slowly
+                            became ours.
+                        </p>
+
+                    </div>
+
+                    <div class="timeline-item">
+
+                        <h3>
+                            The First Year ❤️
+                        </h3>
+
+                        <p>
+                            365 days filled with memories,
+                            emotions and lessons.
+                        </p>
+
+                    </div>
+
+                    <div class="timeline-item">
+
+                        <h3>
+                            Today 🌷
+                        </h3>
+
+                        <p>
+                            Still here.
+                            Still choosing each other.
+                            Still writing.
+                        </p>
+
+                    </div>
+
+                    <div class="timeline-item">
+
+                        <h3>
+                            The Next Chapter ✨
+                        </h3>
+
+                        <p>
+                            The part of the story
+                            we haven't written yet.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+        openFeature();
+
+    }
+
+
+    /* ============================================================
+       LOVE STREAK
+    ============================================================ */
+
+    function renderStreak() {
+
+        const today =
+            getTodayKey();
+
+        const stored =
+            JSON.parse(
+                localStorage.getItem(
+                    "rymaaStreak"
+                ) || "{}"
+            );
+
+
+        let streak =
+            Number(
+                stored.streak || 0
+            );
+
+
+        if (
+            stored.lastDate !==
+            today
+        ) {
+
+            const yesterday =
+                new Date();
+
+            yesterday.setDate(
+                yesterday.getDate() - 1
+            );
+
+
+            const yesterdayKey =
+                yesterday.getFullYear() +
+                "-" +
+                String(
+                    yesterday.getMonth() + 1
+                ).padStart(2, "0") +
+                "-" +
+                String(
+                    yesterday.getDate()
+                ).padStart(2, "0");
+
+
+            if (
+                stored.lastDate ===
+                yesterdayKey
+            ) {
+
+                streak += 1;
+
+            } else {
+
+                streak = 1;
+
+            }
+
+
+            localStorage.setItem(
+                "rymaaStreak",
+                JSON.stringify({
+                    streak:
+                        streak,
+                    lastDate:
+                        today
+                })
+            );
+
+        }
+
+
+        featureModalBody.innerHTML = `
+
+            <div class="feature-content">
+
+                <div class="big-icon">
+                    🔥
+                </div>
+
+                <h2>
+                    Love Streak
+                </h2>
+
+                <p class="feature-subtitle">
+                    One little check-in each day.
+                </p>
+
+                <div class="streak-number">
+                    ${streak}
+                </div>
+
+                <p>
+                    day(s) of our little streak ❤️
+                </p>
+
+                <div class="feature-message">
+
+                    Even a tiny moment can become
+                    part of our story.
+
+                </div>
+
+            </div>
+
+        `;
+
+        openFeature();
+
+    }
+
+
+    /* ============================================================
+       MESSAGE FEATURE
+    ============================================================ */
+
+    function renderMessageFeature() {
+
+        featureModalBody.innerHTML = `
+
+            <div class="feature-content">
+
+                <div class="big-icon">
+                    📩❤️
+                </div>
+
+                <h2>
+                    Send Me a Message
+                </h2>
+
+                <p class="feature-subtitle">
+                    This message goes through our private
+                    connection and reaches my Telegram.
+                </p>
+
+                <textarea
+                    id="privateMessageInput"
+                    class="feature-textarea"
+                    maxlength="1000"
+                    placeholder="Write something from your heart..."></textarea>
+
+                <input
+                    id="privatePasswordInput"
+                    class="feature-input"
+                    type="password"
+                    placeholder="Enter Love Code">
+
+                <button
+                    class="feature-btn"
+                    data-action="send-private-message">
+
+                    💖 Send With Love
+
+                </button>
+
+                <p id="privateMessageStatus"
+                   style="
+                       min-height:25px;
+                       color:#ff4f8b;
+                       font-size:13px;
+                       margin-top:10px;
+                   ">
+                </p>
+
+            </div>
+
+        `;
+
+        openFeature();
+
+    }
+
+
+    /* ============================================================
+       PRIVATE PLACE BUTTONS
+    ============================================================ */
+
+    document.querySelectorAll(
+        ".private-card"
+    ).forEach(
+        card => {
+
+            card.addEventListener(
+                "click",
+                () => {
+
+                    const feature =
+                        card.dataset.feature;
+
+
+                    switch (feature) {
+
+                        case "missYou":
+
+                            const count =
+                                Number(
+                                    localStorage.getItem(
+                                        "rymaaMissCount"
+                                    ) || 0
+                                ) + 1;
+
+                            localStorage.setItem(
+                                "rymaaMissCount",
+                                count
+                            );
+
+                            missIndex =
+                                Math.floor(
+                                    Math.random() *
+                                    missMessages.length
+                                );
+
+                            renderMissYou();
+
+                            break;
+
+
+                        case "daily":
+
+                            renderDaily();
+
+                            break;
+
+
+                        case "questions":
+
+                            currentQuestion =
+                                Math.floor(
+                                    Math.random() *
+                                    questions.length
+                                );
+
+                            renderQuestion();
+
+                            break;
+
+
+                        case "notes":
+
+                            renderNotes();
+
+                            break;
+
+
+                        case "secret":
+
+                            renderSecret();
+
+                            break;
+
+
+                        case "timeline":
+
+                            renderTimeline();
+
+                            break;
+
+
+                        case "streak":
+
+                            renderStreak();
+
+                            break;
+
+
+                        case "message":
+
+                            renderMessageFeature();
+
+                            break;
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /* ============================================================
+       PRIVATE MODAL ACTIONS
+    ============================================================ */
+
+    if (featureModalBody) {
+
+        featureModalBody.addEventListener(
+            "click",
+            async event => {
+
+                const button =
+                    event.target.closest(
+                        "[data-action]"
+                    );
+
+
+                if (!button) {
+                    return;
+                }
+
+
+                const action =
+                    button.dataset.action;
+
+
+                /* MISS YOU */
+
+                if (
+                    action ===
+                    "new-miss"
+                ) {
+
+                    missIndex =
+                        (
+                            missIndex + 1
+                        ) %
+                        missMessages.length;
+
+
+                    const message =
+                        document.getElementById(
+                            "missMessage"
+                        );
+
+
+                    if (message) {
+
+                        message.textContent =
+                            missMessages[
+                                missIndex
+                            ];
+
+                    }
+
+                }
+
+
+                if (
+                    action ===
+                    "kiss"
+                ) {
+
+                    sendKiss();
+
+                }
+
+
+                /* DAILY */
+
+                if (
+                    action ===
+                    "daily-done"
+                ) {
+
+                    createSpecialHearts();
+
+                    button.textContent =
+                        "🥰 That's Our Little Win";
+
+                }
+
+
+                /* QUESTIONS */
+
+                if (
+                    action ===
+                    "new-question"
+                ) {
+
+                    currentQuestion =
+                        Math.floor(
+                            Math.random() *
+                            questions.length
+                        );
+
+                    renderQuestion();
+
+                }
+
+
+                /* NOTES */
+
+                if (
+                    action ===
+                    "save-note"
+                ) {
+
+                    const input =
+                        document.getElementById(
+                            "noteInput"
+                        );
+
+
+                    const text =
+                        input
+                            ? input.value.trim()
+                            : "";
+
+
+                    if (!text) {
+
+                        alert(
+                            "Write something first ❤️"
+                        );
+
+                        return;
+
+                    }
+
+
+                    const notes =
+                        getNotes();
+
+
+                    notes.push({
+
+                        id:
+                            Date.now(),
+
+                        text:
+                            text,
+
+                        date:
+                            new Date()
+                                .toLocaleString()
+
+                    });
+
+
+                    saveNotes(
+                        notes
+                    );
+
+
+                    renderNotes();
+
+                    createSpecialHearts();
+
+                }
+
+
+                if (
+                    action ===
+                    "delete-note"
+                ) {
+
+                    const id =
+                        Number(
+                            button.dataset.id
+                        );
+
+
+                    const notes =
+                        getNotes()
+                            .filter(
+                                note =>
+                                    note.id !== id
+                            );
+
+
+                    saveNotes(
+                        notes
+                    );
+
+
+                    renderNotes();
+
+                }
+
+
+                /* SECRET */
+
+                if (
+                    action ===
+                    "unlock-secret"
+                ) {
+
+                    const input =
+                        document.getElementById(
+                            "secretInput"
+                        );
+
+                    const status =
+                        document.getElementById(
+                            "secretStatus"
+                        );
+
+
+                    if (
+                        input &&
+                        input.value ===
+                        LOVE_CODE
+                    ) {
+
+                        secretUnlocked =
+                            true;
+
+                        renderSecret();
+
+                        createSpecialHearts();
+
+                    } else if (status) {
+
+                        status.textContent =
+                            "❌ Not quite... try again ❤️";
+
+                    }
+
+                }
+
+
+                if (
+                    action ===
+                    "lock-secret"
+                ) {
+
+                    secretUnlocked =
+                        false;
+
+                    renderSecret();
+
+                }
+
+
+                /* PRIVATE TELEGRAM MESSAGE */
+
+                if (
+                    action ===
+                    "send-private-message"
+                ) {
+
+                    await sendTelegramMessage(
+                        {
+                            messageId:
+                                "private"
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ============================================================
+       SEND KISS
+    ============================================================ */
+
+    function sendKiss() {
+
+        for (
+            let i = 0;
+            i < 8;
+            i++
+        ) {
+
+            const kiss =
+                document.createElement(
+                    "div"
+                );
+
+            kiss.className =
+                "kiss";
+
+            kiss.textContent =
+                "😘";
+
+            kiss.style.left =
+                (
+                    35 +
+                    Math.random() *
+                    30
+                ) +
+                "vw";
+
+            kiss.style.animationDelay =
+                (
+                    Math.random() *
+                    0.5
+                ) +
+                "s";
+
+            document.body.appendChild(
+                kiss
+            );
+
+
+            setTimeout(
+                () => {
+                    kiss.remove();
+                },
+                2600
+            );
+
+        }
+
+    }
+
+
+    /* ============================================================
+       SEND TELEGRAM MESSAGE
+    ============================================================ */
+
+    async function sendTelegramMessage(
+        options = {}
+    ) {
+
+        const isPrivate =
+            options.messageId ===
+            "private";
+
+
+        let messageInput;
+
+
+        let passwordInput;
+
+
+        let status;
+
+
+        if (isPrivate) {
+
+            messageInput =
+                document.getElementById(
+                    "privateMessageInput"
+                );
+
+            passwordInput =
+                document.getElementById(
+                    "privatePasswordInput"
+                );
+
+            status =
+                document.getElementById(
+                    "privateMessageStatus"
+                );
+
+        } else {
+
+            messageInput =
+                document.getElementById(
+                    "rymeMessage"
+                );
+
+            passwordInput =
+                document.getElementById(
+                    "passwordInput"
+                );
+
+            status =
+                document.getElementById(
+                    "sendStatus"
+                );
+
+        }
+
+
+        const message =
+            messageInput
+                ? messageInput.value.trim()
+                : "";
+
+
+        const password =
+            passwordInput
+                ? passwordInput.value
+                : "";
+
+
+        if (
+            password !==
+            LOVE_CODE
+        ) {
+
+            if (status) {
+
+                status.textContent =
+                    "❌ Try again babe ❤️";
+
+            }
+
+            return;
+
+        }
+
+
+        if (!message) {
+
+            if (status) {
+
+                status.textContent =
+                    "💌 Write something first.";
+
+            }
+
+            return;
+
+        }
+
+
+        if (
+            message.length >
+            1000
+        ) {
+
+            if (status) {
+
+                status.textContent =
+                    "❌ Your message is too long.";
+
+            }
+
+            return;
+
+        }
+
+
+        if (
+            !API_URL ||
+            API_URL.includes(
+                "PUT_YOUR"
+            )
+        ) {
+
+            if (status) {
+
+                status.textContent =
+                    "⚠️ The private connection is not configured yet.";
+
+            }
+
+            return;
+
+        }
+
+
+        if (status) {
+
+            status.textContent =
+                "💌 Sending your message...";
+
+        }
+
+
+        const payload = {
+
+            siteKey:
+                SITE_KEY,
+
+            action:
+                "message",
+
+            message:
+                message,
+
+            loveCode:
+                password,
+
+            page:
+                window.location.href,
+
+            sentAt:
+                new Date().toISOString()
+
+        };
+
+
+        try {
+
+            /*
+               We deliberately use text/plain instead of
+               application/json.
+
+               This keeps the request simple for a static
+               GitHub Pages website and avoids exposing the
+               Telegram token to the browser.
+
+               Apps Script receives the JSON text through
+               e.postData.contents.
+            */
+
+            await fetch(
+                API_URL,
+                {
+                    method:
+                        "POST",
+
+                    mode:
+                        "no-cors",
+
+                    headers:
+                        {
+                            "Content-Type":
+                                "text/plain;charset=UTF-8"
+                        },
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+                }
+            );
+
+
+            if (status) {
+
+                status.textContent =
+                    "❤️ Sent. Your message is on its way to me.";
+
+            }
+
+
+            if (messageInput) {
+
+                messageInput.value =
+                    "";
+
+            }
+
+
+            if (passwordInput) {
+
+                passwordInput.value =
+                    "";
+
+            }
+
+
+            createSpecialHearts();
+
+
+        } catch (error) {
+
+            console.error(
+                "Message error:",
+                error
+            );
+
+
+            if (status) {
+
+                status.textContent =
+                    "❌ Something went wrong. Please try again.";
+
+            }
+
+        }
+
+    }
+
+
+    /* ============================================================
+       OLD MAIN MESSAGE BUTTON
+    ============================================================ */
 
     const sendMessageBtn =
         document.getElementById(
             "sendMessageBtn"
-        );
-
-    const messageBox =
-        document.getElementById(
-            "rymeMessage"
-        );
-
-    const passwordInput =
-        document.getElementById(
-            "passwordInput"
-        );
-
-    const sendStatus =
-        document.getElementById(
-            "sendStatus"
         );
 
 
@@ -1274,81 +2514,10 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             () => {
 
-                const message =
-                    messageBox
-                        ? messageBox.value.trim()
-                        : "";
-
-                const password =
-                    passwordInput
-                        ? passwordInput.value
-                        : "";
-
-
-                if (password !== "ryma") {
-
-                    if (sendStatus) {
-                        sendStatus.textContent =
-                            "❌ Try again babe ❤️";
-                    }
-
-                    return;
-
-                }
-
-
-                if (!message) {
-
-                    if (sendStatus) {
-                        sendStatus.textContent =
-                            "✍️ Write something first ❤️";
-                    }
-
-                    return;
-
-                }
-
-
-                const saved =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "rymaaMessages"
-                        ) || "[]"
-                    );
-
-
-                saved.push({
-
-                    message,
-
-                    date:
-                        new Date().toLocaleString()
-
+                sendTelegramMessage({
+                    messageId:
+                        "main"
                 });
-
-
-                localStorage.setItem(
-                    "rymaaMessages",
-                    JSON.stringify(saved)
-                );
-
-
-                if (messageBox) {
-                    messageBox.value = "";
-                }
-
-                if (passwordInput) {
-                    passwordInput.value = "";
-                }
-
-
-                if (sendStatus) {
-                    sendStatus.textContent =
-                        "❤️ Your message is saved here.";
-                }
-
-
-                createSpecialHearts();
 
             }
         );
@@ -1356,9 +2525,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================================
-       BROKEN HEART
-    ========================================================= */
+    /* ============================================================
+       BROKEN HEART GAME
+    ============================================================ */
 
     const brokenHeart =
         document.getElementById(
@@ -1370,7 +2539,9 @@ document.addEventListener("DOMContentLoaded", () => {
             "heartText"
         );
 
-    let fixed = false;
+
+    let fixed =
+        false;
 
 
     if (brokenHeart) {
@@ -1379,15 +2550,22 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             () => {
 
-                if (fixed) return;
+                if (fixed) {
+                    return;
+                }
 
-                fixed = true;
+
+                fixed =
+                    true;
+
 
                 brokenHeart.textContent =
                     "❤️";
 
+
                 brokenHeart.style.transform =
                     "scale(1.3)";
+
 
                 if (heartText) {
 
@@ -1405,14 +2583,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================================
+    /* ============================================================
        LIGHTBOX
-    ========================================================= */
+    ============================================================ */
 
     const galleryImages =
-        document.querySelectorAll(
-            ".gallery img"
+        Array.from(
+            document.querySelectorAll(
+                ".gallery img"
+            )
         );
+
 
     const lightbox =
         document.getElementById(
@@ -1440,19 +2621,32 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    let currentImage = 0;
+    let currentImage =
+        0;
 
 
     function openLightbox(index) {
 
-        if (!galleryImages.length) return;
+        if (
+            !galleryImages.length ||
+            !lightbox ||
+            !lightboxImg
+        ) {
 
-        currentImage = index;
+            return;
+
+        }
+
+
+        currentImage =
+            index;
+
 
         lightboxImg.src =
             galleryImages[
                 currentImage
             ].src;
+
 
         lightbox.classList.add(
             "active"
@@ -1464,40 +2658,58 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeLightbox() {
 
         if (lightbox) {
+
             lightbox.classList.remove(
                 "active"
             );
+
         }
 
     }
 
 
-    function changeImage(direction) {
+    function changeImage(
+        direction
+    ) {
 
-        if (!galleryImages.length) return;
+        if (!galleryImages.length) {
+            return;
+        }
 
-        currentImage += direction;
 
-        if (currentImage < 0) {
+        currentImage +=
+            direction;
+
+
+        if (
+            currentImage < 0
+        ) {
 
             currentImage =
                 galleryImages.length - 1;
 
         }
 
+
         if (
             currentImage >=
             galleryImages.length
         ) {
 
-            currentImage = 0;
+            currentImage =
+                0;
 
         }
 
-        lightboxImg.src =
-            galleryImages[
-                currentImage
-            ].src;
+
+        if (lightboxImg) {
+
+            lightboxImg.src =
+                galleryImages[
+                    currentImage
+                ].src;
+
+        }
 
     }
 
@@ -1508,7 +2720,11 @@ document.addEventListener("DOMContentLoaded", () => {
             img.addEventListener(
                 "click",
                 () => {
-                    openLightbox(index);
+
+                    openLightbox(
+                        index
+                    );
+
                 }
             );
 
@@ -1521,7 +2737,9 @@ document.addEventListener("DOMContentLoaded", () => {
         previousButton.addEventListener(
             "click",
             () => {
+
                 changeImage(-1);
+
             }
         );
 
@@ -1533,7 +2751,9 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButton.addEventListener(
             "click",
             () => {
+
                 changeImage(1);
+
             }
         );
 
@@ -1581,7 +2801,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     "active"
                 )
             ) {
+
                 return;
+
             }
 
 
@@ -1611,46 +2833,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ) {
 
                 closeLightbox();
-
-            }
-
-        }
-    );
-
-
-    /* =========================================================
-       ESCAPE FROM SPECIAL PAGES
-    ========================================================= */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key !== "Escape") return;
-
-            const activePage =
-                document.querySelector(
-                    ".page.active"
-                );
-
-            if (!activePage) return;
-
-            const specialPages = [
-                "missYou",
-                "daily",
-                "questions",
-                "secret",
-                "notes",
-                "timeline"
-            ];
-
-            if (
-                specialPages.includes(
-                    activePage.id
-                )
-            ) {
-
-                showPage("happy");
 
             }
 
