@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* ============================================================
+    /* =========================================================
        PAGE NAVIGATION
-    ============================================================ */
+    ========================================================= */
 
     const pages = document.querySelectorAll(".page");
 
@@ -14,99 +14,92 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const target = document.getElementById(id);
 
-        if (target) {
-            target.classList.add("active");
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
+        if (!target) return;
+
+        target.classList.add("active");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+
+    /* =========================================================
+       MAIN NAVIGATION
+    ========================================================= */
+
+    const navigation = {
+
+        happyBtn: "happy",
+        sadBtn: "sad",
+        continueBtn: "letter",
+        next1: "heartGame",
+        next2: "lessons",
+        next3: "memories",
+        next4: "final",
+        quizStart: "quiz",
+        quizNext: "final"
+
+    };
+
+    Object.entries(navigation).forEach(([buttonId, pageId]) => {
+
+        const button = document.getElementById(buttonId);
+
+        if (button) {
+            button.addEventListener("click", () => {
+                showPage(pageId);
             });
         }
-    }
+
+    });
 
 
-    /* ============================================================
-       NAVIGATION
-    ============================================================ */
+    /* =========================================================
+       OUR PLACE BUTTONS
+    ========================================================= */
 
-    const happyBtn = document.getElementById("happyBtn");
-    const sadBtn = document.getElementById("sadBtn");
-    const continueBtn = document.getElementById("continueBtn");
+    const placeNavigation = {
 
-    const next1 = document.getElementById("next1");
-    const next2 = document.getElementById("next2");
-    const next3 = document.getElementById("next3");
-    const next4 = document.getElementById("next4");
+        missYouBtn: "missYou",
+        dailyBtn: "daily",
+        questionsBtn: "questions",
+        secretBtn: "secret",
+        notesBtn: "notes",
+        timelineBtn: "timeline"
 
-    const quizStart = document.getElementById("quizStart");
-    const quizNext = document.getElementById("quizNext");
+    };
+
+    Object.entries(placeNavigation).forEach(([buttonId, pageId]) => {
+
+        const button = document.getElementById(buttonId);
+
+        if (button) {
+            button.addEventListener("click", () => {
+                showPage(pageId);
+            });
+        }
+
+    });
 
 
-    if (happyBtn) {
-        happyBtn.addEventListener("click", () => {
-            showPage("happy");
+    document.querySelectorAll("[data-back]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const page = button.dataset.back;
+
+            showPage(page);
+
         });
-    }
+
+    });
 
 
-    if (sadBtn) {
-        sadBtn.addEventListener("click", () => {
-            showPage("sad");
-        });
-    }
-
-
-    if (continueBtn) {
-        continueBtn.addEventListener("click", () => {
-            showPage("letter");
-        });
-    }
-
-
-    if (next1) {
-        next1.addEventListener("click", () => {
-            showPage("heartGame");
-        });
-    }
-
-
-    if (next2) {
-        next2.addEventListener("click", () => {
-            showPage("lessons");
-        });
-    }
-
-
-    if (next3) {
-        next3.addEventListener("click", () => {
-            showPage("memories");
-        });
-    }
-
-
-    if (next4) {
-        next4.addEventListener("click", () => {
-            showPage("final");
-        });
-    }
-
-
-    if (quizStart) {
-        quizStart.addEventListener("click", () => {
-            showPage("quiz");
-        });
-    }
-
-
-    if (quizNext) {
-        quizNext.addEventListener("click", () => {
-            showPage("final");
-        });
-    }
-
-
-    /* ============================================================
+    /* =========================================================
        LOVE MESSAGES
-    ============================================================ */
+    ========================================================= */
 
     const messages = [
 
@@ -124,36 +117,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         "You are my safe place.",
 
-        "You are one of the most beautiful chapters of my story.",
-
         "You mean more to me than words can say.",
 
-        "One year later, I still choose you. ❤️"
+        "One year later, I still choose you. ❤️",
+
+        "Mima, you make my world softer. 🌸",
+
+        "B'outa dyali ❤️",
+
+        "Bentena dyali, always. ❤️"
 
     ];
 
-
-    const loveMessage =
-        document.getElementById("loveMessage");
-
+    const loveMessage = document.getElementById("loveMessage");
 
     if (loveMessage) {
 
         loveMessage.textContent =
-            messages[
-                Math.floor(
-                    Math.random() * messages.length
-                )
-            ];
+            messages[Math.floor(Math.random() * messages.length)];
 
     }
 
 
-    /* ============================================================
+    /* =========================================================
        ANNIVERSARY COUNTER
-       
-       CHANGE THIS DATE ONLY IF YOUR REAL MEETING DATE IS DIFFERENT.
-    ============================================================ */
+    ========================================================= */
 
     const startDate =
         new Date("September 27, 2025 00:00:00");
@@ -161,24 +149,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateCounter() {
 
-        const yearsEl =
-            document.getElementById("years");
-
-        const daysEl =
-            document.getElementById("days");
-
-        const hoursEl =
-            document.getElementById("hours");
-
-        const minutesEl =
-            document.getElementById("minutes");
-
-        const secondsEl =
-            document.getElementById("seconds");
-
+        const yearsEl = document.getElementById("years");
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
 
         const now = new Date();
-
 
         if (now < startDate) {
 
@@ -189,36 +166,28 @@ document.addEventListener("DOMContentLoaded", () => {
             if (secondsEl) secondsEl.textContent = "0";
 
             return;
+
         }
 
-
         let years =
-            now.getFullYear() -
-            startDate.getFullYear();
-
+            now.getFullYear() - startDate.getFullYear();
 
         const anniversary =
             new Date(startDate);
-
 
         anniversary.setFullYear(
             startDate.getFullYear() + years
         );
 
-
         if (anniversary > now) {
-
             years--;
-
             anniversary.setFullYear(
                 startDate.getFullYear() + years
             );
         }
 
-
         const remaining =
             now - anniversary;
-
 
         const days =
             Math.floor(
@@ -226,88 +195,50 @@ document.addEventListener("DOMContentLoaded", () => {
                 (1000 * 60 * 60 * 24)
             );
 
-
         const hours =
             Math.floor(
-                (
-                    remaining /
-                    (1000 * 60 * 60)
-                ) % 24
+                (remaining /
+                    (1000 * 60 * 60)) % 24
             );
-
 
         const minutes =
             Math.floor(
-                (
-                    remaining /
-                    (1000 * 60)
-                ) % 60
+                (remaining /
+                    (1000 * 60)) % 60
             );
-
 
         const seconds =
             Math.floor(
-                (
-                    remaining /
-                    1000
-                ) % 60
+                (remaining / 1000) % 60
             );
 
-
-        if (yearsEl) {
-            yearsEl.textContent = years;
-        }
-
-        if (daysEl) {
-            daysEl.textContent = days;
-        }
-
-        if (hoursEl) {
-            hoursEl.textContent = hours;
-        }
-
-        if (minutesEl) {
-            minutesEl.textContent = minutes;
-        }
-
-        if (secondsEl) {
-            secondsEl.textContent = seconds;
-        }
+        if (yearsEl) yearsEl.textContent = years;
+        if (daysEl) daysEl.textContent = days;
+        if (hoursEl) hoursEl.textContent = hours;
+        if (minutesEl) minutesEl.textContent = minutes;
+        if (secondsEl) secondsEl.textContent = seconds;
 
     }
-
 
     updateCounter();
 
     setInterval(updateCounter, 1000);
 
 
-    /* ============================================================
+    /* =========================================================
        MUSIC
-    ============================================================ */
+    ========================================================= */
 
-    const music =
-        document.getElementById("music");
-
-    const playBtn =
-        document.getElementById("playMusic");
-
-    const progress =
-        document.getElementById("progress");
-
-    const volume =
-        document.getElementById("volume");
-
-    const cover =
-        document.querySelector(".music-cover");
+    const music = document.getElementById("music");
+    const playBtn = document.getElementById("playMusic");
+    const progress = document.getElementById("progress");
+    const volume = document.getElementById("volume");
+    const cover = document.querySelector(".music-cover");
 
 
     function updateMusicUI() {
 
-        if (!playBtn || !music) {
-            return;
-        }
-
+        if (!music || !playBtn) return;
 
         if (!music.paused) {
 
@@ -332,242 +263,109 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (playBtn && music) {
 
-        playBtn.addEventListener(
-            "click",
-            async () => {
+        playBtn.addEventListener("click", async () => {
 
-                try {
+            try {
 
-                    if (music.paused) {
-
-                        await music.play();
-
-                    } else {
-
-                        music.pause();
-
-                    }
-
-                    updateMusicUI();
-
-                } catch (error) {
-
-                    console.log(
-                        "Music could not start:",
-                        error
-                    );
-
+                if (music.paused) {
+                    await music.play();
+                } else {
+                    music.pause();
                 }
 
+                updateMusicUI();
+
+            } catch (error) {
+
+                console.log("Music error:", error);
+
             }
-        );
 
+        });
 
-        music.addEventListener(
-            "play",
-            updateMusicUI
-        );
-
-
-        music.addEventListener(
-            "pause",
-            updateMusicUI
-        );
-
-
-        music.addEventListener(
-            "ended",
-            updateMusicUI
-        );
+        music.addEventListener("play", updateMusicUI);
+        music.addEventListener("pause", updateMusicUI);
+        music.addEventListener("ended", updateMusicUI);
 
     }
 
 
     if (music && progress) {
 
-        music.addEventListener(
-            "timeupdate",
-            () => {
+        music.addEventListener("timeupdate", () => {
 
-                if (
-                    !Number.isFinite(
-                        music.duration
-                    ) ||
-                    music.duration <= 0
-                ) {
+            if (!music.duration) return;
 
-                    return;
+            progress.value =
+                (music.currentTime / music.duration) * 100;
 
-                }
+        });
 
 
-                progress.value =
-                    (
-                        music.currentTime /
-                        music.duration
-                    ) * 100;
+        progress.addEventListener("input", () => {
 
-            }
-        );
+            if (!music.duration) return;
 
+            music.currentTime =
+                (progress.value / 100) * music.duration;
 
-        progress.addEventListener(
-            "input",
-            () => {
-
-                if (
-                    !Number.isFinite(
-                        music.duration
-                    ) ||
-                    music.duration <= 0
-                ) {
-
-                    return;
-
-                }
-
-
-                music.currentTime =
-                    (
-                        Number(progress.value) /
-                        100
-                    ) * music.duration;
-
-            }
-        );
+        });
 
     }
 
 
     if (music && volume) {
 
-        volume.addEventListener(
-            "input",
-            () => {
+        volume.addEventListener("input", () => {
 
-                music.volume =
-                    Number(volume.value);
+            music.volume =
+                Number(volume.value);
 
-            }
-        );
+        });
 
     }
 
 
-    /* ============================================================
-       BROKEN HEART GAME
-    ============================================================ */
-
-    const brokenHeart =
-        document.getElementById(
-            "brokenHeart"
-        );
-
-    const heartText =
-        document.getElementById(
-            "heartText"
-        );
-
-
-    let fixed = false;
-
-
-    if (brokenHeart) {
-
-        brokenHeart.addEventListener(
-            "click",
-            () => {
-
-                if (fixed) {
-                    return;
-                }
-
-
-                fixed = true;
-
-
-                brokenHeart.textContent =
-                    "❤️";
-
-
-                brokenHeart.style.transform =
-                    "scale(1.3)";
-
-
-                if (heartText) {
-
-                    heartText.innerHTML =
-                        "You fixed it... ❤️<br>" +
-                        "Maybe hearts can heal when we choose to care.";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* ============================================================
+    /* =========================================================
        FLOATING HEARTS
-    ============================================================ */
+    ========================================================= */
 
     function createHeart() {
 
         const container =
-            document.getElementById(
-                "hearts"
-            );
+            document.getElementById("hearts");
 
-
-        if (!container) {
-            return;
-        }
-
+        if (!container) return;
 
         const heart =
             document.createElement("div");
 
-
         heart.className = "heart";
-
         heart.textContent = "❤";
-
 
         heart.style.left =
             Math.random() * 100 + "vw";
 
-
         heart.style.fontSize =
-            15 +
-            Math.random() * 25 +
-            "px";
-
+            15 + Math.random() * 25 + "px";
 
         heart.style.animationDuration =
-            5 +
-            Math.random() * 5 +
-            "s";
-
+            5 + Math.random() * 5 + "s";
 
         container.appendChild(heart);
 
-
         setTimeout(() => {
-
             heart.remove();
-
         }, 10000);
 
     }
 
+    setInterval(createHeart, 650);
 
-    setInterval(createHeart, 500);
 
-
-    /* ============================================================
+    /* =========================================================
        LOVE BOX
-    ============================================================ */
+    ========================================================= */
 
     const loveMessages = [
 
@@ -611,133 +409,550 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     const gift =
-        document.getElementById(
-            "giftBox"
-        );
+        document.getElementById("giftBox");
 
     const giftMessage =
-        document.getElementById(
-            "giftMessage"
-        );
+        document.getElementById("giftMessage");
 
     const countdownText =
-        document.getElementById(
-            "countdown"
-        );
-
-
-    let giftWaiting = false;
+        document.getElementById("countdown");
 
 
     if (gift) {
 
-        gift.addEventListener(
+        gift.addEventListener("click", () => {
+
+            const random =
+                loveMessages[
+                    Math.floor(
+                        Math.random() *
+                        loveMessages.length
+                    )
+                ];
+
+            gift.style.transform =
+                "scale(1.2) rotate(5deg)";
+
+            setTimeout(() => {
+                gift.style.transform = "";
+            }, 300);
+
+            if (giftMessage) {
+                giftMessage.textContent = random;
+            }
+
+            createSpecialHearts();
+
+        });
+
+    }
+
+
+    /* =========================================================
+       SPECIAL HEARTS
+    ========================================================= */
+
+    function createSpecialHearts() {
+
+        for (let i = 0; i < 20; i++) {
+
+            const heart =
+                document.createElement("div");
+
+            heart.textContent = "❤️";
+
+            heart.style.position = "fixed";
+            heart.style.left =
+                Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            heart.style.fontSize =
+                18 + Math.random() * 25 + "px";
+            heart.style.zIndex = "99999";
+            heart.style.pointerEvents = "none";
+            heart.style.transition = "3s ease";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+
+                heart.style.transform =
+                    "translateY(-120vh) rotate(360deg)";
+
+                heart.style.opacity = "0";
+
+            }, 50);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3200);
+
+        }
+
+    }
+
+
+    /* =========================================================
+       I MISS YOU
+    ========================================================= */
+
+    const missMessages = [
+
+        "Close your eyes for a second... imagine me giving you the biggest hug. 🫂❤️",
+
+        "If you miss me, just remember: I'm probably thinking about you too. ❤️",
+
+        "Come here, b'outa dyali... you deserve a hug. 🫂",
+
+        "Mima, I wish I could teleport to you right now. 🥺❤️",
+
+        "If I could be anywhere right now, I'd choose to be beside you.",
+
+        "You don't have to say anything. Just stay here with me for a moment. ❤️",
+
+        "I miss your smile. I miss your voice. I miss you. 🥺",
+
+        "A virtual kiss until I can give you a real one. 💋❤️",
+
+        "Bentenа dyali, don't forget that you're loved. ❤️",
+
+        "One day we'll look back at all these moments and smile. 🌸",
+
+        "I wish I could pause the world and keep one moment with you forever.",
+
+        "Missing you is just another way of realizing how much you mean to me. ❤️"
+
+    ];
+
+
+    const missMessage =
+        document.getElementById("missMessage");
+
+    const anotherMiss =
+        document.getElementById("anotherMiss");
+
+    const missCount =
+        document.getElementById("missCount");
+
+
+    let savedMissCount =
+        Number(localStorage.getItem("rymaaMissCount")) || 0;
+
+
+    function showMissMessage() {
+
+        const random =
+            missMessages[
+                Math.floor(
+                    Math.random() *
+                    missMessages.length
+                )
+            ];
+
+        if (missMessage) {
+            missMessage.textContent = random;
+        }
+
+        savedMissCount++;
+
+        localStorage.setItem(
+            "rymaaMissCount",
+            savedMissCount
+        );
+
+        if (missCount) {
+            missCount.textContent = savedMissCount;
+        }
+
+        createSpecialHearts();
+
+    }
+
+
+    if (missCount) {
+        missCount.textContent = savedMissCount;
+    }
+
+
+    if (anotherMiss) {
+
+        anotherMiss.addEventListener(
             "click",
-            () => {
+            showMissMessage
+        );
 
-                if (giftWaiting) {
-                    return;
-                }
-
-
-                giftWaiting = true;
+    }
 
 
-                gift.classList.add(
-                    "openGift"
+    /* =========================================================
+       DAILY SURPRISE
+    ========================================================= */
+
+    const dailySurprises = [
+
+        {
+            icon: "💌",
+            text: "Today I want you to know that you are still one of my favorite people in this world."
+        },
+
+        {
+            icon: "🥺",
+            text: "Your mission today: smile at least once and remember that someone loves that smile."
+        },
+
+        {
+            icon: "🌹",
+            text: "A little reminder: beautiful things take time. So let's keep creating ours."
+        },
+
+        {
+            icon: "🫂",
+            text: "Today's surprise is a virtual hug. Don't escape. You're stuck here. 😂❤️"
+        },
+
+        {
+            icon: "💋",
+            text: "Today's official message: one kiss for Rymaa. No refunds. 😌❤️"
+        },
+
+        {
+            icon: "🌙",
+            text: "Tonight, before sleeping, remember one beautiful moment between us."
+        },
+
+        {
+            icon: "📸",
+            text: "Today, look at one of our pictures and remember how far our story has come."
+        },
+
+        {
+            icon: "❤️",
+            text: "365 days later... and I would still choose you."
+        },
+
+        {
+            icon: "🎵",
+            text: "Listen to our song today and pretend I'm sitting beside you."
+        },
+
+        {
+            icon: "🥰",
+            text: "Your daily reminder: Mima is loved. Very, very much."
+        }
+
+    ];
+
+
+    const dailyIcon =
+        document.getElementById("dailyIcon");
+
+    const dailyMessage =
+        document.getElementById("dailyMessage");
+
+
+    function getTodayKey() {
+
+        const today = new Date();
+
+        return today.getFullYear() +
+            "-" +
+            String(today.getMonth() + 1).padStart(2, "0") +
+            "-" +
+            String(today.getDate()).padStart(2, "0");
+
+    }
+
+
+    function showDailySurprise() {
+
+        const todayKey =
+            getTodayKey();
+
+        let saved =
+            localStorage.getItem(
+                "rymaaDailySurprise"
+            );
+
+        if (!saved) {
+
+            const randomIndex =
+                Math.floor(
+                    Math.random() *
+                    dailySurprises.length
                 );
 
+            saved = JSON.stringify({
+                date: todayKey,
+                index: randomIndex
+            });
 
-                const randomMessage =
-                    loveMessages[
-                        Math.floor(
-                            Math.random() *
-                            loveMessages.length
-                        )
-                    ];
+            localStorage.setItem(
+                "rymaaDailySurprise",
+                saved
+            );
+
+        }
+
+        const data =
+            JSON.parse(saved);
+
+        if (data.date !== todayKey) {
+
+            const randomIndex =
+                Math.floor(
+                    Math.random() *
+                    dailySurprises.length
+                );
+
+            saved = JSON.stringify({
+                date: todayKey,
+                index: randomIndex
+            });
+
+            localStorage.setItem(
+                "rymaaDailySurprise",
+                saved
+            });
+
+            data.date = todayKey;
+            data.index = randomIndex;
+
+        }
+
+        const surprise =
+            dailySurprises[data.index];
+
+        if (dailyIcon) {
+            dailyIcon.textContent =
+                surprise.icon;
+        }
+
+        if (dailyMessage) {
+            dailyMessage.textContent =
+                surprise.text;
+        }
+
+    }
 
 
-                setTimeout(() => {
-
-                    gift.classList.remove(
-                        "openGift"
-                    );
+    showDailySurprise();
 
 
-                    gift.textContent =
-                        "💝";
+    /* =========================================================
+       QUESTIONS
+    ========================================================= */
+
+    const questions = [
+
+        "What is your favorite memory of us?",
+
+        "What was the first thing you noticed about me?",
+
+        "What is one thing you want us to do together this year?",
+
+        "Where would you take me if we could travel tomorrow?",
+
+        "What song reminds you of us?",
+
+        "What little thing I do makes you smile?",
+
+        "What moment with me do you wish you could relive?",
+
+        "What is something you want us to learn together?",
+
+        "What is your favorite nickname I call you?",
+
+        "What do you hope our next anniversary looks like?",
+
+        "What's one dream you want us to achieve together?",
+
+        "What makes you feel most loved by me?",
+
+        "What's one place you want us to visit together?",
+
+        "What is something you never want us to stop doing?",
+
+        "If our relationship was a movie, what would its title be?"
+
+    ];
 
 
-                    if (giftMessage) {
+    const questionText =
+        document.getElementById("questionText");
 
-                        giftMessage.textContent =
-                            randomMessage;
+    const newQuestion =
+        document.getElementById("newQuestion");
 
-                    }
+    const questionAnswer =
+        document.getElementById("questionAnswer");
+
+    const saveAnswer =
+        document.getElementById("saveAnswer");
+
+    const answerStatus =
+        document.getElementById("answerStatus");
 
 
-                    createSpecialHearts();
+    function showRandomQuestion() {
 
-                }, 500);
+        if (!questionText) return;
+
+        questionText.textContent =
+            questions[
+                Math.floor(
+                    Math.random() *
+                    questions.length
+                )
+            ];
+
+        if (questionAnswer) {
+            questionAnswer.value = "";
+        }
+
+        if (answerStatus) {
+            answerStatus.textContent = "";
+        }
+
+    }
 
 
-                let remaining = 10;
+    if (newQuestion) {
+        newQuestion.addEventListener(
+            "click",
+            showRandomQuestion
+        );
+    }
 
 
-                if (countdownText) {
+    if (saveAnswer) {
 
-                    countdownText.textContent =
-                        "Next gift in 10s";
+        saveAnswer.addEventListener("click", () => {
 
+            const answer =
+                questionAnswer
+                    ? questionAnswer.value.trim()
+                    : "";
+
+            if (!answer) {
+
+                if (answerStatus) {
+                    answerStatus.textContent =
+                        "Write something from your heart first ❤️";
                 }
 
+                return;
 
-                const countdown =
-                    setInterval(
-                        () => {
+            }
 
-                            remaining--;
+            const savedAnswers =
+                JSON.parse(
+                    localStorage.getItem(
+                        "rymaaAnswers"
+                    ) || "[]"
+                );
 
+            savedAnswers.push({
 
-                            if (countdownText) {
+                question:
+                    questionText.textContent,
 
-                                countdownText.textContent =
-                                    "Next gift in " +
-                                    remaining +
-                                    "s";
+                answer,
 
-                            }
+                date:
+                    new Date().toLocaleString()
 
+            });
 
-                            if (
-                                remaining <= 0
-                            ) {
+            localStorage.setItem(
+                "rymaaAnswers",
+                JSON.stringify(savedAnswers)
+            );
 
-                                clearInterval(
-                                    countdown
-                                );
+            if (answerStatus) {
+                answerStatus.textContent =
+                    "❤️ Saved. Keep this little moment.";
+            }
 
+        });
 
-                                gift.textContent =
-                                    "🎁";
-
-
-                                if (countdownText) {
-
-                                    countdownText.textContent =
-                                        "";
-
-                                }
+    }
 
 
-                                giftWaiting =
-                                    false;
+    /* =========================================================
+       SECRET ROOM
+    ========================================================= */
 
-                            }
+    const secretPin =
+        document.getElementById("secretPin");
 
-                        },
-                        1000
-                    );
+    const unlockSecret =
+        document.getElementById("unlockSecret");
+
+    const secretStatus =
+        document.getElementById("secretStatus");
+
+    const secretLocked =
+        document.getElementById("secretLocked");
+
+    const secretContent =
+        document.getElementById("secretContent");
+
+    const lockSecret =
+        document.getElementById("lockSecret");
+
+
+    /*
+       Change this PIN if you want.
+       IMPORTANT:
+       Because this is a GitHub Pages website,
+       this is NOT real security.
+       It is only a cute private-room lock.
+    */
+
+    const SECRET_PIN = "2709";
+
+
+    function unlockRoom() {
+
+        if (!secretPin) return;
+
+        if (secretPin.value === SECRET_PIN) {
+
+            secretLocked.classList.add("hidden");
+            secretContent.classList.remove("hidden");
+
+            secretPin.value = "";
+
+            createSpecialHearts();
+
+        } else {
+
+            if (secretStatus) {
+                secretStatus.textContent =
+                    "❌ That's not our secret ❤️";
+            }
+
+        }
+
+    }
+
+
+    if (unlockSecret) {
+        unlockSecret.addEventListener(
+            "click",
+            unlockRoom
+        );
+    }
+
+
+    if (secretPin) {
+
+        secretPin.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Enter") {
+                    unlockRoom();
+                }
 
             }
         );
@@ -745,96 +960,260 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* ============================================================
-       SPECIAL HEART BURST
-    ============================================================ */
+    if (lockSecret) {
 
-    function createSpecialHearts() {
+        lockSecret.addEventListener(
+            "click",
+            () => {
 
-        for (
-            let i = 0;
-            i < 25;
-            i++
-        ) {
+                secretContent.classList.add("hidden");
+                secretLocked.classList.remove("hidden");
 
-            const heart =
-                document.createElement(
-                    "div"
+                if (secretStatus) {
+                    secretStatus.textContent = "";
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       LOVE NOTES
+    ========================================================= */
+
+    const noteInput =
+        document.getElementById("noteInput");
+
+    const saveNote =
+        document.getElementById("saveNote");
+
+    const notesList =
+        document.getElementById("notesList");
+
+    const clearNotes =
+        document.getElementById("clearNotes");
+
+
+    function getNotes() {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "rymaaLoveNotes"
+            ) || "[]"
+        );
+
+    }
+
+
+    function renderNotes() {
+
+        if (!notesList) return;
+
+        const notes =
+            getNotes();
+
+        notesList.innerHTML = "";
+
+        if (!notes.length) {
+
+            notesList.innerHTML = `
+                <div class="saved-note">
+                    <p>
+                        Your little love notes will appear here. ❤️
+                    </p>
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        [...notes]
+            .reverse()
+            .forEach(note => {
+
+                const element =
+                    document.createElement("div");
+
+                element.className =
+                    "saved-note";
+
+                const p =
+                    document.createElement("p");
+
+                p.textContent =
+                    note.text;
+
+                const small =
+                    document.createElement("small");
+
+                small.textContent =
+                    note.date;
+
+                element.appendChild(p);
+                element.appendChild(small);
+
+                notesList.appendChild(element);
+
+            });
+
+    }
+
+
+    if (saveNote) {
+
+        saveNote.addEventListener("click", () => {
+
+            const text =
+                noteInput
+                    ? noteInput.value.trim()
+                    : "";
+
+            if (!text) return;
+
+            const notes =
+                getNotes();
+
+            notes.push({
+
+                text,
+
+                date:
+                    new Date().toLocaleString()
+
+            });
+
+            localStorage.setItem(
+                "rymaaLoveNotes",
+                JSON.stringify(notes)
+            );
+
+            noteInput.value = "";
+
+            renderNotes();
+
+            createSpecialHearts();
+
+        });
+
+    }
+
+
+    if (clearNotes) {
+
+        clearNotes.addEventListener(
+            "click",
+            () => {
+
+                const confirmed =
+                    confirm(
+                        "Clear all your saved love notes?"
+                    );
+
+                if (!confirmed) return;
+
+                localStorage.removeItem(
+                    "rymaaLoveNotes"
                 );
 
+                renderNotes();
 
-            heart.textContent = "❤️";
+            }
+        );
 
-
-            heart.style.position =
-                "fixed";
-
-
-            heart.style.left =
-                Math.random() *
-                100 +
-                "vw";
+    }
 
 
-            heart.style.top =
-                "100vh";
+    renderNotes();
 
 
-            heart.style.fontSize =
-                18 +
-                Math.random() *
-                25 +
-                "px";
+    /* =========================================================
+       LOVE STREAK
+    ========================================================= */
+
+    const streakNumber =
+        document.getElementById("streakNumber");
 
 
-            heart.style.zIndex =
-                "99999";
+    function updateStreak() {
 
+        const today =
+            new Date();
 
-            heart.style.pointerEvents =
-                "none";
+        const todayKey =
+            today.toISOString().slice(0, 10);
 
+        const yesterday =
+            new Date(today);
 
-            heart.style.transition =
-                "3s ease";
+        yesterday.setDate(
+            yesterday.getDate() - 1
+        );
 
+        const yesterdayKey =
+            yesterday.toISOString().slice(0, 10);
 
-            document.body.appendChild(
-                heart
+        let streak =
+            Number(
+                localStorage.getItem(
+                    "rymaaStreak"
+                )
+            ) || 0;
+
+        const lastVisit =
+            localStorage.getItem(
+                "rymaaLastVisit"
             );
 
 
-            setTimeout(() => {
+        if (lastVisit === todayKey) {
 
-                heart.style.transform =
-                    "translateY(-120vh) rotate(360deg)";
+            // Already counted today.
 
-                heart.style.opacity =
-                    "0";
+        } else if (lastVisit === yesterdayKey) {
 
-            }, 50);
+            streak++;
+
+        } else {
+
+            streak = 1;
+
+        }
 
 
-            setTimeout(() => {
+        localStorage.setItem(
+            "rymaaStreak",
+            streak
+        );
 
-                heart.remove();
+        localStorage.setItem(
+            "rymaaLastVisit",
+            todayKey
+        );
 
-            }, 3000);
 
+        if (streakNumber) {
+            streakNumber.textContent =
+                streak;
         }
 
     }
 
 
-    /* ============================================================
+    updateStreak();
+
+
+    /* =========================================================
        QUIZ
-    ============================================================ */
+    ========================================================= */
 
     const quizButtons =
         document.querySelectorAll(
             ".quizBtn"
         );
-
 
     const quizResult =
         document.getElementById(
@@ -842,34 +1221,31 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    quizButtons.forEach(
-        button => {
+    quizButtons.forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-                    if (quizResult) {
+                if (quizResult) {
 
-                        quizResult.innerHTML =
-                            "🥰 Obviously Amine! ❤️<br>" +
-                            "You knew the answer all along 😂";
-
-                    }
-
-
-                    createSpecialHearts();
+                    quizResult.innerHTML =
+                        "🥰 Obviously Amine! ❤️<br>" +
+                        "You knew the answer all along 😂";
 
                 }
-            );
 
-        }
-    );
+                createSpecialHearts();
+
+            }
+        );
+
+    });
 
 
-    /* ============================================================
+    /* =========================================================
        MESSAGE BOX
-    ============================================================ */
+    ========================================================= */
 
     const sendMessageBtn =
         document.getElementById(
@@ -903,7 +1279,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         ? messageBox.value.trim()
                         : "";
 
-
                 const password =
                     passwordInput
                         ? passwordInput.value
@@ -913,10 +1288,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (password !== "ryma") {
 
                     if (sendStatus) {
-
                         sendStatus.textContent =
                             "❌ Try again babe ❤️";
-
                     }
 
                     return;
@@ -927,10 +1300,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!message) {
 
                     if (sendStatus) {
-
                         sendStatus.textContent =
                             "✍️ Write something first ❤️";
-
                     }
 
                     return;
@@ -938,36 +1309,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /*
-                    IMPORTANT:
-
-                    Do NOT put your Telegram Bot Token
-                    inside this JavaScript file.
-
-                    If you want Telegram messages,
-                    connect this button to your backend.
-
-                    Example endpoint:
-
-                    /api/send-telegram
-                */
+                const saved =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "rymaaMessages"
+                        ) || "[]"
+                    );
 
 
-                if (sendStatus) {
+                saved.push({
 
-                    sendStatus.textContent =
-                        "💖 Your message is saved in my heart ❤️";
+                    message,
 
-                }
+                    date:
+                        new Date().toLocaleString()
+
+                });
+
+
+                localStorage.setItem(
+                    "rymaaMessages",
+                    JSON.stringify(saved)
+                );
 
 
                 if (messageBox) {
                     messageBox.value = "";
                 }
 
-
                 if (passwordInput) {
                     passwordInput.value = "";
+                }
+
+
+                if (sendStatus) {
+                    sendStatus.textContent =
+                        "❤️ Your message is saved here.";
                 }
 
 
@@ -979,17 +1356,63 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* ============================================================
-       GALLERY + LIGHTBOX
-    ============================================================ */
+    /* =========================================================
+       BROKEN HEART
+    ========================================================= */
 
-    const galleryImages =
-        Array.from(
-            document.querySelectorAll(
-                ".gallery img"
-            )
+    const brokenHeart =
+        document.getElementById(
+            "brokenHeart"
         );
 
+    const heartText =
+        document.getElementById(
+            "heartText"
+        );
+
+    let fixed = false;
+
+
+    if (brokenHeart) {
+
+        brokenHeart.addEventListener(
+            "click",
+            () => {
+
+                if (fixed) return;
+
+                fixed = true;
+
+                brokenHeart.textContent =
+                    "❤️";
+
+                brokenHeart.style.transform =
+                    "scale(1.3)";
+
+                if (heartText) {
+
+                    heartText.innerHTML =
+                        "You fixed it... ❤️<br>" +
+                        "Maybe hearts can heal when we choose to care.";
+
+                }
+
+                createSpecialHearts();
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       LIGHTBOX
+    ========================================================= */
+
+    const galleryImages =
+        document.querySelectorAll(
+            ".gallery img"
+        );
 
     const lightbox =
         document.getElementById(
@@ -1022,23 +1445,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openLightbox(index) {
 
-        if (
-            !galleryImages.length ||
-            !lightbox ||
-            !lightboxImg
-        ) {
-            return;
-        }
-
+        if (!galleryImages.length) return;
 
         currentImage = index;
-
 
         lightboxImg.src =
             galleryImages[
                 currentImage
             ].src;
-
 
         lightbox.classList.add(
             "active"
@@ -1050,11 +1464,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeLightbox() {
 
         if (lightbox) {
-
             lightbox.classList.remove(
                 "active"
             );
-
         }
 
     }
@@ -1062,23 +1474,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function changeImage(direction) {
 
-        if (!galleryImages.length) {
-            return;
-        }
-
+        if (!galleryImages.length) return;
 
         currentImage += direction;
 
-
-        if (
-            currentImage < 0
-        ) {
+        if (currentImage < 0) {
 
             currentImage =
                 galleryImages.length - 1;
 
         }
-
 
         if (
             currentImage >=
@@ -1089,15 +1494,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
-        if (lightboxImg) {
-
-            lightboxImg.src =
-                galleryImages[
-                    currentImage
-                ].src;
-
-        }
+        lightboxImg.src =
+            galleryImages[
+                currentImage
+            ].src;
 
     }
 
@@ -1218,74 +1618,43 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /* ============================================================
-       BUTTON ANIMATION
-    ============================================================ */
+    /* =========================================================
+       ESCAPE FROM SPECIAL PAGES
+    ========================================================= */
 
-    document
-        .querySelectorAll("button")
-        .forEach(button => {
+    document.addEventListener(
+        "keydown",
+        event => {
 
-            button.addEventListener(
-                "mousedown",
-                () => {
-                    button.style.transform =
-                        "scale(.97)";
-                }
-            );
+            if (event.key !== "Escape") return;
 
+            const activePage =
+                document.querySelector(
+                    ".page.active"
+                );
 
-            button.addEventListener(
-                "mouseup",
-                () => {
-                    button.style.transform =
-                        "";
-                }
-            );
+            if (!activePage) return;
 
+            const specialPages = [
+                "missYou",
+                "daily",
+                "questions",
+                "secret",
+                "notes",
+                "timeline"
+            ];
 
-            button.addEventListener(
-                "mouseleave",
-                () => {
-                    button.style.transform =
-                        "";
-                }
-            );
+            if (
+                specialPages.includes(
+                    activePage.id
+                )
+            ) {
 
-        });
+                showPage("happy");
 
+            }
 
-    /* ============================================================
-       WELCOME ANIMATION
-    ============================================================ */
-
-    const welcomeBox =
-        document.querySelector(
-            ".welcome-box"
-        );
-
-
-    if (welcomeBox) {
-
-        welcomeBox.style.opacity = "0";
-
-        welcomeBox.style.transform =
-            "translateY(25px)";
-
-
-        setTimeout(() => {
-
-            welcomeBox.style.transition =
-                "0.8s ease";
-
-            welcomeBox.style.opacity =
-                "1";
-
-            welcomeBox.style.transform =
-                "translateY(0)";
-
-        }, 200);
-
-    }
+        }
+    );
 
 });
