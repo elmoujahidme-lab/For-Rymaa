@@ -1636,3 +1636,24 @@ button {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+/* Live shared updates and in-site notifications */
+.live-sync-notice {
+  position: fixed; z-index: 10050; left: 50%; bottom: 22px;
+  transform: translate(-50%, 24px); opacity: 0; pointer-events: none;
+  display: flex; align-items: center; gap: 10px; width: min(92vw, 560px);
+  padding: 14px 16px; border: 1px solid rgba(255,255,255,.28);
+  border-radius: 18px; background: rgba(54, 25, 43, .96); color: #fff;
+  box-shadow: 0 16px 45px rgba(0,0,0,.28); backdrop-filter: blur(14px);
+  transition: opacity .25s ease, transform .25s ease; font-size: 14px;
+}
+.live-sync-notice.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.live-sync-icon { font-size: 22px; flex: 0 0 auto; }
+#liveSyncNoticeText { flex: 1; }
+#enableLiveNotifications, #dismissLiveNotice { border: 0; cursor: pointer; color: #fff; }
+#enableLiveNotifications { background: #d94f83; border-radius: 999px; padding: 8px 11px; white-space: nowrap; font-size: 12px; }
+#dismissLiveNotice { background: transparent; font-size: 22px; opacity: .8; padding: 0 2px; }
+@media (max-width: 480px) {
+  .live-sync-notice { gap: 8px; padding: 12px; font-size: 13px; }
+  #enableLiveNotifications { font-size: 11px; padding: 7px 9px; }
+}
