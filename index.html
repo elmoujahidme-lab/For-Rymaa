@@ -1,467 +1,808 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Rymaa ❤️</title>
+
+    <title>One Year of Us ❤️</title>
 
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-<audio id="music" loop>
-    <source src="music/bali-maak.mp3" type="audio/mpeg">
-</audio>
+    <!-- MUSIC -->
+    <audio id="music" loop>
+        <source src="music/bali-maak.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- Floating Hearts -->
-<div id="hearts"></div>
+    <!-- FLOATING HEARTS -->
+    <div id="hearts"></div>
 
-<!-- ===================== -->
-<!-- Welcome Page -->
-<!-- ===================== -->
 
-<section id="welcome" class="page active">
+    <!-- =====================================================
+         WELCOME
+    ====================================================== -->
 
-    <div class="welcome-box">
+    <section id="welcome" class="page active">
 
-        <h1>For Rymaa ❤️</h1>
+        <div class="welcome-box">
 
-        <p class="subtitle">
-            Today...
-            <br>
-            How do you feel?
-        </p>
+            <div class="anniversary-badge">
+                ❤️ 1 YEAR ❤️
+            </div>
 
-        <button id="happyBtn" class="main-btn">
-            🌸 Happy
+            <h1>One Year of Us 🌸</h1>
+
+            <p class="subtitle">
+                One beautiful year...
+                <br>
+                countless memories, smiles & moments with you. ❤️
+            </p>
+
+            <button id="happyBtn" class="main-btn">
+                💖 Celebrate With Me
+            </button>
+
+            <button id="sadBtn" class="main-btn dark">
+                🌙 Take a Moment
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HAPPY / ANNIVERSARY PAGE
+    ====================================================== -->
+
+    <section id="happy" class="page">
+
+        <div class="page-content">
+
+            <div class="anniversary-title">
+
+                <span>🌷</span>
+
+                <h1>Happy 1st Anniversary</h1>
+
+                <span>❤️</span>
+
+            </div>
+
+            <p class="anniversary-subtitle">
+                One year ago, our story began...
+                <br>
+                and I would choose you all over again.
+            </p>
+
+
+            <!-- RANDOM MESSAGE -->
+
+            <div class="love-message-card">
+
+                <p id="loveMessage">
+                    You are my favorite person ❤️
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 COUNTER
+            ================================================== -->
+
+            <div class="counter">
+
+                <h2>
+                    Since We Met ❤️
+                </h2>
+
+                <p class="counter-small">
+                    Our first year together
+                </p>
+
+                <div id="timer">
+
+                    <div class="time-box">
+                        <span id="years">0</span>
+                        <small>Years</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="days">0</span>
+                        <small>Days</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="hours">0</span>
+                        <small>Hours</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="minutes">0</span>
+                        <small>Minutes</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="seconds">0</span>
+                        <small>Seconds</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 365 DAYS
+            ================================================== -->
+
+            <div class="year-card">
+
+                <div class="year-number">
+                    365
+                </div>
+
+                <div class="year-text">
+
+                    <h3>Days of Us ❤️</h3>
+
+                    <p>
+                        365 days of memories,
+                        conversations, smiles,
+                        laughs and beautiful moments.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MEMORIES
+            ================================================== -->
+
+            <h2 class="section-title">
+                Our First Year 📸
+            </h2>
+
+            <p class="section-subtitle">
+                Some of the moments I never want to forget.
+            </p>
+
+            <div class="gallery">
+
+                <img src="photos/1.jpeg" alt="Memory 1">
+                <img src="photos/2.jpeg" alt="Memory 2">
+                <img src="photos/3.jpeg" alt="Memory 3">
+                <img src="photos/4.jpeg" alt="Memory 4">
+                <img src="photos/5.jpeg" alt="Memory 5">
+                <img src="photos/6.jpeg" alt="Memory 6">
+
+            </div>
+
+
+            <!-- =================================================
+                 MUSIC
+            ================================================== -->
+
+            <div class="music-player">
+
+                <div class="music-cover">
+                    🎵
+                </div>
+
+                <div class="music-info">
+
+                    <h3>cest pas joli</h3>
+
+                    <p>
+                        Our Song ❤️
+                    </p>
+
+                </div>
+
+                <button id="playMusic" class="play-btn">
+                    ▶
+                </button>
+
+                <input
+                    type="range"
+                    id="progress"
+                    value="0"
+                    min="0"
+                    max="100"
+                    step="0.1">
+
+                <div class="volume-box">
+
+                    🔊
+
+                    <input
+                        type="range"
+                        id="volume"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="1">
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SPECIAL CARDS
+            ================================================== -->
+
+            <div class="activities">
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        ❤️
+                    </span>
+
+                    <h3>
+                        I Love You More Every Day
+                    </h3>
+
+                    <p>
+                        One year later, and my heart still
+                        chooses you.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        🌹
+                    </span>
+
+                    <h3>
+                        Thank You For Existing
+                    </h3>
+
+                    <p>
+                        You made this year more beautiful
+                        simply by being part of it.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        😊
+                    </span>
+
+                    <h3>
+                        You Make My World Better
+                    </h3>
+
+                    <p>
+                        Your smile is still one of my
+                        favorite things in the world.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ANNIVERSARY MESSAGE
+            ================================================== -->
+
+            <div class="anniversary-letter">
+
+                <h2>
+                    💖 Happy First Anniversary, My Rymaa 💖
+                </h2>
+
+                <p>
+                    One year.
+                </p>
+
+                <p>
+                    It sounds like just two words, but behind
+                    them are hundreds of moments, conversations,
+                    laughs, memories and feelings that I will
+                    always carry in my heart.
+                </p>
+
+                <p>
+                    One year ago, I didn't know how important
+                    you would become to me.
+                </p>
+
+                <p>
+                    Today, I know that meeting you was one of
+                    the most beautiful things that happened
+                    in my life.
+                </p>
+
+                <p>
+                    Thank you for every smile, every laugh,
+                    every conversation, every little moment
+                    and every memory we created together.
+                </p>
+
+                <p>
+                    This first year will always have a special
+                    place in my heart.
+                </p>
+
+                <p>
+                    And if I could go back to the beginning,
+                    knowing everything I know today...
+                </p>
+
+                <p class="special-line">
+                    I would still choose you. ❤️
+                </p>
+
+                <p>
+                    Forever yours,
+                    <br>
+                    <strong>Amine ❤️</strong>
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 LOVE BOX
+            ================================================== -->
+
+            <div class="love-box-section">
+
+                <h2>
+                    🎁 Our Anniversary Box
+                </h2>
+
+                <p>
+                    A little gift for the girl who made
+                    this year special. 🥰❤️
+                </p>
+
+                <div id="giftBox">
+                    🎁
+                </div>
+
+                <div id="giftMessage">
+                    Open your gift... 😘
+                </div>
+
+                <div id="countdown"></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MESSAGE
+            ================================================== -->
+
+            <div class="message-box">
+
+                <h2>
+                    💌 A Message From You
+                </h2>
+
+                <p>
+                    Tell me something from your heart ❤️
+                </p>
+
+                <textarea
+                    id="rymeMessage"
+                    placeholder="Write your message here..."></textarea>
+
+                <input
+                    id="passwordInput"
+                    type="password"
+                    placeholder="Enter Love Code 😉❤️">
+
+                <button id="sendMessageBtn">
+                    💖 Send With Love
+                </button>
+
+                <p id="sendStatus"></p>
+
+            </div>
+
+
+            <button id="quizStart" class="main-btn">
+
+                💕 Our Little Love Quiz
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         QUIZ
+    ====================================================== -->
+
+    <section id="quiz" class="page">
+
+        <div class="page-content">
+
+            <h1>
+                ❤️ Our Love Quiz ❤️
+            </h1>
+
+            <p class="quiz-question">
+                Who loves you the most?
+            </p>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Obviously Amine 😂❤️
+            </button>
+
+            <p id="quizResult"></p>
+
+            <button id="quizNext" class="main-btn">
+                Continue ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SAD PAGE
+    ====================================================== -->
+
+    <section id="sad" class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                🌙
+            </h1>
+
+            <div class="typewriter">
+
+                <p>
+
+                    If you are here...
+
+                    <br><br>
+
+                    maybe you just need
+                    a quiet moment.
+
+                    <br><br>
+
+                    Take your time.
+
+                    <br><br>
+
+                    There is no pressure.
+
+                </p>
+
+            </div>
+
+            <button id="continueBtn" class="main-btn">
+                Continue ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LETTER
+    ====================================================== -->
+
+    <section id="letter" class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                💌
+            </h1>
+
+            <div class="letter">
+
+                <h2>
+                    To My Rymaa
+                </h2>
+
+                <p>
+                    My love mima 🥺,
+                </p>
+
+                <p>
+                    One year ago, I met you.
+                    I didn't know then how many memories,
+                    smiles and emotions would become part
+                    of our story.
+                </p>
+
+                <p>
+                    Looking back at this year, I am grateful
+                    for every beautiful moment we shared.
+                </p>
+
+                <p>
+                    You have become one of the most precious
+                    people in my life.
+                </p>
+
+                <p>
+                    I know that no relationship is perfect,
+                    but I believe that what makes love special
+                    is choosing each other and learning together.
+                </p>
+
+                <p>
+                    Thank you for every laugh,
+                    every conversation,
+                    every memory and every moment.
+                </p>
+
+                <p>
+                    Happy first anniversary, my love.
+                </p>
+
+                <p class="special-line">
+                    One year with you...
+                    and I would choose you again. ❤️
+                </p>
+
+                <br>
+
+                <strong>
+                    Amine ❤️
+                </strong>
+
+            </div>
+
+            <button id="next1" class="main-btn">
+                Next ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BROKEN HEART
+    ====================================================== -->
+
+    <section id="heartGame" class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                💔
+            </h1>
+
+            <h2>
+                Can You Fix My Heart?
+            </h2>
+
+            <p>
+                Tap the broken heart.
+            </p>
+
+            <div id="brokenHeart">
+                💔
+            </div>
+
+            <p id="heartText"></p>
+
+            <button id="next2" class="main-btn">
+                Continue ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LESSONS
+    ====================================================== -->
+
+    <section id="lessons" class="page">
+
+        <div class="page-content">
+
+            <h1>
+                Things This Year Taught Me ❤️
+            </h1>
+
+            <div class="lesson">
+                ❤️ Love needs patience.
+            </div>
+
+            <div class="lesson">
+                ❤️ Words matter.
+            </div>
+
+            <div class="lesson">
+                ❤️ Actions matter more than promises.
+            </div>
+
+            <div class="lesson">
+                ❤️ Communication makes love stronger.
+            </div>
+
+            <div class="lesson">
+                ❤️ The little moments become the biggest memories.
+            </div>
+
+            <div class="lesson">
+                ❤️ I never want to take you for granted.
+            </div>
+
+            <button id="next3" class="main-btn">
+                Continue ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MEMORIES
+    ====================================================== -->
+
+    <section id="memories" class="page">
+
+        <div class="page-content">
+
+            <h1>
+                Our Memories 📸
+            </h1>
+
+            <p class="section-subtitle">
+                One year.
+                So many memories.
+                And hopefully many more to come. ❤️
+            </p>
+
+            <div class="gallery">
+
+                <img src="photos/7.jpeg" alt="Memory 7">
+                <img src="photos/8.jpeg" alt="Memory 8">
+                <img src="photos/9.jpeg" alt="Memory 9">
+                <img src="photos/10.jpeg" alt="Memory 10">
+                <img src="photos/11.jpeg" alt="Memory 11">
+                <img src="photos/12.jpeg" alt="Memory 12">
+
+            </div>
+
+            <button id="next4" class="main-btn">
+                Last Page ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL
+    ====================================================== -->
+
+    <section id="final" class="page darkPage">
+
+        <div class="final-content">
+
+            <div class="final-stars">
+                ✨ ❤️ ✨
+            </div>
+
+            <h1>
+                One Year.
+                <br>
+                One Story.
+                <br>
+                One You. ❤️
+            </h1>
+
+            <p>
+                I won't stop choosing you.
+            </p>
+
+            <p>
+                Not because I have to...
+            </p>
+
+            <p>
+                But because I want to.
+            </p>
+
+            <div class="finalHeart">
+                ❤️
+            </div>
+
+            <h2>
+                Happy First Anniversary,
+                Rymaa ❤️
+            </h2>
+
+            <p>
+                Here's to our first year...
+                <br>
+                and every beautiful memory still waiting for us.
+            </p>
+
+            <p class="always">
+                Always.
+                <br>
+                Forever.
+            </p>
+
+            <strong>
+                Amine ❤️
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LIGHTBOX
+    ====================================================== -->
+
+    <div id="lightbox">
+
+        <button id="prev">
+            ⬅
         </button>
 
-        <button id="sadBtn" class="main-btn dark">
-            ⌚ Need Time
+        <img id="lightboxImg" src="" alt="Memory">
+
+        <button id="next">
+            ➡
+        </button>
+
+        <button id="closeLightbox">
+            ✕
         </button>
 
     </div>
 
-</section>
 
-<!-- ===================== -->
-<!-- HAPPY PAGE -->
-<!-- ===================== -->
-
-<section id="happy" class="page">
-
-<h1>I'm Happy 🌸</h1>
-
-<p id="loveMessage"></p>
-
-<div class="counter">
-
-<h2>Since We Met ❤️</h2>
-
-<div id="timer">
-
-<span id="days">0</span> Days
-
-<span id="hours">0</span> Hours
-
-<span id="minutes">0</span> Minutes
-
-<span id="seconds">0</span> Seconds
-
-</div>
-
-</div>
-
-<h2>Our Memories 📸</h2>
-
-<div class="gallery">
-
-<img src="photos/1.jpeg">
-
-<img src="photos/2.jpeg">
-
-<img src="photos/3.jpeg">
-
-<img src="photos/4.jpeg">
-
-<img src="photos/5.jpeg">
-
-<img src="photos/6.jpeg">
-
-</div>
-
-
-<div class="music-player">
-
-    <div class="music-cover">
-        🎵
-    </div>
-
-    <div class="music-info">
-        <h3>cest pas joli</h3>
-        <p>Our Song ❤️</p>
-    </div>
-
-    <button id="playMusic" class="play-btn">
-        ▶
-    </button>
-
-    <input
-        type="range"
-        id="progress"
-        value="0"
-        min="0"
-        max="100">
-
-    <div class="volume-box">
-        🔊
-        <input
-            type="range"
-            id="volume"
-            min="0"
-            max="1"
-            step="0.01"
-            value="1">
-    </div>
-
-</div>
-
-<div class="activities">
-
-<div class="card">
-
-❤️ I Love You More Every Day mima 🫠
-
-</div>
-<!-- LOVE BOX -->
-
-<div class="love-box-section">
-
-<h2>🎁 Love Box </h2>
-
-<p>Open a gift made especially for you 🥰​ banouta dyali ❤️</p>
-
-<div id="giftBox">
-
-🎁
-
-</div>
-
-<div id="giftMessage">
-    Click the gift... 😘
-</div>
-
-<div id="countdown"></div>
-
-<div class="message-box">
-    <h2>💌 A Message For Your Love Amine</h2>
-
-    <p>Tell me how much my sweetheart loves me ❤️</p>
-
-    <textarea id="rymeMessage" placeholder="Write your message here..."></textarea>
-
-    <input
-        id="passwordInput"
-        type="password"
-        placeholder="Enter Love Code 😉❤️">
-
-    <button id="sendMessageBtn">
-        💖 Send With Love
-    </button>
-
-    <p id="sendStatus"></p>
-</div>
-</div>
-<div class="card">
-
-🌹 Thank You For Existing BENtena dyali ​⌚
-
-</div>
-
-<div class="card">
-
-😊 You Make My World Better 🥰 Kiss me 😚
-
-</div>
-
-<div class="card">
-    <h3>💖 Happy Girlfriend Day, My Rymaa 💖</h3>
-
-    <p>
-        Happy Girlfriend Day to the most beautiful, kind, and amazing girl in my life. 🌹
-        Thank you for every smile, every laugh, and every beautiful memory we've shared.
-        You make my world brighter just by being in it.
-    </p>
-
-    <p>
-        I hope today reminds you how deeply you are loved and appreciated.
-        No matter what happens, you'll always have a special place in my heart.
-        I love you more than words can ever describe. ❤️
-    </p>
-
-    <p>
-        Forever yours, <br>
-        <strong> Amine ❤️ </strong>
-    </p>
-</div>
-
-</div>
-
-</section>
-<section id="quiz" class="page">
-
-<h1>❤️ Love Quiz ❤️</h1>
-
-<p>Who loves you the most?</p>
-
-<button class="quizBtn">Amine ❤️</button>
-
-<button class="quizBtn">Amine ❤️</button>
-
-<button class="quizBtn">Amine ❤️</button>
-
-<button class="quizBtn" id="correct">
-
-Obviously Amine ❤️😂
-
-</button>
-
-<p id="quizResult"></p>
-<button id="quizNext" class="main-btn">
-Continue ❤️
-</button>
-</section>
-<!-- ===================== -->
-<!-- SAD PAGE -->
-<!-- ===================== -->
-
-<section id="sad" class="page darkPage">
-
-<div class="typewriter">
-
-<p>
-
-If you are here...
-
-maybe you're still giving me
-
-a chance to speak.
-
-</p>
-
-</div>
-
-<button id="continueBtn" class="main-btn">
-
-Continue
-
-</button>
-
-</section>
-
-<!-- ===================== -->
-<!-- Letter -->
-<!-- ===================== -->
-
-<section id="letter" class="page darkPage">
-
-<h1>💌</h1>
-
-<div class="letter">
-
-<h2>To Ryme</h2>
-
-<p>
-
-My love mima 🥺,
-
-I know I can't erase the moments that hurt you, and I'm not asking you to forgive me right away. All I ask is that you let these words reach your heart.
-
-You are the most precious people in my life. You deserve to be loved gently, respected deeply, and cherished every single day. If I could go back in time, I would change every word and every moment that caused you pain.
-
-Seeing you sad is one of the hardest things for me, because your smile is my favorite place in the world. I never wanted to be the reason those beautiful eyes filled with tears.
-
-Thank you for every memory, every laugh, every late-night conversation, and every little moment we've shared. You have made my life brighter in ways you'll never fully understand.
-
-No matter what happens, I want you to know that meeting you has been one of the greatest blessings of my life. I promise to learn from my mistakes, to become a better man, and to love you with more patience, honesty, and care than ever before.
-
-If you decide to give me another chance, I promise I won't waste it.
-
-I love you more than words could ever explain.
-    
-<br><strong> Amine ❤️ </strong>
-
-</p>
-
-</div>
-
-<button id="next1" class="main-btn">
-
-Next
-
-</button>
-
-</section>
-
-<!-- ===================== -->
-<!-- Broken Heart -->
-<!-- ===================== -->
-
-<section id="heartGame" class="page darkPage">
-
-<h1>💔</h1>
-
-<h2>Can You Fix My Heart?</h2>
-
-<p>
-
-Tap the broken heart.
-
-</p>
-
-<div id="brokenHeart">
-
-💔
-
-</div>
-
-<p id="heartText"></p>
-
-<button id="next2" class="main-btn">
-
-Continue
-
-</button>
-
-</section>
-
-<!-- ===================== -->
-<!-- Lessons -->
-<!-- ===================== -->
-
-<section id="lessons" class="page">
-
-<h1>Things I Learned</h1>
-
-<div class="lesson">
-
-❤️ Words can hurt.
-
-</div>
-
-<div class="lesson">
-
-❤️ Love needs patience.
-
-</div>
-
-<div class="lesson">
-
-❤️ Actions matter more than promises.
-
-</div>
-
-<div class="lesson">
-
-❤️ I never want to lose you.
-
-</div>
-
-<button id="next3" class="main-btn">
-
-Continue
-
-</button>
-
-</section>
-
-<!-- ===================== -->
-<!-- Memories -->
-<!-- ===================== -->
-
-<section id="memories" class="page">
-
-<h1>Our Memories 📸</h1>
-
-<div class="gallery">
-
-<img src="photos/7.jpeg">
-
-<img src="photos/8.jpeg">
-
-<img src="photos/9.jpeg">
-
-<img src="photos/10.jpeg">
-
-<img src="photos/11.jpeg">
-
-<img src="photos/12.jpeg">
-
-</div>
-
-<button id="next4" class="main-btn">
-
-Last Page
-
-</button>
-
-</section>
-
-<!-- ===================== -->
-<!-- Final -->
-<!-- ===================== -->
-
-<section id="final" class="page darkPage">
-
-<h1>
-
-I Love You
-
-Ryme ❤️
-
-</h1>
-
-<p>
-
-I won't stop trying.
-
-Not because I have to...
-
-Because you're worth it.
-
-</p>
-
-<div class="finalHeart">
-
-❤️
-
-</div>
-
-<p>
-
-Always.
-
-Forever.
-
-</p>
-
-</section>
-<div id="lightbox">
-
-<button id="prev">⬅</button>
-
-<img id="lightboxImg">
-
-<button id="next">➡</button>
-
-</div>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
