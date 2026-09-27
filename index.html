@@ -1,3203 +1,1098 @@
-document.addEventListener("DOMContentLoaded", () => {
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* ============================================================
-       CONFIGURATION
-    ============================================================ */
+    <title>One Year of Us ❤️</title>
 
-    /*
-       IMPORTANT:
+    <link rel="stylesheet" href="style.css">
 
-       After creating your Google Apps Script Web App,
-       paste its /exec URL here.
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-       Example:
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
 
-       const API_URL =
-       "https://script.google.com/macros/s/AKfycbwn3VYO5bTHqf4rC3khqVibW7MAPJ2Y_iqtEog1Qm2cRe6XqdjgNCj9-_q-7M1U0UOp/exec";
-    */
+<body>
 
-    const API_URL =
-        "https://script.google.com/macros/s/AKfycbwn3VYO5bTHqf4rC3khqVibW7MAPJ2Y_iqtEog1Qm2cRe6XqdjgNCj9-_q-7M1U0UOp/exec";
+    <!-- MUSIC -->
+    <audio id="music" loop>
+        <source src="music/bali-maak.mp3" type="audio/mpeg">
+    </audio>
 
+    <!-- FLOATING HEARTS -->
+    <div id="hearts"></div>
 
-    /*
-       This is NOT your Telegram token.
 
-       It is simply an extra value used by the website
-       to identify requests coming from this version.
-    */
+    <!-- =========================================================
+         WELCOME
+    ========================================================== -->
 
-    const SITE_KEY =
-        "RYMAA_PRIVATE_PLACE_2026";
+    <section id="welcome" class="page active">
 
+        <div class="welcome-box">
 
-    /*
-       Love Code used by Rymaa.
-
-       You can change it if you want.
-    */
-
-    const LOVE_CODE =
-        "ryma";
-
-
-    /* ============================================================
-       SHARED MEMORY CLOUD
-    ============================================================ */
-
-    const sharedData = {
-        notes: [],
-        diary: [],
-        bucket: [],
-        capsules: [],
-        checkins: []
-    };
-
-    let sharedSyncOnline = false;
-
-    function makeId(prefix = "rymaa") {
-        return prefix + "-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
-    }
-
-    async function saveShared(action, data = {}) {
-        const payload = {
-            siteKey: SITE_KEY,
-            action,
-            ...data
-        };
-
-        try {
-            await fetch(API_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=UTF-8"
-                },
-                body: JSON.stringify(payload)
-            });
-            return true;
-        } catch (error) {
-            console.warn("Shared save failed; local copy kept.", error);
-            return false;
-        }
-    }
-
-    async function loadSharedData() {
-        if (!API_URL || API_URL.includes("PUT_YOUR")) return;
-
-        try {
-            const response = await fetch(
-                API_URL + "?action=sync&t=" + Date.now(),
-                { cache: "no-store" }
-            );
-
-            const result = await response.json();
-
-            if (result.ok && result.data) {
-                Object.keys(sharedData).forEach(key => {
-                    sharedData[key] = Array.isArray(result.data[key])
-                        ? result.data[key]
-                        : [];
-                });
-                sharedSyncOnline = true;
-                localStorage.setItem("rymaaSharedCache", JSON.stringify(sharedData));
-            }
-        } catch (error) {
-            console.warn("Could not sync shared memories. Using local cache.", error);
-            try {
-                const cache = JSON.parse(localStorage.getItem("rymaaSharedCache") || "{}");
-                Object.keys(sharedData).forEach(key => {
-                    if (Array.isArray(cache[key])) sharedData[key] = cache[key];
-                });
-            } catch {}
-        }
-    }
-
-    function cacheSharedData() {
-        localStorage.setItem("rymaaSharedCache", JSON.stringify(sharedData));
-    }
-
-    function upsertLocal(collection, item) {
-        const list = sharedData[collection];
-        const index = list.findIndex(existing => String(existing.id) === String(item.id));
-        if (index >= 0) list[index] = { ...list[index], ...item };
-        else list.push(item);
-        cacheSharedData();
-    }
-
-    function authorName() {
-        return localStorage.getItem("rymaaAuthor") || "Amine";
-    }
-
-    function setAuthor(name) {
-        localStorage.setItem("rymaaAuthor", name);
-    }
-
-
-    /* ============================================================
-       PAGE NAVIGATION
-    ============================================================ */
-
-    const pages =
-        document.querySelectorAll(".page");
-
-
-    function showPage(id) {
-
-        pages.forEach(page => {
-            page.classList.remove("active");
-        });
-
-        const target =
-            document.getElementById(id);
-
-        if (target) {
-
-            target.classList.add("active");
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }
-
-    }
-
-
-    /* ============================================================
-       MAIN NAVIGATION
-    ============================================================ */
-
-    const happyBtn =
-        document.getElementById("happyBtn");
-
-    const sadBtn =
-        document.getElementById("sadBtn");
-
-    const continueBtn =
-        document.getElementById("continueBtn");
-
-    const next1 =
-        document.getElementById("next1");
-
-    const next2 =
-        document.getElementById("next2");
-
-    const next3 =
-        document.getElementById("next3");
-
-    const next4 =
-        document.getElementById("next4");
-
-    const quizStart =
-        document.getElementById("quizStart");
-
-    const quizNext =
-        document.getElementById("quizNext");
-
-
-    if (happyBtn) {
-
-        happyBtn.addEventListener(
-            "click",
-            () => {
-
-                showPage("happy");
-
-            }
-        );
-
-    }
-
-
-    if (sadBtn) {
-
-        sadBtn.addEventListener(
-            "click",
-            () => {
-
-                showPage("sad");
-
-            }
-        );
-
-    }
-
-
-    if (continueBtn) {
-
-        continueBtn.addEventListener(
-            "click",
-            () => {
-
-                showPage("letter");
-
-            }
-        );
-
-    }
-
-
-    if (next1) {
-
-        next1.addEventListener(
-            "click",
-            () => {
-
-                showPage("heartGame");
-
-            }
-        );
-
-    }
-
-
-    if (next2) {
-
-        next2.addEventListener(
-            "click",
-            () => {
-
-                showPage("lessons");
-
-            }
-        );
-
-    }
-
-
-    if (next3) {
-
-        next3.addEventListener(
-            "click",
-            () => {
-
-                showPage("memories");
-
-            }
-        );
-
-    }
-
-
-    if (next4) {
-
-        next4.addEventListener(
-            "click",
-            () => {
-
-                showPage("final");
-
-            }
-        );
-
-    }
-
-
-    if (quizStart) {
-
-        quizStart.addEventListener(
-            "click",
-            () => {
-
-                showPage("quiz");
-
-            }
-        );
-
-    }
-
-
-    if (quizNext) {
-
-        quizNext.addEventListener(
-            "click",
-            () => {
-
-                showPage("final");
-
-            }
-        );
-
-    }
-
-
-    /* ============================================================
-       RANDOM LOVE MESSAGE
-    ============================================================ */
-
-    const loveMessages = [
-
-        "❤️ You are my favorite person.",
-
-        "🌹 Thank you for making this year unforgettable.",
-
-        "💖 If I could relive this year, I would choose you again.",
-
-        "🥹 You are one of my favorite parts of life.",
-
-        "✨ One year. Countless memories. One special girl.",
-
-        "💕 You made ordinary days feel extraordinary.",
-
-        "🌸 I hope we create many more beautiful memories together.",
-
-        "❤️ My favorite chapter is the one where I met you.",
-
-        "🌙 Even on difficult days, you are still precious to me.",
-
-        "💌 Happy first anniversary, my beautiful Rymaa.",
-
-        "🌹 Thank you for every laugh, conversation and memory.",
-
-        "💗 One year with you will always be a year I treasure.",
-
-        "❤️ I choose you today, tomorrow and every day after.",
-
-        "✨ Our story has only just begun.",
-
-        "🥰 You are my favorite person and my sweetest memory.",
-
-        "💖 Thank you for being you.",
-
-        "🌷 Here's to the first year and all the beautiful moments ahead.",
-
-        "💌 Amine loves you more than words can explain."
-
-    ];
-
-
-    const loveMessage =
-        document.getElementById("loveMessage");
-
-
-    function randomLoveMessage() {
-
-        if (!loveMessage) {
-            return;
-        }
-
-        const random =
-            Math.floor(
-                Math.random() *
-                loveMessages.length
-            );
-
-        loveMessage.textContent =
-            loveMessages[random];
-
-    }
-
-
-    randomLoveMessage();
-
-
-    setInterval(
-        randomLoveMessage,
-        8000
-    );
-
-
-    /* ============================================================
-       ANNIVERSARY COUNTER
-    ============================================================ */
-
-    const startDate =
-        new Date(
-            "September 27, 2025 00:00:00"
-        );
-
-
-    const yearsEl =
-        document.getElementById("years");
-
-    const daysEl =
-        document.getElementById("days");
-
-    const hoursEl =
-        document.getElementById("hours");
-
-    const minutesEl =
-        document.getElementById("minutes");
-
-    const secondsEl =
-        document.getElementById("seconds");
-
-
-    function updateCounter() {
-
-        const now =
-            new Date();
-
-        if (now < startDate) {
-
-            if (yearsEl)
-                yearsEl.textContent = "0";
-
-            if (daysEl)
-                daysEl.textContent = "0";
-
-            if (hoursEl)
-                hoursEl.textContent = "0";
-
-            if (minutesEl)
-                minutesEl.textContent = "0";
-
-            if (secondsEl)
-                secondsEl.textContent = "0";
-
-            return;
-
-        }
-
-
-        let years =
-            now.getFullYear() -
-            startDate.getFullYear();
-
-
-        const anniversary =
-            new Date(startDate);
-
-
-        anniversary.setFullYear(
-            startDate.getFullYear() +
-            years
-        );
-
-
-        if (anniversary > now) {
-
-            years--;
-
-            anniversary.setFullYear(
-                startDate.getFullYear() +
-                years
-            );
-
-        }
-
-
-        const remaining =
-            now - anniversary;
-
-
-        const days =
-            Math.floor(
-                remaining /
-                (1000 * 60 * 60 * 24)
-            );
-
-
-        const hours =
-            Math.floor(
-                (
-                    remaining /
-                    (1000 * 60 * 60)
-                ) % 24
-            );
-
-
-        const minutes =
-            Math.floor(
-                (
-                    remaining /
-                    (1000 * 60)
-                ) % 60
-            );
-
-
-        const seconds =
-            Math.floor(
-                (
-                    remaining /
-                    1000
-                ) % 60
-            );
-
-
-        if (yearsEl)
-            yearsEl.textContent = years;
-
-        if (daysEl)
-            daysEl.textContent = days;
-
-        if (hoursEl)
-            hoursEl.textContent = hours;
-
-        if (minutesEl)
-            minutesEl.textContent = minutes;
-
-        if (secondsEl)
-            secondsEl.textContent = seconds;
-
-    }
-
-
-    updateCounter();
-
-    setInterval(
-        updateCounter,
-        1000
-    );
-
-
-    /* ============================================================
-       MUSIC
-    ============================================================ */
-
-    const music =
-        document.getElementById("music");
-
-    const playBtn =
-        document.getElementById("playMusic");
-
-    const progress =
-        document.getElementById("progress");
-
-    const volume =
-        document.getElementById("volume");
-
-    const cover =
-        document.querySelector(".music-cover");
-
-
-    function updateMusicUI() {
-
-        if (!playBtn || !music) {
-            return;
-        }
-
-
-        if (!music.paused) {
-
-            playBtn.textContent = "⏸";
-
-            if (cover) {
-                cover.classList.add("playing");
-            }
-
-        } else {
-
-            playBtn.textContent = "▶";
-
-            if (cover) {
-                cover.classList.remove("playing");
-            }
-
-        }
-
-    }
-
-
-    if (playBtn && music) {
-
-        playBtn.addEventListener(
-            "click",
-            async () => {
-
-                try {
-
-                    if (music.paused) {
-
-                        await music.play();
-
-                    } else {
-
-                        music.pause();
-
-                    }
-
-                    updateMusicUI();
-
-                } catch (error) {
-
-                    console.log(
-                        "Music could not start:",
-                        error
-                    );
-
-                }
-
-            }
-        );
-
-
-        music.addEventListener(
-            "play",
-            updateMusicUI
-        );
-
-
-        music.addEventListener(
-            "pause",
-            updateMusicUI
-        );
-
-
-        music.addEventListener(
-            "timeupdate",
-            () => {
-
-                if (
-                    progress &&
-                    music.duration
-                ) {
-
-                    progress.value =
-                        (
-                            music.currentTime /
-                            music.duration
-                        ) * 100;
-
-                }
-
-            }
-        );
-
-
-        if (progress) {
-
-            progress.addEventListener(
-                "input",
-                () => {
-
-                    if (!music.duration) {
-                        return;
-                    }
-
-                    music.currentTime =
-                        (
-                            progress.value /
-                            100
-                        ) *
-                        music.duration;
-
-                }
-            );
-
-        }
-
-
-        if (volume) {
-
-            volume.addEventListener(
-                "input",
-                () => {
-
-                    music.volume =
-                        volume.value;
-
-                }
-            );
-
-        }
-
-    }
-
-
-    /* ============================================================
-       FLOATING HEARTS
-    ============================================================ */
-
-    function createHeart() {
-
-        const container =
-            document.getElementById("hearts");
-
-        if (!container) {
-            return;
-        }
-
-
-        const heart =
-            document.createElement("div");
-
-        heart.className =
-            "heart";
-
-        heart.textContent =
-            "❤";
-
-        heart.style.left =
-            Math.random() *
-            100 +
-            "vw";
-
-        heart.style.fontSize =
-            15 +
-            Math.random() *
-            25 +
-            "px";
-
-        heart.style.animationDuration =
-            5 +
-            Math.random() *
-            5 +
-            "s";
-
-        container.appendChild(
-            heart
-        );
-
-
-        setTimeout(
-            () => {
-                heart.remove();
-            },
-            10000
-        );
-
-    }
-
-
-    setInterval(
-        createHeart,
-        650
-    );
-
-
-    /* ============================================================
-       SPECIAL HEARTS
-    ============================================================ */
-
-    function createSpecialHearts() {
-
-        for (
-            let i = 0;
-            i < 18;
-            i++
-        ) {
-
-            const heart =
-                document.createElement("div");
-
-            heart.textContent =
-                Math.random() > 0.5
-                    ? "❤️"
-                    : "💗";
-
-            heart.style.position =
-                "fixed";
-
-            heart.style.left =
-                Math.random() *
-                100 +
-                "vw";
-
-            heart.style.bottom =
-                "-30px";
-
-            heart.style.fontSize =
-                18 +
-                Math.random() *
-                25 +
-                "px";
-
-            heart.style.zIndex =
-                "99999";
-
-            heart.style.pointerEvents =
-                "none";
-
-            heart.style.transition =
-                "3s ease";
-
-            document.body.appendChild(
-                heart
-            );
-
-
-            setTimeout(
-                () => {
-
-                    heart.style.transform =
-                        "translateY(-120vh) rotate(360deg)";
-
-                    heart.style.opacity =
-                        "0";
-
-                },
-                50
-            );
-
-
-            setTimeout(
-                () => {
-
-                    heart.remove();
-
-                },
-                3000
-            );
-
-        }
-
-    }
-
-
-    /* ============================================================
-       LOVE BOX
-    ============================================================ */
-
-    const gift =
-        document.getElementById("giftBox");
-
-    const giftMessage =
-        document.getElementById("giftMessage");
-
-
-    if (gift) {
-
-        gift.addEventListener(
-            "click",
-            () => {
-
-                const random =
-                    Math.floor(
-                        Math.random() *
-                        loveMessages.length
-                    );
-
-                if (giftMessage) {
-
-                    giftMessage.textContent =
-                        loveMessages[random];
-
-                }
-
-                createSpecialHearts();
-
-            }
-        );
-
-    }
-
-
-    /* ============================================================
-       QUIZ
-    ============================================================ */
-
-    const quizButtons =
-        document.querySelectorAll(
-            ".quizBtn"
-        );
-
-    const quizResult =
-        document.getElementById(
-            "quizResult"
-        );
-
-
-    quizButtons.forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    if (quizResult) {
-
-                        quizResult.innerHTML =
-                            "🥰 Obviously Amine! ❤️<br>" +
-                            "You knew the answer all along 😂";
-
-                    }
-
-                    createSpecialHearts();
-
-                }
-            );
-
-        }
-    );
-
-
-    /* ============================================================
-       PRIVATE PLACE MODAL
-    ============================================================ */
-
-    const featureModal =
-        document.getElementById(
-            "featureModal"
-        );
-
-    const featureModalBody =
-        document.getElementById(
-            "featureModalBody"
-        );
-
-    const closeFeatureModal =
-        document.getElementById(
-            "closeFeatureModal"
-        );
-
-
-    function openFeature() {
-
-        if (!featureModal) {
-            return;
-        }
-
-        featureModal.classList.add(
-            "active"
-        );
-
-        document.body.style.overflow =
-            "hidden";
-
-    }
-
-
-    function closeFeature() {
-
-        if (!featureModal) {
-            return;
-        }
-
-        featureModal.classList.remove(
-            "active"
-        );
-
-        document.body.style.overflow =
-            "";
-
-    }
-
-
-    if (closeFeatureModal) {
-
-        closeFeatureModal.addEventListener(
-            "click",
-            closeFeature
-        );
-
-    }
-
-
-    if (featureModal) {
-
-        featureModal.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    featureModal
-                ) {
-
-                    closeFeature();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                featureModal &&
-                featureModal.classList.contains(
-                    "active"
-                )
-            ) {
-
-                closeFeature();
-
-            }
-
-        }
-    );
-
-
-
-    /* ============================================================
-       NEW SHARED FEATURES
-    ============================================================ */
-
-    function authorSelector(id = "featureAuthor") {
-        return `
-            <select id="${id}" class="feature-input">
-                <option value="Amine" ${authorName() === "Amine" ? "selected" : ""}>Amine ❤️</option>
-                <option value="Rymaa" ${authorName() === "Rymaa" ? "selected" : ""}>Rymaa 🌸</option>
-            </select>
-        `;
-    }
-
-    function sharedDate(value) {
-        if (!value) return "";
-        const d = new Date(value);
-        return isNaN(d.getTime()) ? String(value) : d.toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
-    }
-
-    function renderDashboard() {
-        const done = sharedData.bucket.filter(item => item.done).length;
-        const openCapsules = sharedData.capsules.filter(item => !item.locked).length;
-        const today = getTodayKey();
-        const todayCheckins = sharedData.checkins.filter(item => String(item.date || "").slice(0, 10) === today).length;
-
-        featureModalBody.innerHTML = `
-            <div class="feature-content">
-                <div class="big-icon">📊❤️</div>
-                <h2>Our Dashboard</h2>
-                <p class="feature-subtitle">A living snapshot of the little world we're building together.</p>
-
-                <div class="stats-grid">
-                    <div class="stat-card"><strong>${sharedData.diary.length}</strong><span>Diary entries</span></div>
-                    <div class="stat-card"><strong>${sharedData.notes.length}</strong><span>Love notes</span></div>
-                    <div class="stat-card"><strong>${sharedData.bucket.length}</strong><span>Dreams added</span></div>
-                    <div class="stat-card"><strong>${done}</strong><span>Dreams achieved</span></div>
-                    <div class="stat-card"><strong>${sharedData.capsules.length}</strong><span>Time capsules</span></div>
-                    <div class="stat-card"><strong>${todayCheckins}</strong><span>Today's check-ins</span></div>
-                </div>
-
-                <div class="feature-message">
-                    ${sharedSyncOnline ? "☁️ Shared memory is connected. What you add here can be seen from the other device too." : "📱 Offline mode: your changes stay on this device and will sync when the connection is available."}
-                </div>
-
-                <button class="feature-btn" data-action="refresh-shared">🔄 Refresh Our Story</button>
+            <div class="anniversary-badge">
+                ❤️ 1 YEAR ❤️
             </div>
-        `;
-        openFeature();
-    }
 
-    function renderDiary() {
-        const entries = sharedData.diary.slice().reverse();
-        const list = entries.length ? entries.map(item => `
-            <article class="memory-item">
-                <div class="memory-meta"><span>${escapeHTML(item.mood || "❤️")} ${escapeHTML(item.author || "Us")}</span><small>${escapeHTML(sharedDate(item.date))}</small></div>
-                <h3>${escapeHTML(item.title || "A little moment")}</h3>
-                <p>${escapeHTML(item.text || "")}</p>
-            </article>
-        `).join("") : `<div class="feature-message">Our diary is still waiting for its first chapter. 🌱</div>`;
+            <h1>
+                One Year of Us 🌸
+            </h1>
 
-        featureModalBody.innerHTML = `
-            <div class="feature-content">
-                <div class="big-icon">📖</div>
-                <h2>Our Diary</h2>
-                <p class="feature-subtitle">Write down moments we may want to remember years from now.</p>
-                ${authorSelector()}
-                <select id="diaryMood" class="feature-input">
-                    <option>❤️ Happy</option><option>🥹 Emotional</option><option>😂 Funny</option><option>🌙 Peaceful</option><option>🥺 Missing you</option><option>✨ Excited</option>
-                </select>
-                <input id="diaryTitle" class="feature-input" maxlength="120" placeholder="Give this memory a title...">
-                <textarea id="diaryText" class="feature-textarea" maxlength="2000" placeholder="What happened? How did it feel? Why should future us remember it?"></textarea>
-                <button class="feature-btn" data-action="save-diary">📖 Add to Our Diary</button>
-                <div class="memory-list">${list}</div>
+            <p class="subtitle">
+                One beautiful year...
+                <br>
+                countless memories, smiles & moments with you. ❤️
+            </p>
+
+            <button id="happyBtn" class="main-btn">
+                💖 Celebrate With Me
+            </button>
+
+            <button id="sadBtn" class="main-btn dark">
+                🌙 Take a Moment
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         HAPPY PAGE
+    ========================================================== -->
+
+    <section id="happy" class="page">
+
+        <div class="page-content">
+
+            <div class="anniversary-title">
+                <span>🌷</span>
+
+                <h1>
+                    Happy 1st Anniversary
+                </h1>
+
+                <span>❤️</span>
             </div>
-        `;
-        openFeature();
-    }
 
-    function renderBucket() {
-        const items = sharedData.bucket.slice().reverse();
-        const list = items.length ? items.map(item => `
-            <div class="bucket-item ${item.done ? "done" : ""}">
-                <button class="bucket-check" data-action="toggle-bucket" data-id="${escapeHTML(item.id)}">${item.done ? "✓" : "○"}</button>
-                <div><strong>${escapeHTML(item.text)}</strong><small>${escapeHTML(item.done ? "Achieved ❤️" : "Still on our list ✨")}</small></div>
+            <p class="anniversary-subtitle">
+                One year ago, our story began...
+                <br>
+                and I would choose you all over again.
+            </p>
+
+
+            <!-- RANDOM LOVE MESSAGE -->
+
+            <div class="love-message-card">
+
+                <p id="loveMessage">
+                    You are my favorite person ❤️
+                </p>
+
             </div>
-        `).join("") : `<div class="feature-message">No dreams yet. Add the first one. 🌷</div>`;
-
-        featureModalBody.innerHTML = `
-            <div class="feature-content">
-                <div class="big-icon">🎯</div>
-                <h2>Our Dreams</h2>
-                <p class="feature-subtitle">A list of things we want to experience, build or simply do together.</p>
-                ${authorSelector()}
-                <div class="inline-form">
-                    <input id="bucketInput" class="feature-input" maxlength="180" placeholder="One dream...">
-                    <button class="feature-btn" data-action="add-bucket">➕ Add</button>
-                </div>
-                <div class="bucket-list">${list}</div>
-            </div>
-        `;
-        openFeature();
-    }
-
-    function renderCapsule() {
-        const capsules = sharedData.capsules.slice().reverse();
-        const list = capsules.length ? capsules.map(item => `
-            <article class="capsule-item ${item.locked ? "locked" : "opened"}">
-                <div class="capsule-icon">${item.locked ? "🔒" : "💌"}</div>
-                <div>
-                    <h3>${escapeHTML(item.title || "Our Time Capsule")}</h3>
-                    <small>Opens: ${escapeHTML(sharedDate(item.openDate))}</small>
-                    <p>${item.locked ? "This message is sealed until its date. Future us will have to wait. 🤫" : escapeHTML(item.message || "")}</p>
-                </div>
-            </article>
-        `).join("") : `<div class="feature-message">Nothing sealed yet. Write something for future us. 🔐</div>`;
-
-        featureModalBody.innerHTML = `
-            <div class="feature-content">
-                <div class="big-icon">🔒</div>
-                <h2>Our Time Capsule</h2>
-                <p class="feature-subtitle">A message for a future version of us. The server hides the text until the opening date.</p>
-                ${authorSelector()}
-                <input id="capsuleTitle" class="feature-input" maxlength="120" placeholder="Title — e.g. To Us in 2027">
-                <input id="capsuleDate" class="feature-input" type="date">
-                <textarea id="capsuleMessage" class="feature-textarea" maxlength="2500" placeholder="Write something future us should read..."></textarea>
-                <button class="feature-btn" data-action="save-capsule">🔐 Seal This Message</button>
-                <div class="capsule-list">${list}</div>
-            </div>
-        `;
-        openFeature();
-    }
-
-    function renderCheckin() {
-        const list = sharedData.checkins.slice().reverse().slice(0, 12);
-        const listHTML = list.length ? list.map(item => `
-            <div class="checkin-item"><span>${escapeHTML(item.mood || "❤️")}</span><div><strong>${escapeHTML(item.author || "Us")}</strong><p>${escapeHTML(item.message || "Just checking in ❤️")}</p><small>${escapeHTML(sharedDate(item.date))}</small></div></div>
-        `).join("") : `<div class="feature-message">No check-ins yet today. 🌙</div>`;
-
-        featureModalBody.innerHTML = `
-            <div class="feature-content">
-                <div class="big-icon">🌙</div>
-                <h2>Today's Mood</h2>
-                <p class="feature-subtitle">Leave a tiny signal for each other — even when there isn't much to say.</p>
-                ${authorSelector()}
-                <div class="mood-grid">
-                    <button class="mood-btn" data-action="select-mood" data-mood="❤️">❤️</button><button class="mood-btn" data-action="select-mood" data-mood="🥹">🥹</button><button class="mood-btn" data-action="select-mood" data-mood="😂">😂</button><button class="mood-btn" data-action="select-mood" data-mood="🌙">🌙</button><button class="mood-btn" data-action="select-mood" data-mood="🥺">🥺</button><button class="mood-btn" data-action="select-mood" data-mood="✨">✨</button>
-                </div>
-                <textarea id="checkinMessage" class="feature-textarea" maxlength="500" placeholder="A few words for today..."></textarea>
-                <button class="feature-btn" data-action="save-checkin">💗 Save Today's Check-in</button>
-                <div class="checkin-list">${listHTML}</div>
-            </div>
-        `;
-        openFeature();
-    }
-
-    let selectedMood = "❤️";
-
-    function renderMemoryJar() {
-        const notes = sharedData.notes.slice().reverse();
-        const list = notes.length ? notes.map(note => `
-            <article class="jar-note"><span>💌</span><div><small>${escapeHTML(note.author || "Us")} · ${escapeHTML(sharedDate(note.date))}</small><p>${escapeHTML(note.text || "")}</p></div></article>
-        `).join("") : `<div class="feature-message">The jar is empty. Put the first little memory inside. 🫙❤️</div>`;
-
-        featureModalBody.innerHTML = `
-            <div class="feature-content">
-                <div class="big-icon">🫙❤️</div>
-                <h2>Memory Jar</h2>
-                <p class="feature-subtitle">Tiny things become important when we look back.</p>
-                ${authorSelector()}
-                <textarea id="jarInput" class="feature-textarea" maxlength="1000" placeholder="Something small I never want us to forget..."></textarea>
-                <button class="feature-btn" data-action="save-jar">💌 Put It in the Jar</button>
-                <div class="jar-list">${list}</div>
-            </div>
-        `;
-        openFeature();
-    }
-
-    /* ============================================================
-       MISS YOU
-    ============================================================ */
-
-    const missMessages = [
-
-        "If you miss me right now, just know I'm probably missing you too. ❤️",
-
-        "Close your eyes for a second... imagine me holding your hand. 🥺❤️",
-
-        "Distance can make a moment feel long, but it cannot make you less important to me. 💗",
-
-        "If I could appear beside you right now, I would. No questions asked. ❤️",
-
-        "You don't have to say anything. Just remember that you are loved. 🌷",
-
-        "One little message from you can change my whole day. 💌",
-
-        "Come here... imaginary hug incoming. 🫂❤️",
-
-        "If you miss me, send a little kiss into the screen. I'll catch it. 😘"
-
-    ];
 
 
-    let missIndex = 0;
+            <!-- COUNTER -->
 
-
-    function renderMissYou() {
-
-        if (!featureModalBody) {
-            return;
-        }
-
-
-        const count =
-            Number(
-                localStorage.getItem(
-                    "rymaaMissCount"
-                ) || 0
-            );
-
-
-        featureModalBody.innerHTML = `
-
-            <div class="feature-content">
-
-                <div class="big-icon">
-                    🥺❤️
-                </div>
+            <div class="counter">
 
                 <h2>
-                    I Miss You
+                    Since We Met ❤️
                 </h2>
 
-                <p class="feature-subtitle">
-                    For the moments when you wish
-                    I was right beside you.
+                <p class="counter-small">
+                    Our first year together
                 </p>
 
-                <div class="feature-message"
-                     id="missMessage">
+                <div id="timer">
 
-                    ${missMessages[missIndex]}
+                    <div class="time-box">
+                        <span id="years">0</span>
+                        <small>Years</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="days">0</span>
+                        <small>Days</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="hours">0</span>
+                        <small>Hours</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="minutes">0</span>
+                        <small>Minutes</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="seconds">0</span>
+                        <small>Seconds</small>
+                    </div>
 
                 </div>
-
-                <button class="feature-btn"
-                        data-action="new-miss">
-
-                    💌 Tell Me Again
-
-                </button>
-
-                <button class="feature-btn"
-                        data-action="kiss">
-
-                    😘 Send Me a Kiss
-
-                </button>
-
-                <p style="
-                    color:#aaa;
-                    font-size:12px;
-                    margin-top:15px;
-                ">
-
-                    You opened this little place
-                    ${count} time(s). ❤️
-
-                </p>
 
             </div>
 
-        `;
 
-        openFeature();
+            <!-- 365 DAYS -->
 
-    }
+            <div class="year-card">
 
-
-    /* ============================================================
-       DAILY SURPRISE
-    ============================================================ */
-
-    const dailyItems = [
-
-        {
-            title: "Today's Little Challenge 🌸",
-            text: "Tell me three little things that made you smile today."
-        },
-
-        {
-            title: "Today's Question 💭",
-            text: "What is one memory of us that you could live again?"
-        },
-
-        {
-            title: "Today's Mission ❤️",
-            text: "Send me one sentence that you would want me to remember forever."
-        },
-
-        {
-            title: "Today's Hug 🫂",
-            text: "Stop for a moment, breathe, and imagine the biggest hug from me."
-        },
-
-        {
-            title: "Today's Secret 💌",
-            text: "Think of one thing you love about us that you have never told me."
-        },
-
-        {
-            title: "Today's Smile 😊",
-            text: "Look at one of our photos and remember exactly how that moment felt."
-        },
-
-        {
-            title: "Today's Promise 🌷",
-            text: "Promise yourself to protect one beautiful memory of us today."
-        }
-
-    ];
-
-
-    function getTodayKey() {
-
-        const now =
-            new Date();
-
-        return (
-            now.getFullYear() +
-            "-" +
-            String(
-                now.getMonth() + 1
-            ).padStart(2, "0") +
-            "-" +
-            String(
-                now.getDate()
-            ).padStart(2, "0")
-        );
-
-    }
-
-
-    function renderDaily() {
-
-        const key =
-            "rymaaDaily-" +
-            getTodayKey();
-
-
-        let item =
-            localStorage.getItem(key);
-
-
-        if (item) {
-
-            item =
-                JSON.parse(item);
-
-        } else {
-
-            item =
-                dailyItems[
-                    Math.floor(
-                        Math.random() *
-                        dailyItems.length
-                    )
-                ];
-
-            localStorage.setItem(
-                key,
-                JSON.stringify(item)
-            );
-
-        }
-
-
-        featureModalBody.innerHTML = `
-
-            <div class="feature-content">
-
-                <div class="big-icon">
-                    🌸
+                <div class="year-number">
+                    365
                 </div>
 
-                <h2>
-                    Today's Surprise
-                </h2>
-
-                <p class="feature-subtitle">
-                    One little thing for today.
-                </p>
-
-                <div class="daily-box">
+                <div class="year-text">
 
                     <h3>
-                        ${item.title}
+                        Days of Us ❤️
                     </h3>
 
                     <p>
-                        ${item.text}
+                        365 days of memories,
+                        conversations, smiles,
+                        laughs and beautiful moments.
                     </p>
 
                 </div>
 
-                <button class="feature-btn"
-                        data-action="daily-done">
-
-                    ❤️ I Did It
-
-                </button>
-
             </div>
 
-        `;
 
-        openFeature();
+            <!-- =====================================================
+                 OUR PRIVATE PLACE
+            ====================================================== -->
 
-    }
+            <div class="private-place-section">
 
+                <div class="private-place-title">
+                    <span>🔐</span>
 
-    /* ============================================================
-       QUESTIONS
-    ============================================================ */
+                    <div>
+                        <h2>
+                            Our Private Place
+                        </h2>
 
-    const questions = [
-
-        "What was the first thing that made you feel comfortable with me?",
-
-        "Which memory of us makes you smile immediately?",
-
-        "What is one place you would love for us to visit together?",
-
-        "What little thing do I do that secretly makes you happy?",
-
-        "If our story was a movie, what would you call it?",
-
-        "What song reminds you of us?",
-
-        "What is one thing you hope we experience together?",
-
-        "Which version of us do you love the most?",
-
-        "What was your favorite conversation between us?",
-
-        "If you could freeze one moment with me, which one would it be?",
-
-        "What is one thing you want us to learn together?",
-
-        "What makes our relationship feel special to you?",
-
-        "What is one silly memory you never want us to forget?",
-
-        "Where would you take me for our perfect day?",
-
-        "What do you want our next chapter to feel like?"
-
-    ];
-
-
-    let currentQuestion =
-        Math.floor(
-            Math.random() *
-            questions.length
-        );
-
-
-    function renderQuestion() {
-
-        featureModalBody.innerHTML = `
-
-            <div class="feature-content">
-
-                <div class="big-icon">
-                    💬
-                </div>
-
-                <h2>
-                    Our Little Question
-                </h2>
-
-                <p class="feature-subtitle">
-                    No perfect answers.
-                    Just honest ones.
-                </p>
-
-                <div class="question-box">
-
-                    <div class="question-text">
-
-                        ${questions[currentQuestion]}
-
+                        <p>
+                            A little corner of the internet
+                            that feels like ours. ❤️
+                        </p>
                     </div>
-
                 </div>
 
-                <button class="feature-btn"
-                        data-action="new-question">
 
-                    🔄 Another Question
+                <div class="private-grid">
 
-                </button>
 
-            </div>
+                    <!-- MISS YOU -->
 
-        `;
+                    <button class="private-card"
+                        data-feature="missYou">
 
-        openFeature();
-
-    }
-
-
-    /* ============================================================
-       LOVE NOTES
-    ============================================================ */
-
-    const NOTES_KEY =
-        "rymaaLoveNotes";
-
-
-    function escapeHTML(text) {
-
-        return String(text)
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
-
-    }
-
-
-    function getNotes() {
-        return Array.isArray(sharedData.notes)
-            ? sharedData.notes
-            : [];
-    }
-
-
-    function saveNotes(notes) {
-        sharedData.notes = notes;
-        cacheSharedData();
-    }
-
-
-    function renderNotes() {
-
-        const notes =
-            getNotes();
-
-
-        let notesHTML =
-            "";
-
-
-        if (!notes.length) {
-
-            notesHTML = `
-
-                <div class="feature-message">
-
-                    No little notes yet. ❤️
-                    <br>
-                    Write the first one.
-
-                </div>
-
-            `;
-
-        } else {
-
-            notesHTML =
-                `<div class="note-list">` +
-                notes
-                    .slice()
-                    .reverse()
-                    .map(
-                        note => `
-
-                            <div class="note-item">
-
-                                <button
-                                    class="delete-note"
-                                    data-action="delete-note"
-                                    data-id="${note.id}">
-
-                                    ✕
-
-                                </button>
-
-                                <small>
-                                    ${escapeHTML(note.date)}
-                                </small>
-
-                                <p>
-                                    ${escapeHTML(note.text)}
-                                </p>
-
-                            </div>
-
-                        `
-                    )
-                    .join("") +
-                `</div>`;
-
-        }
-
-
-        featureModalBody.innerHTML = `
-
-            <div class="feature-content">
-
-                <div class="big-icon">
-                    💌
-                </div>
-
-                <h2>
-                    Our Love Notes
-                </h2>
-
-                <p class="feature-subtitle">
-                    These notes live in our shared memory. ❤️
-                </p>
-
-                <textarea
-                    id="noteInput"
-                    class="feature-textarea"
-                    maxlength="1000"
-                    placeholder="Write something you want us to remember..."></textarea>
-
-                <button class="feature-btn"
-                        data-action="save-note">
-
-                    💖 Save This Note
-
-                </button>
-
-                ${notesHTML}
-
-            </div>
-
-        `;
-
-        openFeature();
-
-    }
-
-
-    /* ============================================================
-       SECRET ROOM
-    ============================================================ */
-
-    let secretUnlocked =
-        false;
-
-
-    function renderSecret() {
-
-        if (secretUnlocked) {
-
-            featureModalBody.innerHTML = `
-
-                <div class="feature-content">
-
-                    <div class="big-icon">
-                        🔐❤️
-                    </div>
-
-                    <h2>
-                        Our Secret Room
-                    </h2>
-
-                    <div class="secret-success">
+                        <div class="private-icon">
+                            🥺❤️
+                        </div>
 
                         <h3>
-                            Welcome back, Rymaa. ❤️
+                            I Miss You
                         </h3>
 
                         <p>
-                            This little place is only for
-                            beautiful things, soft memories,
-                            and words we don't want to lose.
+                            For the moments you miss me.
                         </p>
 
-                        <br>
+                    </button>
+
+
+                    <!-- DAILY -->
+
+                    <button class="private-card"
+                        data-feature="daily">
+
+                        <div class="private-icon">
+                            🌸
+                        </div>
+
+                        <h3>
+                            Today's Surprise
+                        </h3>
 
                         <p>
-                            You are loved.
-                            You are remembered.
-                            And you are special to me.
-                            🌷❤️
+                            One little surprise every day.
                         </p>
 
-                    </div>
+                    </button>
 
-                    <button class="feature-btn"
-                            data-action="lock-secret">
 
-                        🔒 Lock Again
+                    <!-- QUESTIONS -->
+
+                    <button class="private-card"
+                        data-feature="questions">
+
+                        <div class="private-icon">
+                            💬
+                        </div>
+
+                        <h3>
+                            Our Questions
+                        </h3>
+
+                        <p>
+                            Questions only we understand.
+                        </p>
+
+                    </button>
+
+
+                    <!-- NOTES -->
+
+                    <button class="private-card"
+                        data-feature="notes">
+
+                        <div class="private-icon">
+                            💌
+                        </div>
+
+                        <h3>
+                            Our Love Notes
+                        </h3>
+
+                        <p>
+                            Leave something from your heart.
+                        </p>
+
+                    </button>
+
+
+                    <!-- SECRET -->
+
+                    <button class="private-card"
+                        data-feature="secret">
+
+                        <div class="private-icon">
+                            🔐
+                        </div>
+
+                        <h3>
+                            Secret Room
+                        </h3>
+
+                        <p>
+                            A tiny room just for us.
+                        </p>
+
+                    </button>
+
+
+                    <!-- TIMELINE -->
+
+                    <button class="private-card"
+                        data-feature="timeline">
+
+                        <div class="private-icon">
+                            🕰️
+                        </div>
+
+                        <h3>
+                            Our Story
+                        </h3>
+
+                        <p>
+                            Little chapters of us.
+                        </p>
+
+                    </button>
+
+
+                    <!-- STREAK -->
+
+                    <button class="private-card"
+                        data-feature="streak">
+
+                        <div class="private-icon">
+                            🔥
+                        </div>
+
+                        <h3>
+                            Love Streak
+                        </h3>
+
+                        <p>
+                            Don't miss a day together.
+                        </p>
+
+                    </button>
+
+
+                    <!-- MESSAGE -->
+
+                    <button class="private-card"
+                        data-feature="message">
+
+                        <div class="private-icon">
+                            📩
+                        </div>
+
+                        <h3>
+                            Send Me a Message
+                        </h3>
+
+                        <p>
+                            This one really reaches me.
+                        </p>
 
                     </button>
 
                 </div>
 
-            `;
+                <div class="shared-hub">
 
-        } else {
-
-            featureModalBody.innerHTML = `
-
-                <div class="feature-content">
-
-                    <div class="big-icon">
-                        🔐
+                    <div class="shared-hub-title">
+                        <span>✨</span>
+                        <div>
+                            <h2>Our Living Story</h2>
+                            <p>Things we add here stay in our shared little world. ❤️</p>
+                        </div>
                     </div>
 
-                    <h2>
-                        Secret Room
-                    </h2>
-
-                    <p class="feature-subtitle">
-                        Enter our little love code.
-                    </p>
-
-                    <div class="secret-box">
-
-                        <input
-                            id="secretInput"
-                            class="feature-input"
-                            type="password"
-                            placeholder="Love Code">
-
-                        <button
-                            class="feature-btn"
-                            data-action="unlock-secret">
-
-                            ❤️ Unlock
-
+                    <div class="shared-grid">
+                        <button class="private-card shared-card" data-feature="dashboard">
+                            <div class="private-icon">📊</div>
+                            <h3>Our Dashboard</h3>
+                            <p>See how our story is growing.</p>
                         </button>
 
-                        <p id="secretStatus"
-                           style="
-                              color:#ff4f8b;
-                              min-height:22px;
-                              margin-top:8px;
-                           ">
-                        </p>
+                        <button class="private-card shared-card" data-feature="diary">
+                            <div class="private-icon">📖</div>
+                            <h3>Our Diary</h3>
+                            <p>Keep moments, feelings and little stories.</p>
+                        </button>
 
-                    </div>
+                        <button class="private-card shared-card" data-feature="bucket">
+                            <div class="private-icon">🎯</div>
+                            <h3>Our Dreams</h3>
+                            <p>Dream → Plan → Done.</p>
+                        </button>
 
-                </div>
+                        <button class="private-card shared-card" data-feature="capsule">
+                            <div class="private-icon">🔒</div>
+                            <h3>Time Capsule</h3>
+                            <p>Write to our future selves.</p>
+                        </button>
 
-            `;
+                        <button class="private-card shared-card" data-feature="checkin">
+                            <div class="private-icon">🌙</div>
+                            <h3>Today's Mood</h3>
+                            <p>Leave a tiny check-in for each other.</p>
+                        </button>
 
-        }
-
-        openFeature();
-
-    }
-
-
-    /* ============================================================
-       TIMELINE
-    ============================================================ */
-
-    function renderTimeline() {
-
-        featureModalBody.innerHTML = `
-
-            <div class="feature-content">
-
-                <div class="big-icon">
-                    🕰️❤️
-                </div>
-
-                <h2>
-                    Our Story
-                </h2>
-
-                <p class="feature-subtitle">
-                    Little chapters that belong to us.
-                </p>
-
-                <div class="timeline">
-
-                    <div class="timeline-item">
-
-                        <h3>
-                            The Beginning 🌱
-                        </h3>
-
-                        <p>
-                            The chapter where two people
-                            became part of each other's story.
-                        </p>
-
-                    </div>
-
-                    <div class="timeline-item">
-
-                        <h3>
-                            The First Memories 📸
-                        </h3>
-
-                        <p>
-                            Conversations, jokes,
-                            smiles and moments that slowly
-                            became ours.
-                        </p>
-
-                    </div>
-
-                    <div class="timeline-item">
-
-                        <h3>
-                            The First Year ❤️
-                        </h3>
-
-                        <p>
-                            365 days filled with memories,
-                            emotions and lessons.
-                        </p>
-
-                    </div>
-
-                    <div class="timeline-item">
-
-                        <h3>
-                            Today 🌷
-                        </h3>
-
-                        <p>
-                            Still here.
-                            Still choosing each other.
-                            Still writing.
-                        </p>
-
-                    </div>
-
-                    <div class="timeline-item">
-
-                        <h3>
-                            The Next Chapter ✨
-                        </h3>
-
-                        <p>
-                            The part of the story
-                            we haven't written yet.
-                        </p>
-
+                        <button class="private-card shared-card" data-feature="memoryJar">
+                            <div class="private-icon">🫙</div>
+                            <h3>Memory Jar</h3>
+                            <p>Collect the little things we don't want to lose.</p>
+                        </button>
                     </div>
 
                 </div>
 
             </div>
 
-        `;
 
-        openFeature();
+            <!-- =====================================================
+                 MEMORIES
+            ====================================================== -->
 
-    }
+            <h2 class="section-title">
+                Our First Year 📸
+            </h2>
 
+            <p class="section-subtitle">
+                Some of the moments I never want to forget.
+            </p>
 
-    /* ============================================================
-       LOVE STREAK
-    ============================================================ */
+            <div class="gallery">
 
-    function renderStreak() {
+                <img src="photos/1.jpeg" alt="Memory 1">
+                <img src="photos/2.jpeg" alt="Memory 2">
+                <img src="photos/3.jpeg" alt="Memory 3">
+                <img src="photos/4.jpeg" alt="Memory 4">
+                <img src="photos/5.jpeg" alt="Memory 5">
+                <img src="photos/6.jpeg" alt="Memory 6">
 
-        const today =
-            getTodayKey();
-
-        const stored =
-            JSON.parse(
-                localStorage.getItem(
-                    "rymaaStreak"
-                ) || "{}"
-            );
-
-
-        let streak =
-            Number(
-                stored.streak || 0
-            );
+            </div>
 
 
-        if (
-            stored.lastDate !==
-            today
-        ) {
+            <!-- MUSIC -->
 
-            const yesterday =
-                new Date();
+            <div class="music-player">
 
-            yesterday.setDate(
-                yesterday.getDate() - 1
-            );
-
-
-            const yesterdayKey =
-                yesterday.getFullYear() +
-                "-" +
-                String(
-                    yesterday.getMonth() + 1
-                ).padStart(2, "0") +
-                "-" +
-                String(
-                    yesterday.getDate()
-                ).padStart(2, "0");
-
-
-            if (
-                stored.lastDate ===
-                yesterdayKey
-            ) {
-
-                streak += 1;
-
-            } else {
-
-                streak = 1;
-
-            }
-
-
-            localStorage.setItem(
-                "rymaaStreak",
-                JSON.stringify({
-                    streak:
-                        streak,
-                    lastDate:
-                        today
-                })
-            );
-
-        }
-
-
-        featureModalBody.innerHTML = `
-
-            <div class="feature-content">
-
-                <div class="big-icon">
-                    🔥
+                <div class="music-cover">
+                    🎵
                 </div>
+
+                <div class="music-info">
+
+                    <h3>
+                        cest pas joli
+                    </h3>
+
+                    <p>
+                        Our Song ❤️
+                    </p>
+
+                </div>
+
+                <button id="playMusic"
+                    class="play-btn">
+                    ▶
+                </button>
+
+                <input
+                    type="range"
+                    id="progress"
+                    value="0"
+                    min="0"
+                    max="100"
+                    step="0.1">
+
+                <div class="volume-box">
+
+                    🔊
+
+                    <input
+                        type="range"
+                        id="volume"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="1">
+
+                </div>
+
+            </div>
+
+
+            <!-- SPECIAL CARDS -->
+
+            <div class="activities">
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        ❤️
+                    </span>
+
+                    <h3>
+                        I Love You More Every Day
+                    </h3>
+
+                    <p>
+                        One year later, and my heart still
+                        chooses you.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        🌹
+                    </span>
+
+                    <h3>
+                        Thank You For Existing
+                    </h3>
+
+                    <p>
+                        You made this year more beautiful
+                        simply by being part of it.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        😊
+                    </span>
+
+                    <h3>
+                        You Make My World Better
+                    </h3>
+
+                    <p>
+                        Your smile is still one of my
+                        favorite things in the world.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANNIVERSARY LETTER -->
+
+            <div class="anniversary-letter">
 
                 <h2>
-                    Love Streak
+                    💖 Happy First Anniversary, My Rymaa 💖
                 </h2>
-
-                <p class="feature-subtitle">
-                    One little check-in each day.
-                </p>
-
-                <div class="streak-number">
-                    ${streak}
-                </div>
 
                 <p>
-                    day(s) of our little streak ❤️
+                    One year.
                 </p>
 
-                <div class="feature-message">
+                <p>
+                    It sounds like just two words, but behind
+                    them are hundreds of moments, conversations,
+                    laughs, memories and feelings that I will
+                    always carry in my heart.
+                </p>
 
-                    Even a tiny moment can become
-                    part of our story.
+                <p>
+                    One year ago, I didn't know how important
+                    you would become to me.
+                </p>
 
-                </div>
+                <p>
+                    Today, I know that meeting you was one of
+                    the most beautiful things that happened
+                    in my life.
+                </p>
+
+                <p>
+                    Thank you for every smile, every laugh,
+                    every conversation, every little moment
+                    and every memory we created together.
+                </p>
+
+                <p>
+                    This first year will always have a special
+                    place in my heart.
+                </p>
+
+                <p>
+                    And if I could go back to the beginning,
+                    knowing everything I know today...
+                </p>
+
+                <p class="special-line">
+                    I would still choose you. ❤️
+                </p>
+
+                <p>
+                    Forever yours,
+                    <br>
+                    <strong>
+                        Amine ❤️
+                    </strong>
+                </p>
 
             </div>
 
-        `;
 
-        openFeature();
+            <!-- LOVE BOX -->
 
-    }
-
-
-    /* ============================================================
-       MESSAGE FEATURE
-    ============================================================ */
-
-    function renderMessageFeature() {
-
-        featureModalBody.innerHTML = `
-
-            <div class="feature-content">
-
-                <div class="big-icon">
-                    📩❤️
-                </div>
+            <div class="love-box-section">
 
                 <h2>
-                    Send Me a Message
+                    🎁 Our Anniversary Box
                 </h2>
 
-                <p class="feature-subtitle">
-                    This message goes through our private
-                    connection and reaches my Telegram.
+                <p>
+                    A little gift for the girl who made
+                    this year special. 🥰❤️
+                </p>
+
+                <div id="giftBox">
+                    🎁
+                </div>
+
+                <div id="giftMessage">
+                    Open your gift... 😘
+                </div>
+
+                <div id="countdown"></div>
+
+            </div>
+
+
+            <!-- MESSAGE BOX -->
+
+            <div class="message-box">
+
+                <h2>
+                    💌 A Message From You
+                </h2>
+
+                <p>
+                    Write something from your heart ❤️
                 </p>
 
                 <textarea
-                    id="privateMessageInput"
-                    class="feature-textarea"
+                    id="rymeMessage"
                     maxlength="1000"
-                    placeholder="Write something from your heart..."></textarea>
+                    placeholder="Write your message here..."></textarea>
 
                 <input
-                    id="privatePasswordInput"
-                    class="feature-input"
+                    id="passwordInput"
                     type="password"
-                    placeholder="Enter Love Code">
+                    placeholder="Enter Love Code 😉❤️">
 
-                <button
-                    class="feature-btn"
-                    data-action="send-private-message">
-
+                <button id="sendMessageBtn">
                     💖 Send With Love
-
                 </button>
 
-                <p id="privateMessageStatus"
-                   style="
-                       min-height:25px;
-                       color:#ff4f8b;
-                       font-size:13px;
-                       margin-top:10px;
-                   ">
+                <p id="sendStatus"></p>
+
+            </div>
+
+
+            <!-- QUIZ -->
+
+            <button id="quizStart"
+                class="main-btn">
+
+                💕 Our Little Love Quiz
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         QUIZ
+    ========================================================== -->
+
+    <section id="quiz" class="page">
+
+        <div class="page-content">
+
+            <h1>
+                ❤️ Our Love Quiz ❤️
+            </h1>
+
+            <p class="quiz-question">
+                Who loves you the most?
+            </p>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Obviously Amine 😂❤️
+            </button>
+
+            <p id="quizResult"></p>
+
+            <button id="quizNext"
+                class="main-btn">
+                Continue ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SAD PAGE
+    ========================================================== -->
+
+    <section id="sad"
+        class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                🌙
+            </h1>
+
+            <div class="typewriter">
+
+                <p>
+                    If you are here...
+
+                    <br><br>
+
+                    maybe you just need
+                    a quiet moment.
+
+                    <br><br>
+
+                    Take your time.
+
+                    <br><br>
+
+                    There is no pressure.
                 </p>
 
             </div>
 
-        `;
+            <button id="continueBtn"
+                class="main-btn">
 
-        openFeature();
+                Continue ❤️
 
-    }
+            </button>
 
+        </div>
 
-    /* ============================================================
-       PRIVATE PLACE BUTTONS
-    ============================================================ */
+    </section>
 
-    document.querySelectorAll(
-        ".private-card"
-    ).forEach(
-        card => {
 
-            card.addEventListener(
-                "click",
-                () => {
+    <!-- =========================================================
+         LETTER
+    ========================================================== -->
 
-                    const feature =
-                        card.dataset.feature;
+    <section id="letter"
+        class="page darkPage">
 
+        <div class="dark-content">
 
-                    switch (feature) {
+            <h1>
+                💌
+            </h1>
 
-                        case "missYou":
+            <div class="letter">
 
-                            const count =
-                                Number(
-                                    localStorage.getItem(
-                                        "rymaaMissCount"
-                                    ) || 0
-                                ) + 1;
+                <h2>
+                    To My Rymaa
+                </h2>
 
-                            localStorage.setItem(
-                                "rymaaMissCount",
-                                count
-                            );
+                <p>
+                    My love mima 🥺,
+                </p>
 
-                            missIndex =
-                                Math.floor(
-                                    Math.random() *
-                                    missMessages.length
-                                );
+                <p>
+                    One year ago, I met you.
+                    I didn't know then how many memories,
+                    smiles and emotions would become part
+                    of our story.
+                </p>
 
-                            renderMissYou();
+                <p>
+                    Looking back at this year, I am grateful
+                    for every beautiful moment we shared.
+                </p>
 
-                            break;
+                <p>
+                    You have become one of the most precious
+                    people in my life.
+                </p>
 
+                <p>
+                    I know that no relationship is perfect,
+                    but I believe that what makes love special
+                    is choosing each other and learning together.
+                </p>
 
-                        case "daily":
+                <p>
+                    Thank you for every laugh,
+                    every conversation,
+                    every memory and every moment.
+                </p>
 
-                            renderDaily();
+                <p>
+                    Happy first anniversary, my love.
+                </p>
 
-                            break;
+                <p>
+                    Always yours,
+                    <br>
+                    Amine ❤️
+                </p>
 
+            </div>
 
-                        case "questions":
+            <button id="next1"
+                class="main-btn">
 
-                            currentQuestion =
-                                Math.floor(
-                                    Math.random() *
-                                    questions.length
-                                );
+                Continue ❤️
 
-                            renderQuestion();
+            </button>
 
-                            break;
+        </div>
 
+    </section>
 
-                        case "notes":
 
-                            renderNotes();
+    <!-- =========================================================
+         BROKEN HEART
+    ========================================================== -->
 
-                            break;
+    <section id="heartGame"
+        class="page darkPage">
 
+        <div class="dark-content">
 
-                        case "secret":
+            <h1>
+                💔
+            </h1>
 
-                            renderSecret();
+            <h2>
+                Can You Fix My Heart?
+            </h2>
 
-                            break;
+            <p>
+                Tap the broken heart.
+            </p>
 
+            <div id="brokenHeart">
+                💔
+            </div>
 
-                        case "timeline":
+            <p id="heartText"></p>
 
-                            renderTimeline();
+            <button id="next2"
+                class="main-btn">
 
-                            break;
+                Continue ❤️
 
+            </button>
 
-                        case "streak":
+        </div>
 
-                            renderStreak();
+    </section>
 
-                            break;
 
+    <!-- =========================================================
+         LESSONS
+    ========================================================== -->
 
-                        case "message":
+    <section id="lessons"
+        class="page">
 
-                            renderMessageFeature();
+        <div class="page-content">
 
-                            break;
+            <h1>
+                Things This Year Taught Me ❤️
+            </h1>
 
-                        case "dashboard":
-                            renderDashboard();
-                            break;
+            <div class="lesson">
+                ❤️ Love needs patience.
+            </div>
 
-                        case "diary":
-                            renderDiary();
-                            break;
+            <div class="lesson">
+                ❤️ Words matter.
+            </div>
 
-                        case "bucket":
-                            renderBucket();
-                            break;
+            <div class="lesson">
+                ❤️ Actions matter more than promises.
+            </div>
 
-                        case "capsule":
-                            renderCapsule();
-                            break;
+            <div class="lesson">
+                ❤️ Communication makes love stronger.
+            </div>
 
-                        case "checkin":
-                            selectedMood = "❤️";
-                            renderCheckin();
-                            break;
+            <div class="lesson">
+                ❤️ The little moments become the biggest memories.
+            </div>
 
-                        case "memoryJar":
-                            renderMemoryJar();
-                            break;
+            <div class="lesson">
+                ❤️ I never want to take you for granted.
+            </div>
 
-                    }
+            <button id="next3"
+                class="main-btn">
 
-                }
-            );
+                Continue ❤️
 
-        }
-    );
+            </button>
 
+        </div>
 
-    /* ============================================================
-       PRIVATE MODAL ACTIONS
-    ============================================================ */
+    </section>
 
-    if (featureModalBody) {
 
-        featureModalBody.addEventListener(
-            "click",
-            async event => {
+    <!-- =========================================================
+         MEMORIES
+    ========================================================== -->
 
-                const button =
-                    event.target.closest(
-                        "[data-action]"
-                    );
+    <section id="memories"
+        class="page">
 
+        <div class="page-content">
 
-                if (!button) {
-                    return;
-                }
+            <h1>
+                Our Memories 📸
+            </h1>
 
+            <p class="section-subtitle">
+                One year.
+                So many memories.
+                And hopefully many more to come. ❤️
+            </p>
 
-                const action =
-                    button.dataset.action;
+            <div class="gallery">
 
+                <img src="photos/7.jpeg"
+                    alt="Memory 7">
 
-                /* MISS YOU */
+                <img src="photos/8.jpeg"
+                    alt="Memory 8">
 
-                if (
-                    action ===
-                    "new-miss"
-                ) {
+                <img src="photos/9.jpeg"
+                    alt="Memory 9">
 
-                    missIndex =
-                        (
-                            missIndex + 1
-                        ) %
-                        missMessages.length;
+                <img src="photos/10.jpeg"
+                    alt="Memory 10">
 
+                <img src="photos/11.jpeg"
+                    alt="Memory 11">
 
-                    const message =
-                        document.getElementById(
-                            "missMessage"
-                        );
+                <img src="photos/12.jpeg"
+                    alt="Memory 12">
 
+            </div>
 
-                    if (message) {
+            <button id="next4"
+                class="main-btn">
 
-                        message.textContent =
-                            missMessages[
-                                missIndex
-                            ];
+                Last Page ❤️
 
-                    }
+            </button>
 
-                }
+        </div>
 
+    </section>
 
-                if (
-                    action ===
-                    "kiss"
-                ) {
 
-                    sendKiss();
+    <!-- =========================================================
+         FINAL
+    ========================================================== -->
 
-                }
+    <section id="final"
+        class="page darkPage">
 
+        <div class="final-content">
 
-                /* DAILY */
+            <div class="final-stars">
+                ✨ ❤️ ✨
+            </div>
 
-                if (
-                    action ===
-                    "daily-done"
-                ) {
+            <h1>
+                One Year.
+                <br>
+                One Story.
+                <br>
+                One You. ❤️
+            </h1>
 
-                    createSpecialHearts();
+            <p>
+                I won't stop choosing you.
+            </p>
 
-                    button.textContent =
-                        "🥰 That's Our Little Win";
+            <p>
+                Not because I have to...
+            </p>
 
-                }
+            <p>
+                But because I want to.
+            </p>
 
+            <div class="finalHeart">
+                ❤️
+            </div>
 
-                /* QUESTIONS */
+            <h2>
+                Happy First Anniversary,
+                Rymaa ❤️
+            </h2>
 
-                if (
-                    action ===
-                    "new-question"
-                ) {
+            <p>
+                Here's to our first year...
+                <br>
+                and every beautiful memory still waiting for us.
+            </p>
 
-                    currentQuestion =
-                        Math.floor(
-                            Math.random() *
-                            questions.length
-                        );
+            <p class="always">
+                Always.
+                <br>
+                Forever.
+            </p>
 
-                    renderQuestion();
+            <strong>
+                Amine ❤️
+            </strong>
 
-                }
+        </div>
 
+    </section>
 
-                /* NOTES */
 
-                if (
-                    action ===
-                    "save-note"
-                ) {
+    <!-- =========================================================
+         PRIVATE FEATURE MODAL
+    ========================================================== -->
 
-                    const input =
-                        document.getElementById(
-                            "noteInput"
-                        );
+    <div id="featureModal"
+        class="feature-modal">
 
+        <div class="feature-modal-box">
 
-                    const text =
-                        input
-                            ? input.value.trim()
-                            : "";
+            <button id="closeFeatureModal"
+                class="feature-close">
+                ✕
+            </button>
 
+            <div id="featureModalBody">
+            </div>
 
-                    if (!text) {
+        </div>
 
-                        alert(
-                            "Write something first ❤️"
-                        );
+    </div>
 
-                        return;
 
-                    }
+    <!-- =========================================================
+         LIGHTBOX
+    ========================================================== -->
 
+    <div id="lightbox">
 
-                    const item = {
-                        id: makeId("note"),
-                        text,
-                        author: authorName(),
-                        date: new Date().toISOString()
-                    };
+        <button id="prev">
+            ⬅
+        </button>
 
-                    upsertLocal("notes", item);
-                    await saveShared("note", item);
-                    renderNotes();
-                    createSpecialHearts();
+        <img id="lightboxImg"
+            src=""
+            alt="Memory">
 
-                }
+        <button id="next">
+            ➡
+        </button>
 
+        <button id="closeLightbox">
+            ✕
+        </button>
 
-                if (
-                    action ===
-                    "delete-note"
-                ) {
+    </div>
 
-                    const id =
-                        Number(
-                            button.dataset.id
-                        );
 
+    <!-- JAVASCRIPT -->
 
-                    const notes =
-                        getNotes()
-                            .filter(
-                                note =>
-                                    note.id !== id
-                            );
+    <script src="script.js"></script>
 
+</body>
 
-                    saveNotes(
-                        notes
-                    );
-
-
-                    renderNotes();
-
-                }
-
-
-                /* NEW SHARED FEATURES */
-
-                if (action === "refresh-shared") {
-                    await loadSharedData();
-                    renderDashboard();
-                }
-
-                if (action === "save-diary") {
-                    const author = document.getElementById("featureAuthor")?.value || "Amine";
-                    const mood = document.getElementById("diaryMood")?.value || "❤️";
-                    const title = document.getElementById("diaryTitle")?.value.trim() || "A little moment";
-                    const text = document.getElementById("diaryText")?.value.trim() || "";
-                    if (!text) return alert("Write the memory first ❤️");
-                    setAuthor(author);
-                    const item = { id: makeId("diary"), date: new Date().toISOString(), author, mood, title, text };
-                    upsertLocal("diary", item);
-                    await saveShared("diary", item);
-                    renderDiary();
-                    createSpecialHearts();
-                }
-
-                if (action === "add-bucket") {
-                    const author = document.getElementById("featureAuthor")?.value || "Amine";
-                    const input = document.getElementById("bucketInput");
-                    const text = input?.value.trim() || "";
-                    if (!text) return alert("Add a dream first ✨");
-                    setAuthor(author);
-                    const item = { id: makeId("dream"), date: new Date().toISOString(), author, text, done: false, completedAt: "" };
-                    upsertLocal("bucket", item);
-                    await saveShared("bucket", item);
-                    renderBucket();
-                }
-
-                if (action === "toggle-bucket") {
-                    const id = button.dataset.id;
-                    const item = sharedData.bucket.find(x => String(x.id) === String(id));
-                    if (item) {
-                        item.done = !item.done;
-                        item.completedAt = item.done ? new Date().toISOString() : "";
-                        cacheSharedData();
-                        await saveShared("bucket", item);
-                        renderBucket();
-                        if (item.done) createSpecialHearts();
-                    }
-                }
-
-                if (action === "save-capsule") {
-                    const author = document.getElementById("featureAuthor")?.value || "Amine";
-                    const title = document.getElementById("capsuleTitle")?.value.trim() || "A message to future us";
-                    const openDate = document.getElementById("capsuleDate")?.value || "";
-                    const message = document.getElementById("capsuleMessage")?.value.trim() || "";
-                    if (!openDate || !message) return alert("Choose an opening date and write the message 🔐");
-                    if (new Date(openDate + "T00:00:00") <= new Date()) return alert("Choose a future date ❤️");
-                    setAuthor(author);
-                    const item = { id: makeId("capsule"), createdAt: new Date().toISOString(), author, title, openDate, message, locked: true };
-                    upsertLocal("capsules", item);
-                    await saveShared("capsule", item);
-                    renderCapsule();
-                    createSpecialHearts();
-                }
-
-                if (action === "save-checkin") {
-                    const author = document.getElementById("featureAuthor")?.value || "Amine";
-                    const message = document.getElementById("checkinMessage")?.value.trim() || "Just checking in ❤️";
-                    setAuthor(author);
-                    const item = { id: makeId("checkin"), date: new Date().toISOString(), author, mood: selectedMood, message };
-                    upsertLocal("checkins", item);
-                    await saveShared("checkin", item);
-                    renderCheckin();
-                    createSpecialHearts();
-                }
-
-                if (action === "save-jar") {
-                    const author = document.getElementById("featureAuthor")?.value || "Amine";
-                    const text = document.getElementById("jarInput")?.value.trim() || "";
-                    if (!text) return alert("Write a little memory first ❤️");
-                    setAuthor(author);
-                    const item = { id: makeId("note"), date: new Date().toISOString(), author, text };
-                    upsertLocal("notes", item);
-                    await saveShared("note", item);
-                    renderMemoryJar();
-                    createSpecialHearts();
-                }
-
-                if (action === "select-mood") {
-                    selectedMood = button.dataset.mood || "❤️";
-                    document.querySelectorAll(".mood-btn").forEach(btn => btn.classList.remove("selected"));
-                    button.classList.add("selected");
-                }
-
-
-                /* SECRET */
-
-                if (
-                    action ===
-                    "unlock-secret"
-                ) {
-
-                    const input =
-                        document.getElementById(
-                            "secretInput"
-                        );
-
-                    const status =
-                        document.getElementById(
-                            "secretStatus"
-                        );
-
-
-                    if (
-                        input &&
-                        input.value ===
-                        LOVE_CODE
-                    ) {
-
-                        secretUnlocked =
-                            true;
-
-                        renderSecret();
-
-                        createSpecialHearts();
-
-                    } else if (status) {
-
-                        status.textContent =
-                            "❌ Not quite... try again ❤️";
-
-                    }
-
-                }
-
-
-                if (
-                    action ===
-                    "lock-secret"
-                ) {
-
-                    secretUnlocked =
-                        false;
-
-                    renderSecret();
-
-                }
-
-
-                /* PRIVATE TELEGRAM MESSAGE */
-
-                if (
-                    action ===
-                    "send-private-message"
-                ) {
-
-                    await sendTelegramMessage(
-                        {
-                            messageId:
-                                "private"
-                        }
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* ============================================================
-       SEND KISS
-    ============================================================ */
-
-    function sendKiss() {
-
-        for (
-            let i = 0;
-            i < 8;
-            i++
-        ) {
-
-            const kiss =
-                document.createElement(
-                    "div"
-                );
-
-            kiss.className =
-                "kiss";
-
-            kiss.textContent =
-                "😘";
-
-            kiss.style.left =
-                (
-                    35 +
-                    Math.random() *
-                    30
-                ) +
-                "vw";
-
-            kiss.style.animationDelay =
-                (
-                    Math.random() *
-                    0.5
-                ) +
-                "s";
-
-            document.body.appendChild(
-                kiss
-            );
-
-
-            setTimeout(
-                () => {
-                    kiss.remove();
-                },
-                2600
-            );
-
-        }
-
-    }
-
-
-    /* ============================================================
-       SEND TELEGRAM MESSAGE
-    ============================================================ */
-
-    async function sendTelegramMessage(
-        options = {}
-    ) {
-
-        const isPrivate =
-            options.messageId ===
-            "private";
-
-
-        let messageInput;
-
-
-        let passwordInput;
-
-
-        let status;
-
-
-        if (isPrivate) {
-
-            messageInput =
-                document.getElementById(
-                    "privateMessageInput"
-                );
-
-            passwordInput =
-                document.getElementById(
-                    "privatePasswordInput"
-                );
-
-            status =
-                document.getElementById(
-                    "privateMessageStatus"
-                );
-
-        } else {
-
-            messageInput =
-                document.getElementById(
-                    "rymeMessage"
-                );
-
-            passwordInput =
-                document.getElementById(
-                    "passwordInput"
-                );
-
-            status =
-                document.getElementById(
-                    "sendStatus"
-                );
-
-        }
-
-
-        const message =
-            messageInput
-                ? messageInput.value.trim()
-                : "";
-
-
-        const password =
-            passwordInput
-                ? passwordInput.value
-                : "";
-
-
-        if (
-            password !==
-            LOVE_CODE
-        ) {
-
-            if (status) {
-
-                status.textContent =
-                    "❌ Try again babe ❤️";
-
-            }
-
-            return;
-
-        }
-
-
-        if (!message) {
-
-            if (status) {
-
-                status.textContent =
-                    "💌 Write something first.";
-
-            }
-
-            return;
-
-        }
-
-
-        if (
-            message.length >
-            1000
-        ) {
-
-            if (status) {
-
-                status.textContent =
-                    "❌ Your message is too long.";
-
-            }
-
-            return;
-
-        }
-
-
-        if (
-            !API_URL ||
-            API_URL.includes(
-                "PUT_YOUR"
-            )
-        ) {
-
-            if (status) {
-
-                status.textContent =
-                    "⚠️ The private connection is not configured yet.";
-
-            }
-
-            return;
-
-        }
-
-
-        if (status) {
-
-            status.textContent =
-                "💌 Sending your message...";
-
-        }
-
-
-        const payload = {
-
-            siteKey:
-                SITE_KEY,
-
-            action:
-                "message",
-
-            message:
-                message,
-
-            loveCode:
-                password,
-
-            page:
-                window.location.href,
-
-            sentAt:
-                new Date().toISOString()
-
-        };
-
-
-        try {
-
-            /*
-               We deliberately use text/plain instead of
-               application/json.
-
-               This keeps the request simple for a static
-               GitHub Pages website and avoids exposing the
-               Telegram token to the browser.
-
-               Apps Script receives the JSON text through
-               e.postData.contents.
-            */
-
-            await fetch(
-                API_URL,
-                {
-                    method:
-                        "POST",
-
-                    mode:
-                        "no-cors",
-
-                    headers:
-                        {
-                            "Content-Type":
-                                "text/plain;charset=UTF-8"
-                        },
-
-                    body:
-                        JSON.stringify(
-                            payload
-                        )
-                }
-            );
-
-
-            if (status) {
-
-                status.textContent =
-                    "❤️ Sent. Your message is on its way to me.";
-
-            }
-
-
-            if (messageInput) {
-
-                messageInput.value =
-                    "";
-
-            }
-
-
-            if (passwordInput) {
-
-                passwordInput.value =
-                    "";
-
-            }
-
-
-            createSpecialHearts();
-
-
-        } catch (error) {
-
-            console.error(
-                "Message error:",
-                error
-            );
-
-
-            if (status) {
-
-                status.textContent =
-                    "❌ Something went wrong. Please try again.";
-
-            }
-
-        }
-
-    }
-
-
-    /* ============================================================
-       OLD MAIN MESSAGE BUTTON
-    ============================================================ */
-
-    const sendMessageBtn =
-        document.getElementById(
-            "sendMessageBtn"
-        );
-
-
-    if (sendMessageBtn) {
-
-        sendMessageBtn.addEventListener(
-            "click",
-            () => {
-
-                sendTelegramMessage({
-                    messageId:
-                        "main"
-                });
-
-            }
-        );
-
-    }
-
-
-    /* ============================================================
-       BROKEN HEART GAME
-    ============================================================ */
-
-    const brokenHeart =
-        document.getElementById(
-            "brokenHeart"
-        );
-
-    const heartText =
-        document.getElementById(
-            "heartText"
-        );
-
-
-    let fixed =
-        false;
-
-
-    if (brokenHeart) {
-
-        brokenHeart.addEventListener(
-            "click",
-            () => {
-
-                if (fixed) {
-                    return;
-                }
-
-
-                fixed =
-                    true;
-
-
-                brokenHeart.textContent =
-                    "❤️";
-
-
-                brokenHeart.style.transform =
-                    "scale(1.3)";
-
-
-                if (heartText) {
-
-                    heartText.innerHTML =
-                        "You fixed it... ❤️<br>" +
-                        "Maybe hearts can heal when we choose to care.";
-
-                }
-
-                createSpecialHearts();
-
-            }
-        );
-
-    }
-
-
-    /* ============================================================
-       LIGHTBOX
-    ============================================================ */
-
-    const galleryImages =
-        Array.from(
-            document.querySelectorAll(
-                ".gallery img"
-            )
-        );
-
-
-    const lightbox =
-        document.getElementById(
-            "lightbox"
-        );
-
-    const lightboxImg =
-        document.getElementById(
-            "lightboxImg"
-        );
-
-    const previousButton =
-        document.getElementById(
-            "prev"
-        );
-
-    const nextButton =
-        document.getElementById(
-            "next"
-        );
-
-    const closeButton =
-        document.getElementById(
-            "closeLightbox"
-        );
-
-
-    let currentImage =
-        0;
-
-
-    function openLightbox(index) {
-
-        if (
-            !galleryImages.length ||
-            !lightbox ||
-            !lightboxImg
-        ) {
-
-            return;
-
-        }
-
-
-        currentImage =
-            index;
-
-
-        lightboxImg.src =
-            galleryImages[
-                currentImage
-            ].src;
-
-
-        lightbox.classList.add(
-            "active"
-        );
-
-    }
-
-
-    function closeLightbox() {
-
-        if (lightbox) {
-
-            lightbox.classList.remove(
-                "active"
-            );
-
-        }
-
-    }
-
-
-    function changeImage(
-        direction
-    ) {
-
-        if (!galleryImages.length) {
-            return;
-        }
-
-
-        currentImage +=
-            direction;
-
-
-        if (
-            currentImage < 0
-        ) {
-
-            currentImage =
-                galleryImages.length - 1;
-
-        }
-
-
-        if (
-            currentImage >=
-            galleryImages.length
-        ) {
-
-            currentImage =
-                0;
-
-        }
-
-
-        if (lightboxImg) {
-
-            lightboxImg.src =
-                galleryImages[
-                    currentImage
-                ].src;
-
-        }
-
-    }
-
-
-    galleryImages.forEach(
-        (img, index) => {
-
-            img.addEventListener(
-                "click",
-                () => {
-
-                    openLightbox(
-                        index
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-    if (previousButton) {
-
-        previousButton.addEventListener(
-            "click",
-            () => {
-
-                changeImage(-1);
-
-            }
-        );
-
-    }
-
-
-    if (nextButton) {
-
-        nextButton.addEventListener(
-            "click",
-            () => {
-
-                changeImage(1);
-
-            }
-        );
-
-    }
-
-
-    if (closeButton) {
-
-        closeButton.addEventListener(
-            "click",
-            closeLightbox
-        );
-
-    }
-
-
-    if (lightbox) {
-
-        lightbox.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    lightbox
-                ) {
-
-                    closeLightbox();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                !lightbox ||
-                !lightbox.classList.contains(
-                    "active"
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                event.key ===
-                "ArrowLeft"
-            ) {
-
-                changeImage(-1);
-
-            }
-
-
-            if (
-                event.key ===
-                "ArrowRight"
-            ) {
-
-                changeImage(1);
-
-            }
-
-
-            if (
-                event.key ===
-                "Escape"
-            ) {
-
-                closeLightbox();
-
-            }
-
-        }
-    );
-
-
-    // Load shared memories after the interface is ready.
-    loadSharedData().then(() => {
-        cacheSharedData();
-    });
-
-});
+</html>
