@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     */
 
     const API_URL =
-        "PUT_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+        "https://script.google.com/macros/s/AKfycbwn3VYO5bTHqf4rC3khqVibW7MAPJ2Y_iqtEog1Qm2cRe6XqdjgNCj9-_q-7M1U0UOp/exec";
 
 
     /*
