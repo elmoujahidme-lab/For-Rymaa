@@ -55,6 +55,56 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     let sharedSyncOnline = false;
+    let lastSharedSnapshot = null;
+    let activeSharedFeature = null;
+
+    function ensureLiveNotice() {
+        if (document.getElementById("liveSyncNotice")) return;
+        const el = document.createElement("div");
+        el.id = "liveSyncNotice";
+        el.className = "live-sync-notice";
+        el.setAttribute("role", "status");
+        el.innerHTML = '<span class="live-sync-icon">💌</span><span id="liveSyncNoticeText">A new moment in Our Story</span><button id="enableLiveNotifications" type="button">Enable alerts</button><button id="dismissLiveNotice" type="button" aria-label="Dismiss">×</button>';
+        document.body.appendChild(el);
+        document.getElementById("dismissLiveNotice").addEventListener("click", () => el.classList.remove("show"));
+        document.getElementById("enableLiveNotifications").addEventListener("click", async () => {
+            if (!("Notification" in window)) {
+                document.getElementById("liveSyncNoticeText").textContent = "This browser does not support notifications.";
+                return;
+            }
+            const permission = await Notification.requestPermission();
+            document.getElementById("liveSyncNoticeText").textContent = permission === "granted" ? "Browser alerts enabled ❤️" : "Alerts are blocked in browser settings.";
+            if (permission === "granted") document.getElementById("enableLiveNotifications").style.display = "none";
+        });
+    }
+
+    function showLiveNotice(text, title = "Rymaa ❤️ Amine") {
+        ensureLiveNotice();
+        const el = document.getElementById("liveSyncNotice");
+        document.getElementById("liveSyncNoticeText").textContent = text;
+        el.classList.add("show");
+        if ("Notification" in window && Notification.permission === "granted" && document.visibilityState !== "visible") {
+            try { new Notification(title, { body: text, icon: "./assets/icon.png" }); } catch (_) {}
+        }
+        clearTimeout(window.__rymaaNoticeTimer);
+        window.__rymaaNoticeTimer = setTimeout(() => el.classList.remove("show"), 8000);
+    }
+
+    function sharedSnapshot(data = sharedData) {
+        return JSON.stringify(Object.fromEntries(Object.keys(data).map(key => [key, (data[key] || []).map(item => ({ id: item.id, date: item.date || item.createdAt, author: item.author, text: item.text || item.message || item.title, done: item.done }))])));
+    }
+
+    function refreshOpenSharedView() {
+        if (!featureModal || !featureModal.classList.contains("active")) return;
+        if (featureModalBody && featureModalBody.querySelector("input:focus, textarea:focus, select:focus")) return;
+        const heading = featureModalBody?.querySelector("h2")?.textContent || "";
+        if (heading.includes("Dashboard")) renderDashboard();
+        else if (heading.includes("Diary")) renderDiary();
+        else if (heading.includes("Bucket") || heading.includes("Dream")) renderBucket();
+        else if (heading.includes("Time Capsule")) renderCapsule();
+        else if (heading.includes("Mood") || heading.includes("Check")) renderCheckin();
+        else if (heading.includes("Memory Jar")) renderMemoryJar();
+    }
 
     function makeId(prefix = "rymaa") {
         return prefix + "-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
@@ -102,6 +152,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 sharedSyncOnline = true;
                 localStorage.setItem("rymaaSharedCache", JSON.stringify(sharedData));
+                const nextSnapshot = sharedSnapshot(sharedData);
+                if (lastSharedSnapshot !== null && nextSnapshot !== lastSharedSnapshot) {
+                    const before = JSON.parse(lastSharedSnapshot);
+                    let notice = "Our shared story was updated ❤️";
+                    for (const key of Object.keys(sharedData)) {
+                        const oldIds = new Set((before[key] || []).map(item => String(item.id)));
+                        const added = sharedData[key].filter(item => !oldIds.has(String(item.id)));
+                        if (added.length) {
+                            const item = added[added.length - 1];
+                            const names = { notes: "a love note", diary: "a diary memory", bucket: "a dream", capsules: "a time capsule", checkins: "a mood check-in" };
+                            notice = `${item.author || "Someone"} added ${names[key] || "something new"} 💌`;
+                            break;
+                        }
+                    }
+                    showLiveNotice(notice);
+                    refreshOpenSharedView();
+                }
+                lastSharedSnapshot = nextSnapshot;
             }
         } catch (error) {
             console.warn("Could not sync shared memories. Using local cache.", error);
@@ -3196,8 +3264,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Load shared memories after the interface is ready.
+    ensureLiveNotice();
     loadSharedData().then(() => {
         cacheSharedData();
+        lastSharedSnapshot = sharedSnapshot(sharedData);
     });
+
+    // Poll the shared Google Sheets backend so both devices stay in step.
+    setInterval(() => {
+        loadSharedData();
+    }, 5000);
 
 });
