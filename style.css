@@ -1,1098 +1,305 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>One Year of Us ❤️</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-</head>
-
-<body>
-
-    <!-- MUSIC -->
-    <audio id="music" loop>
-        <source src="music/bali-maak.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- FLOATING HEARTS -->
-    <div id="hearts"></div>
-
-
-    <!-- =========================================================
-         WELCOME
-    ========================================================== -->
-
-    <section id="welcome" class="page active">
-
-        <div class="welcome-box">
-
-            <div class="anniversary-badge">
-                ❤️ 1 YEAR ❤️
-            </div>
-
-            <h1>
-                One Year of Us 🌸
-            </h1>
-
-            <p class="subtitle">
-                One beautiful year...
-                <br>
-                countless memories, smiles & moments with you. ❤️
-            </p>
-
-            <button id="happyBtn" class="main-btn">
-                💖 Celebrate With Me
-            </button>
-
-            <button id="sadBtn" class="main-btn dark">
-                🌙 Take a Moment
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         HAPPY PAGE
-    ========================================================== -->
-
-    <section id="happy" class="page">
-
-        <div class="page-content">
-
-            <div class="anniversary-title">
-                <span>🌷</span>
-
-                <h1>
-                    Happy 1st Anniversary
-                </h1>
-
-                <span>❤️</span>
-            </div>
-
-            <p class="anniversary-subtitle">
-                One year ago, our story began...
-                <br>
-                and I would choose you all over again.
-            </p>
-
-
-            <!-- RANDOM LOVE MESSAGE -->
-
-            <div class="love-message-card">
-
-                <p id="loveMessage">
-                    You are my favorite person ❤️
-                </p>
-
-            </div>
-
-
-            <!-- COUNTER -->
-
-            <div class="counter">
-
-                <h2>
-                    Since We Met ❤️
-                </h2>
-
-                <p class="counter-small">
-                    Our first year together
-                </p>
-
-                <div id="timer">
-
-                    <div class="time-box">
-                        <span id="years">0</span>
-                        <small>Years</small>
-                    </div>
-
-                    <div class="time-box">
-                        <span id="days">0</span>
-                        <small>Days</small>
-                    </div>
-
-                    <div class="time-box">
-                        <span id="hours">0</span>
-                        <small>Hours</small>
-                    </div>
-
-                    <div class="time-box">
-                        <span id="minutes">0</span>
-                        <small>Minutes</small>
-                    </div>
-
-                    <div class="time-box">
-                        <span id="seconds">0</span>
-                        <small>Seconds</small>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- 365 DAYS -->
-
-            <div class="year-card">
-
-                <div class="year-number">
-                    365
-                </div>
-
-                <div class="year-text">
-
-                    <h3>
-                        Days of Us ❤️
-                    </h3>
-
-                    <p>
-                        365 days of memories,
-                        conversations, smiles,
-                        laughs and beautiful moments.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- =====================================================
-                 OUR PRIVATE PLACE
-            ====================================================== -->
-
-            <div class="private-place-section">
-
-                <div class="private-place-title">
-                    <span>🔐</span>
-
-                    <div>
-                        <h2>
-                            Our Private Place
-                        </h2>
-
-                        <p>
-                            A little corner of the internet
-                            that feels like ours. ❤️
-                        </p>
-                    </div>
-                </div>
-
-
-                <div class="private-grid">
-
-
-                    <!-- MISS YOU -->
-
-                    <button class="private-card"
-                        data-feature="missYou">
-
-                        <div class="private-icon">
-                            🥺❤️
-                        </div>
-
-                        <h3>
-                            I Miss You
-                        </h3>
-
-                        <p>
-                            For the moments you miss me.
-                        </p>
-
-                    </button>
-
-
-                    <!-- DAILY -->
-
-                    <button class="private-card"
-                        data-feature="daily">
-
-                        <div class="private-icon">
-                            🌸
-                        </div>
-
-                        <h3>
-                            Today's Surprise
-                        </h3>
-
-                        <p>
-                            One little surprise every day.
-                        </p>
-
-                    </button>
-
-
-                    <!-- QUESTIONS -->
-
-                    <button class="private-card"
-                        data-feature="questions">
-
-                        <div class="private-icon">
-                            💬
-                        </div>
-
-                        <h3>
-                            Our Questions
-                        </h3>
-
-                        <p>
-                            Questions only we understand.
-                        </p>
-
-                    </button>
-
-
-                    <!-- NOTES -->
-
-                    <button class="private-card"
-                        data-feature="notes">
-
-                        <div class="private-icon">
-                            💌
-                        </div>
-
-                        <h3>
-                            Our Love Notes
-                        </h3>
-
-                        <p>
-                            Leave something from your heart.
-                        </p>
-
-                    </button>
-
-
-                    <!-- SECRET -->
-
-                    <button class="private-card"
-                        data-feature="secret">
-
-                        <div class="private-icon">
-                            🔐
-                        </div>
-
-                        <h3>
-                            Secret Room
-                        </h3>
-
-                        <p>
-                            A tiny room just for us.
-                        </p>
-
-                    </button>
-
-
-                    <!-- TIMELINE -->
-
-                    <button class="private-card"
-                        data-feature="timeline">
-
-                        <div class="private-icon">
-                            🕰️
-                        </div>
-
-                        <h3>
-                            Our Story
-                        </h3>
-
-                        <p>
-                            Little chapters of us.
-                        </p>
-
-                    </button>
-
-
-                    <!-- STREAK -->
-
-                    <button class="private-card"
-                        data-feature="streak">
-
-                        <div class="private-icon">
-                            🔥
-                        </div>
-
-                        <h3>
-                            Love Streak
-                        </h3>
-
-                        <p>
-                            Don't miss a day together.
-                        </p>
-
-                    </button>
-
-
-                    <!-- MESSAGE -->
-
-                    <button class="private-card"
-                        data-feature="message">
-
-                        <div class="private-icon">
-                            📩
-                        </div>
-
-                        <h3>
-                            Send Me a Message
-                        </h3>
-
-                        <p>
-                            This one really reaches me.
-                        </p>
-
-                    </button>
-
-                </div>
-
-                <div class="shared-hub">
-
-                    <div class="shared-hub-title">
-                        <span>✨</span>
-                        <div>
-                            <h2>Our Living Story</h2>
-                            <p>Things we add here stay in our shared little world. ❤️</p>
-                        </div>
-                    </div>
-
-                    <div class="shared-grid">
-                        <button class="private-card shared-card" data-feature="dashboard">
-                            <div class="private-icon">📊</div>
-                            <h3>Our Dashboard</h3>
-                            <p>See how our story is growing.</p>
-                        </button>
-
-                        <button class="private-card shared-card" data-feature="diary">
-                            <div class="private-icon">📖</div>
-                            <h3>Our Diary</h3>
-                            <p>Keep moments, feelings and little stories.</p>
-                        </button>
-
-                        <button class="private-card shared-card" data-feature="bucket">
-                            <div class="private-icon">🎯</div>
-                            <h3>Our Dreams</h3>
-                            <p>Dream → Plan → Done.</p>
-                        </button>
-
-                        <button class="private-card shared-card" data-feature="capsule">
-                            <div class="private-icon">🔒</div>
-                            <h3>Time Capsule</h3>
-                            <p>Write to our future selves.</p>
-                        </button>
-
-                        <button class="private-card shared-card" data-feature="checkin">
-                            <div class="private-icon">🌙</div>
-                            <h3>Today's Mood</h3>
-                            <p>Leave a tiny check-in for each other.</p>
-                        </button>
-
-                        <button class="private-card shared-card" data-feature="memoryJar">
-                            <div class="private-icon">🫙</div>
-                            <h3>Memory Jar</h3>
-                            <p>Collect the little things we don't want to lose.</p>
-                        </button>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- =====================================================
-                 MEMORIES
-            ====================================================== -->
-
-            <h2 class="section-title">
-                Our First Year 📸
-            </h2>
-
-            <p class="section-subtitle">
-                Some of the moments I never want to forget.
-            </p>
-
-            <div class="gallery">
-
-                <img src="photos/1.jpeg" alt="Memory 1">
-                <img src="photos/2.jpeg" alt="Memory 2">
-                <img src="photos/3.jpeg" alt="Memory 3">
-                <img src="photos/4.jpeg" alt="Memory 4">
-                <img src="photos/5.jpeg" alt="Memory 5">
-                <img src="photos/6.jpeg" alt="Memory 6">
-
-            </div>
-
-
-            <!-- MUSIC -->
-
-            <div class="music-player">
-
-                <div class="music-cover">
-                    🎵
-                </div>
-
-                <div class="music-info">
-
-                    <h3>
-                        cest pas joli
-                    </h3>
-
-                    <p>
-                        Our Song ❤️
-                    </p>
-
-                </div>
-
-                <button id="playMusic"
-                    class="play-btn">
-                    ▶
-                </button>
-
-                <input
-                    type="range"
-                    id="progress"
-                    value="0"
-                    min="0"
-                    max="100"
-                    step="0.1">
-
-                <div class="volume-box">
-
-                    🔊
-
-                    <input
-                        type="range"
-                        id="volume"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value="1">
-
-                </div>
-
-            </div>
-
-
-            <!-- SPECIAL CARDS -->
-
-            <div class="activities">
-
-                <div class="card">
-
-                    <span class="card-icon">
-                        ❤️
-                    </span>
-
-                    <h3>
-                        I Love You More Every Day
-                    </h3>
-
-                    <p>
-                        One year later, and my heart still
-                        chooses you.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <span class="card-icon">
-                        🌹
-                    </span>
-
-                    <h3>
-                        Thank You For Existing
-                    </h3>
-
-                    <p>
-                        You made this year more beautiful
-                        simply by being part of it.
-                    </p>
-
-                </div>
-
-
-                <div class="card">
-
-                    <span class="card-icon">
-                        😊
-                    </span>
-
-                    <h3>
-                        You Make My World Better
-                    </h3>
-
-                    <p>
-                        Your smile is still one of my
-                        favorite things in the world.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- ANNIVERSARY LETTER -->
-
-            <div class="anniversary-letter">
-
-                <h2>
-                    💖 Happy First Anniversary, My Rymaa 💖
-                </h2>
-
-                <p>
-                    One year.
-                </p>
-
-                <p>
-                    It sounds like just two words, but behind
-                    them are hundreds of moments, conversations,
-                    laughs, memories and feelings that I will
-                    always carry in my heart.
-                </p>
-
-                <p>
-                    One year ago, I didn't know how important
-                    you would become to me.
-                </p>
-
-                <p>
-                    Today, I know that meeting you was one of
-                    the most beautiful things that happened
-                    in my life.
-                </p>
-
-                <p>
-                    Thank you for every smile, every laugh,
-                    every conversation, every little moment
-                    and every memory we created together.
-                </p>
-
-                <p>
-                    This first year will always have a special
-                    place in my heart.
-                </p>
-
-                <p>
-                    And if I could go back to the beginning,
-                    knowing everything I know today...
-                </p>
-
-                <p class="special-line">
-                    I would still choose you. ❤️
-                </p>
-
-                <p>
-                    Forever yours,
-                    <br>
-                    <strong>
-                        Amine ❤️
-                    </strong>
-                </p>
-
-            </div>
-
-
-            <!-- LOVE BOX -->
-
-            <div class="love-box-section">
-
-                <h2>
-                    🎁 Our Anniversary Box
-                </h2>
-
-                <p>
-                    A little gift for the girl who made
-                    this year special. 🥰❤️
-                </p>
-
-                <div id="giftBox">
-                    🎁
-                </div>
-
-                <div id="giftMessage">
-                    Open your gift... 😘
-                </div>
-
-                <div id="countdown"></div>
-
-            </div>
-
-
-            <!-- MESSAGE BOX -->
-
-            <div class="message-box">
-
-                <h2>
-                    💌 A Message From You
-                </h2>
-
-                <p>
-                    Write something from your heart ❤️
-                </p>
-
-                <textarea
-                    id="rymeMessage"
-                    maxlength="1000"
-                    placeholder="Write your message here..."></textarea>
-
-                <input
-                    id="passwordInput"
-                    type="password"
-                    placeholder="Enter Love Code 😉❤️">
-
-                <button id="sendMessageBtn">
-                    💖 Send With Love
-                </button>
-
-                <p id="sendStatus"></p>
-
-            </div>
-
-
-            <!-- QUIZ -->
-
-            <button id="quizStart"
-                class="main-btn">
-
-                💕 Our Little Love Quiz
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         QUIZ
-    ========================================================== -->
-
-    <section id="quiz" class="page">
-
-        <div class="page-content">
-
-            <h1>
-                ❤️ Our Love Quiz ❤️
-            </h1>
-
-            <p class="quiz-question">
-                Who loves you the most?
-            </p>
-
-            <button class="quizBtn">
-                Amine ❤️
-            </button>
-
-            <button class="quizBtn">
-                Amine ❤️
-            </button>
-
-            <button class="quizBtn">
-                Amine ❤️
-            </button>
-
-            <button class="quizBtn">
-                Obviously Amine 😂❤️
-            </button>
-
-            <p id="quizResult"></p>
-
-            <button id="quizNext"
-                class="main-btn">
-                Continue ❤️
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         SAD PAGE
-    ========================================================== -->
-
-    <section id="sad"
-        class="page darkPage">
-
-        <div class="dark-content">
-
-            <h1>
-                🌙
-            </h1>
-
-            <div class="typewriter">
-
-                <p>
-                    If you are here...
-
-                    <br><br>
-
-                    maybe you just need
-                    a quiet moment.
-
-                    <br><br>
-
-                    Take your time.
-
-                    <br><br>
-
-                    There is no pressure.
-                </p>
-
-            </div>
-
-            <button id="continueBtn"
-                class="main-btn">
-
-                Continue ❤️
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         LETTER
-    ========================================================== -->
-
-    <section id="letter"
-        class="page darkPage">
-
-        <div class="dark-content">
-
-            <h1>
-                💌
-            </h1>
-
-            <div class="letter">
-
-                <h2>
-                    To My Rymaa
-                </h2>
-
-                <p>
-                    My love mima 🥺,
-                </p>
-
-                <p>
-                    One year ago, I met you.
-                    I didn't know then how many memories,
-                    smiles and emotions would become part
-                    of our story.
-                </p>
-
-                <p>
-                    Looking back at this year, I am grateful
-                    for every beautiful moment we shared.
-                </p>
-
-                <p>
-                    You have become one of the most precious
-                    people in my life.
-                </p>
-
-                <p>
-                    I know that no relationship is perfect,
-                    but I believe that what makes love special
-                    is choosing each other and learning together.
-                </p>
-
-                <p>
-                    Thank you for every laugh,
-                    every conversation,
-                    every memory and every moment.
-                </p>
-
-                <p>
-                    Happy first anniversary, my love.
-                </p>
-
-                <p>
-                    Always yours,
-                    <br>
-                    Amine ❤️
-                </p>
-
-            </div>
-
-            <button id="next1"
-                class="main-btn">
-
-                Continue ❤️
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         BROKEN HEART
-    ========================================================== -->
-
-    <section id="heartGame"
-        class="page darkPage">
-
-        <div class="dark-content">
-
-            <h1>
-                💔
-            </h1>
-
-            <h2>
-                Can You Fix My Heart?
-            </h2>
-
-            <p>
-                Tap the broken heart.
-            </p>
-
-            <div id="brokenHeart">
-                💔
-            </div>
-
-            <p id="heartText"></p>
-
-            <button id="next2"
-                class="main-btn">
-
-                Continue ❤️
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         LESSONS
-    ========================================================== -->
-
-    <section id="lessons"
-        class="page">
-
-        <div class="page-content">
-
-            <h1>
-                Things This Year Taught Me ❤️
-            </h1>
-
-            <div class="lesson">
-                ❤️ Love needs patience.
-            </div>
-
-            <div class="lesson">
-                ❤️ Words matter.
-            </div>
-
-            <div class="lesson">
-                ❤️ Actions matter more than promises.
-            </div>
-
-            <div class="lesson">
-                ❤️ Communication makes love stronger.
-            </div>
-
-            <div class="lesson">
-                ❤️ The little moments become the biggest memories.
-            </div>
-
-            <div class="lesson">
-                ❤️ I never want to take you for granted.
-            </div>
-
-            <button id="next3"
-                class="main-btn">
-
-                Continue ❤️
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         MEMORIES
-    ========================================================== -->
-
-    <section id="memories"
-        class="page">
-
-        <div class="page-content">
-
-            <h1>
-                Our Memories 📸
-            </h1>
-
-            <p class="section-subtitle">
-                One year.
-                So many memories.
-                And hopefully many more to come. ❤️
-            </p>
-
-            <div class="gallery">
-
-                <img src="photos/7.jpeg"
-                    alt="Memory 7">
-
-                <img src="photos/8.jpeg"
-                    alt="Memory 8">
-
-                <img src="photos/9.jpeg"
-                    alt="Memory 9">
-
-                <img src="photos/10.jpeg"
-                    alt="Memory 10">
-
-                <img src="photos/11.jpeg"
-                    alt="Memory 11">
-
-                <img src="photos/12.jpeg"
-                    alt="Memory 12">
-
-            </div>
-
-            <button id="next4"
-                class="main-btn">
-
-                Last Page ❤️
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         FINAL
-    ========================================================== -->
-
-    <section id="final"
-        class="page darkPage">
-
-        <div class="final-content">
-
-            <div class="final-stars">
-                ✨ ❤️ ✨
-            </div>
-
-            <h1>
-                One Year.
-                <br>
-                One Story.
-                <br>
-                One You. ❤️
-            </h1>
-
-            <p>
-                I won't stop choosing you.
-            </p>
-
-            <p>
-                Not because I have to...
-            </p>
-
-            <p>
-                But because I want to.
-            </p>
-
-            <div class="finalHeart">
-                ❤️
-            </div>
-
-            <h2>
-                Happy First Anniversary,
-                Rymaa ❤️
-            </h2>
-
-            <p>
-                Here's to our first year...
-                <br>
-                and every beautiful memory still waiting for us.
-            </p>
-
-            <p class="always">
-                Always.
-                <br>
-                Forever.
-            </p>
-
-            <strong>
-                Amine ❤️
-            </strong>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         PRIVATE FEATURE MODAL
-    ========================================================== -->
-
-    <div id="featureModal"
-        class="feature-modal">
-
-        <div class="feature-modal-box">
-
-            <button id="closeFeatureModal"
-                class="feature-close">
-                ✕
-            </button>
-
-            <div id="featureModalBody">
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================================================
-         LIGHTBOX
-    ========================================================== -->
-
-    <div id="lightbox">
-
-        <button id="prev">
-            ⬅
-        </button>
-
-        <img id="lightboxImg"
-            src=""
-            alt="Memory">
-
-        <button id="next">
-            ➡
-        </button>
-
-        <button id="closeLightbox">
-            ✕
-        </button>
-
-    </div>
-
-
-    <!-- JAVASCRIPT -->
-
-    <script src="script.js"></script>
-
-</body>
-
-</html>
+/* ============================================================
+   CLASSIC THEME — ivory, burgundy, antique gold
+============================================================ */
+
+:root {
+    --ivory: #faf6ef;
+    --paper: #fffdf8;
+    --ink: #3a2e2c;
+    --muted: #8a7b72;
+    --burgundy: #7b2d3b;
+    --rose: #a8475a;
+    --gold: #b08d57;
+    --line: #e8dccb;
+    --shadow: 0 12px 34px rgba(80, 40, 40, .08);
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --display: "Playfair Display", Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--serif);
+    font-size: 18px;
+    background: var(--ivory);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+button, input, textarea, select { font-family: inherit; font-size: inherit; }
+button { cursor: pointer; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; color: var(--burgundy); }
+
+/* ---------- Gate ---------- */
+#gate {
+    position: fixed; inset: 0; z-index: 200000;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    background: radial-gradient(circle at top, #4a1d2a, #1d0c12);
+}
+body:not(.locked) #gate { display: none; }
+body.locked .page,
+body.locked #hearts { display: none !important; }
+
+.gate-box {
+    width: min(400px, 100%); text-align: center; color: #f3e6d8;
+    padding: 42px 30px; border: 1px solid rgba(176, 141, 87, .55);
+    border-radius: 6px; background: rgba(255, 255, 255, .04);
+}
+.gate-box h1 { color: #f3e6d8; font-size: 34px; margin: 6px 0 12px; }
+.gate-box p { line-height: 1.7; margin-bottom: 20px; opacity: .9; }
+.gate-box input {
+    width: 100%; padding: 13px 14px; margin-bottom: 14px; text-align: center;
+    background: rgba(255, 255, 255, .08); color: #fff; letter-spacing: 2px;
+    border: 1px solid rgba(176, 141, 87, .6); border-radius: 4px; outline: none;
+}
+.gate-box input:focus { border-color: #d8b988; }
+.gate-error { min-height: 22px; margin: 12px 0 0 !important; color: #ffb3c0; font-size: 16px; }
+.gate-box.shake { animation: shake .4s; }
+@keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+/* ---------- Pages ---------- */
+.page { display: none; min-height: 100vh; padding: 45px 20px 70px; position: relative; z-index: 2; }
+.page.active { display: block; }
+.page-content { width: 100%; max-width: 900px; margin: auto; text-align: center; }
+.page-title { font-size: clamp(28px, 6vw, 44px); margin-bottom: 6px; }
+
+.ornament { color: var(--gold); font-size: 26px; margin: 6px 0 14px; }
+.lead { color: var(--muted); line-height: 1.7; margin-bottom: 26px; font-size: 20px; font-style: italic; }
+.muted { color: var(--muted); margin-bottom: 18px; }
+.section-title { font-size: 28px; margin: 36px 0 6px; }
+
+/* ---------- Welcome ---------- */
+#welcome { align-items: center; justify-content: center; text-align: center; }
+#welcome.active { display: flex; }
+.welcome-box {
+    width: min(500px, 94%); padding: 46px 30px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--shadow);
+    outline: 1px solid var(--gold); outline-offset: -10px;
+}
+.badge { display: inline-block; letter-spacing: 4px; text-transform: uppercase; font-size: 13px; color: var(--gold); margin-bottom: 14px; }
+.welcome-box h1 { font-size: clamp(32px, 7vw, 48px); margin-bottom: 4px; }
+.subtitle { color: var(--muted); line-height: 1.8; font-size: 20px; margin-bottom: 28px; font-style: italic; }
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: block; width: min(320px, 90%); margin: 14px auto; padding: 13px 24px;
+    background: var(--burgundy); color: #fff; border: 1px solid var(--burgundy);
+    border-radius: 3px; letter-spacing: 1px; font-size: 17px; transition: .2s;
+}
+.btn:hover { background: #64222f; transform: translateY(-2px); }
+.btn:active { transform: scale(.98); }
+.btn-dark { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-dark:hover { background: var(--ink); color: #fff; }
+.btn-ghost { background: transparent; color: #f3e6d8; border-color: var(--gold); margin-top: 30px; }
+.btn-ghost:hover { background: rgba(176, 141, 87, .2); }
+
+/* ---------- Panels ---------- */
+.panel {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 6px;
+    box-shadow: var(--shadow); max-width: 760px; margin: 30px auto; padding: 28px 22px;
+}
+.panel h2 { margin-bottom: 4px; }
+
+.love-message-card {
+    max-width: 600px; min-height: 80px; margin: 10px auto 30px; padding: 22px;
+    display: flex; align-items: center; justify-content: center;
+    border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold);
+}
+.love-message-card p { font-size: 22px; font-style: italic; color: var(--ink); }
+
+.counter h2 { font-size: 26px; }
+#timer { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.time-box { background: var(--ivory); border: 1px solid var(--line); border-radius: 4px; padding: 16px 6px; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.time-box span { font-family: var(--display); color: var(--burgundy); font-size: 30px; line-height: 1; }
+.time-box small { color: var(--muted); font-size: 14px; margin-top: 9px; letter-spacing: 1px; }
+
+.year-card { display: flex; align-items: center; gap: 24px; text-align: left; }
+.year-number { min-width: 120px; font-family: var(--display); color: var(--gold); font-size: 56px; text-align: center; }
+.year-text p { color: var(--muted); line-height: 1.7; }
+
+/* ---------- Grids & tiles ---------- */
+.grid { display: grid; gap: 14px; margin-top: 18px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.tile {
+    border: 1px solid var(--line); background: var(--ivory); border-radius: 4px;
+    padding: 20px 12px; min-height: 160px; color: var(--ink); transition: .2s;
+}
+.tile:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: var(--shadow); }
+.tile-icon { font-size: 32px; margin-bottom: 8px; }
+.tile h3, .card h3 { font-size: 17px; margin-bottom: 6px; }
+.tile p, .card p { color: var(--muted); font-size: 16px; line-height: 1.5; }
+.cards { max-width: 850px; margin: 30px auto; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 24px 18px; box-shadow: var(--shadow); }
+
+/* ---------- Gallery ---------- */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 760px; margin: 20px auto 35px; }
+.gallery img {
+    width: 100%; height: 220px; object-fit: cover; cursor: pointer;
+    border: 6px solid #fff; outline: 1px solid var(--line); border-radius: 2px;
+    box-shadow: var(--shadow); transition: .3s;
+}
+.gallery img:hover { transform: scale(1.03) rotate(-.5deg); }
+
+/* ---------- Music ---------- */
+.music-player { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.music-cover { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+.music-cover.playing { animation: spin 4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.music-info { flex: 1; text-align: left; }
+.music-info h3 { font-size: 17px; }
+.music-info p { color: var(--gold); font-size: 15px; }
+.play-btn { width: 44px; height: 44px; border: none; border-radius: 50%; background: var(--burgundy); color: #fff; }
+#progress { width: 100%; accent-color: var(--burgundy); }
+.volume-box { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
+#volume { width: 90px; accent-color: var(--burgundy); }
+
+/* ---------- Letter paper ---------- */
+.letter-paper { text-align: left; padding: 38px 32px; max-width: 700px; }
+.letter-paper h2 { text-align: center; margin-bottom: 22px; font-size: 24px; }
+.letter-paper p { line-height: 1.9; margin-bottom: 14px; }
+.special-line { color: var(--burgundy); font-size: 24px; text-align: center; font-style: italic; }
+
+/* ---------- Forms ---------- */
+.field {
+    display: block; width: 100%; margin: 8px 0; padding: 12px 14px;
+    background: var(--ivory); border: 1px solid var(--line); border-radius: 3px; outline: none; color: var(--ink);
+}
+.field:focus { border-color: var(--gold); }
+textarea.field { min-height: 130px; resize: vertical; }
+.message-box .btn { width: 100%; margin-top: 12px; }
+.status { min-height: 24px; margin-top: 10px; color: var(--burgundy); font-size: 16px; }
+
+/* ---------- Modal ---------- */
+.feature-modal { position: fixed; inset: 0; z-index: 100000; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(30, 12, 16, .72); backdrop-filter: blur(5px); }
+.feature-modal.active { display: flex; }
+.feature-modal-box {
+    position: relative; width: min(620px, 100%); max-height: 90vh; overflow-y: auto;
+    background: var(--paper); border: 1px solid var(--gold); border-radius: 6px;
+    padding: 34px 24px 26px; box-shadow: 0 25px 80px rgba(0, 0, 0, .3); animation: modalIn .25s ease;
+}
+@keyframes modalIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.feature-close { position: absolute; right: 12px; top: 12px; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; background: var(--ivory); color: var(--burgundy); }
+.feature-content { text-align: center; }
+.big-icon { font-size: 46px; margin-bottom: 6px; }
+.feature-content h2 { margin-bottom: 6px; }
+.feature-subtitle { color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.feature-message { background: var(--ivory); border: 1px solid var(--line); border-radius: 4px; padding: 20px; line-height: 1.7; margin: 16px 0; font-style: italic; }
+.feature-btn { border: 1px solid var(--burgundy); border-radius: 3px; padding: 11px 22px; background: var(--burgundy); color: #fff; margin: 8px 6px; letter-spacing: .5px; transition: .2s; }
+.feature-btn:hover { background: #64222f; }
+.feature-btn:disabled { opacity: .5; cursor: default; }
+.sync-state { font-size: 14px; color: var(--muted); margin-top: 14px; }
+
+.list { text-align: left; margin-top: 20px; }
+.entry { background: var(--ivory); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; margin: 10px 0; }
+.entry h3 { font-size: 17px; margin: 4px 0; }
+.entry p { color: #5a4c48; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+.entry-meta { display: flex; justify-content: space-between; gap: 10px; color: var(--rose); font-size: 15px; }
+.entry small { color: var(--muted); font-size: 14px; }
+
+.inline-form { display: flex; gap: 8px; align-items: center; }
+.inline-form .field { flex: 1; }
+
+.bucket-item { display: flex; gap: 12px; align-items: center; background: var(--ivory); border: 1px solid var(--line); border-radius: 4px; padding: 12px; margin: 8px 0; }
+.bucket-item.done { opacity: .65; }
+.bucket-item.done strong { text-decoration: line-through; }
+.bucket-item strong, .bucket-item small { display: block; }
+.bucket-item small { color: var(--muted); font-size: 14px; }
+.bucket-check { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--gold); background: transparent; color: var(--burgundy); font-size: 20px; }
+
+.capsule-item { display: flex; gap: 14px; }
+.capsule-icon { font-size: 28px; }
+
+.mood-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; margin: 10px 0; }
+.mood-btn { border: 2px solid transparent; border-radius: 4px; background: var(--ivory); padding: 9px 4px; font-size: 22px; }
+.mood-btn.selected, .mood-btn:hover { border-color: var(--gold); }
+
+.checkin-item { display: flex; gap: 12px; }
+.checkin-item > span { font-size: 26px; }
+
+.timeline { text-align: left; margin-top: 20px; }
+.timeline-item { position: relative; padding: 0 0 22px 26px; border-left: 1px solid var(--gold); margin-left: 10px; }
+.timeline-item:last-child { border-left-color: transparent; }
+.timeline-item::before { content: "❦"; position: absolute; left: -10px; top: -2px; background: var(--paper); color: var(--gold); font-size: 16px; }
+.timeline-item h3 { font-size: 17px; margin-bottom: 4px; }
+.timeline-item p { color: var(--muted); line-height: 1.6; }
+
+.question-text { font-family: var(--display); color: var(--ink); font-size: 20px; line-height: 1.6; }
+
+/* ---------- Toast ---------- */
+.toast {
+    position: fixed; z-index: 300000; left: 50%; bottom: 22px; width: min(92vw, 480px);
+    transform: translate(-50%, 24px); opacity: 0; pointer-events: none;
+    padding: 14px 18px; text-align: center; border-radius: 4px;
+    background: #3a1a24; color: #f3e6d8; border: 1px solid var(--gold);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, .3); transition: .25s;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Dark pages ---------- */
+.darkPage { background: radial-gradient(circle at top, #4a1d2a, #170a10); color: #f3e6d8; }
+.darkPage h1, .darkPage h2 { color: #f3e6d8; }
+.dark-content { width: min(750px, 95%); margin: auto; text-align: center; padding-top: 30px; }
+.dark-content h1 { font-size: 52px; margin-bottom: 18px; }
+.typewriter { max-width: 640px; margin: 25px auto; padding: 30px; border: 1px solid rgba(176, 141, 87, .5); border-radius: 4px; line-height: 2; font-size: 20px; }
+.letter { max-width: 750px; margin: 25px auto; padding: 36px 30px; text-align: left; border: 1px solid rgba(176, 141, 87, .5); border-radius: 4px; background: rgba(255, 255, 255, .04); }
+.letter h2 { margin-bottom: 22px; color: #e3c28e; }
+.letter p { line-height: 1.9; margin-bottom: 14px; }
+
+#brokenHeart { display: inline-block; font-size: 100px; margin: 30px; cursor: pointer; transition: .4s; }
+#brokenHeart:hover { transform: scale(1.1); }
+#heartText { min-height: 48px; margin-bottom: 20px; }
+
+.lesson { max-width: 600px; margin: 14px auto; padding: 18px; background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 3px; box-shadow: var(--shadow); font-size: 20px; }
+
+.final-content { width: min(700px, 95%); margin: auto; text-align: center; }
+.final-content h1 { font-size: clamp(34px, 8vw, 60px); line-height: 1.3; margin-bottom: 24px; color: #e8c9a0; }
+.final-content p { margin: 12px 0; font-size: 20px; }
+.final-content h2 { margin: 20px 0; color: #e3c28e; }
+.finalHeart { font-size: 90px; margin: 26px; animation: beat 1.4s infinite; }
+@keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.14); } }
+.always { font-family: var(--display); color: #e3c28e; font-size: 24px !important; }
+
+/* ---------- Floating hearts ---------- */
+#hearts { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+.heart { position: absolute; bottom: -40px; color: #d9a3ae; opacity: .7; animation: floatHeart linear forwards; }
+@keyframes floatHeart { from { transform: translateY(0) rotate(0); opacity: 0; } 10% { opacity: .7; } to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+
+.fly { position: fixed; bottom: 10px; z-index: 100001; pointer-events: none; animation: flyUp 2.6s ease-out forwards; }
+@keyframes flyUp { 0% { transform: translateY(0) scale(.6); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-85vh) translateX(40px) scale(1.3) rotate(18deg); opacity: 0; } }
+
+/* ---------- Lightbox ---------- */
+#lightbox { display: none; position: fixed; inset: 0; z-index: 150000; background: rgba(0, 0, 0, .92); align-items: center; justify-content: center; gap: 20px; padding: 20px; }
+#lightbox.active { display: flex; }
+#lightboxImg { max-width: 75vw; max-height: 82vh; object-fit: contain; border: 6px solid #fff; border-radius: 2px; }
+#lightbox button { width: 44px; height: 44px; border: 1px solid var(--gold); border-radius: 50%; background: rgba(0, 0, 0, .4); color: #fff; font-size: 22px; }
+#closeLightbox { position: absolute; top: 22px; right: 22px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 700px) {
+    body { font-size: 17px; }
+    .page { padding: 30px 14px 60px; }
+    #timer { grid-template-columns: repeat(2, 1fr); }
+    .time-box:last-child { grid-column: 1 / -1; width: 50%; margin: auto; }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .cards.grid-3 { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gallery img { height: 180px; }
+    .year-card { flex-direction: column; text-align: center; }
+    .music-player { justify-content: center; }
+    .inline-form { flex-direction: column; }
+    .inline-form .field, .inline-form .feature-btn { width: 100%; }
+    .letter-paper { padding: 28px 20px; }
+}
+@media (max-width: 420px) {
+    .grid-3 { gap: 9px; }
+    .tile { min-height: 150px; padding: 16px 8px; }
+    .gallery img { height: 145px; }
+    .mood-grid { grid-template-columns: repeat(3, 1fr); }
+    .finalHeart { font-size: 70px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
