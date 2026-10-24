@@ -1,1659 +1,1098 @@
-/* ============================================================
-   GLOBAL
-============================================================ */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Poppins", sans-serif;
-    background: #fff7fa;
-    color: #444;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-button,
-input,
-textarea {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-
-/* ============================================================
-   PAGES
-============================================================ */
-
-.page {
-    display: none;
-    min-height: 100vh;
-    padding: 45px 20px 70px;
-    position: relative;
-    z-index: 2;
-}
-
-.page.active {
-    display: block;
-}
-
-.page-content {
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
-}
-
-
-/* ============================================================
-   WELCOME
-============================================================ */
-
-#welcome {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-#welcome.active {
-    display: flex;
-}
-
-.welcome-box {
-    width: min(500px, 92%);
-    padding: 45px 30px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 20px 50px rgba(255, 79, 139, 0.13);
-}
-
-.anniversary-badge {
-    display: inline-block;
-    padding: 8px 18px;
-    border-radius: 50px;
-    background: #fff0f5;
-    color: #ff4f8b;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.welcome-box h1 {
-    color: #ff4f8b;
-    font-size: clamp(32px, 7vw, 52px);
-    margin-bottom: 20px;
-}
-
-.subtitle {
-    color: #666;
-    line-height: 1.8;
-    font-size: 16px;
-    margin-bottom: 30px;
-}
-
-
-/* ============================================================
-   BUTTONS
-============================================================ */
-
-.main-btn {
-    display: block;
-    width: min(330px, 90%);
-    margin: 14px auto;
-    border: none;
-    border-radius: 50px;
-    padding: 15px 25px;
-    background: #ff4f8b;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    transition: 0.25s ease;
-    box-shadow: 0 8px 20px rgba(255, 79, 139, 0.20);
-}
-
-.main-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(255, 79, 139, 0.28);
-}
-
-.main-btn.dark {
-    background: #555;
-}
-
-.main-btn:active {
-    transform: scale(0.97);
-}
-
-
-/* ============================================================
-   ANNIVERSARY
-============================================================ */
-
-.anniversary-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.anniversary-title h1 {
-    color: #ff4f8b;
-    font-size: clamp(28px, 6vw, 45px);
-    font-weight: 700;
-}
-
-.anniversary-title span {
-    font-size: 28px;
-}
-
-.anniversary-subtitle {
-    color: #777;
-    line-height: 1.8;
-    margin-bottom: 25px;
-}
-
-
-/* ============================================================
-   LOVE MESSAGE
-============================================================ */
-
-.love-message-card {
-    background: white;
-    border-radius: 24px;
-    padding: 25px;
-    margin: 20px auto 30px;
-    max-width: 600px;
-    min-height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-}
-
-.love-message-card p {
-    font-size: 18px;
-    color: #555;
-}
-
-
-/* ============================================================
-   COUNTER
-============================================================ */
-
-.counter {
-    max-width: 700px;
-    margin: 30px auto;
-    padding: 30px 20px;
-    background: white;
-    border-radius: 28px;
-    box-shadow: 0 15px 40px rgba(255, 79, 139, 0.10);
-}
-
-.counter h2 {
-    color: #ff4f8b;
-    font-size: 25px;
-    margin-bottom: 5px;
-}
-
-.counter-small {
-    color: #999;
-    font-size: 13px;
-    margin-bottom: 25px;
-}
-
-#timer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-}
-
-.time-box {
-    background: #fff5f8;
-    border-radius: 18px;
-    padding: 16px 8px;
-    min-height: 90px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.time-box span {
-    color: #ff4f8b;
-    font-size: 30px;
-    line-height: 1;
-    font-weight: 700;
-}
-
-.time-box small {
-    color: #666;
-    font-size: 11px;
-    margin-top: 9px;
-}
-
-
-/* ============================================================
-   365 CARD
-============================================================ */
-
-.year-card {
-    max-width: 650px;
-    margin: 35px auto;
-    padding: 25px;
-    background: linear-gradient(
-        135deg,
-        #fff,
-        #fff1f6
-    );
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    text-align: left;
-    box-shadow: 0 15px 35px rgba(255, 79, 139, 0.09);
-}
-
-.year-number {
-    min-width: 120px;
-    color: #ff4f8b;
-    font-size: 55px;
-    font-weight: 700;
-    text-align: center;
-}
-
-.year-text h3 {
-    color: #ff4f8b;
-    margin-bottom: 8px;
-}
-
-.year-text p {
-    color: #666;
-    line-height: 1.7;
-}
-
-
-/* ============================================================
-   PRIVATE PLACE
-============================================================ */
-
-.private-place-section {
-    max-width: 850px;
-    margin: 45px auto;
-    padding: 30px 22px;
-    background: linear-gradient(
-        145deg,
-        #ffffff,
-        #fff0f6
-    );
-    border-radius: 30px;
-    box-shadow: 0 18px 45px rgba(255, 79, 139, 0.11);
-    border: 1px solid rgba(255, 79, 139, 0.08);
-}
-
-.private-place-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.private-place-title > span {
-    font-size: 42px;
-}
-
-.private-place-title h2 {
-    color: #ff4f8b;
-    margin-bottom: 4px;
-}
-
-.private-place-title p {
-    color: #888;
-    font-size: 13px;
-}
-
-.private-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-}
-
-.private-card {
-    border: none;
-    background: white;
-    border-radius: 22px;
-    padding: 22px 14px;
-    min-height: 175px;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.055);
-    transition: 0.25s ease;
-    color: #444;
-}
-
-.private-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 35px rgba(255, 79, 139, 0.16);
-}
-
-.private-card:active {
-    transform: scale(0.97);
-}
-
-.private-icon {
-    font-size: 35px;
-    margin-bottom: 10px;
-}
-
-.private-card h3 {
-    color: #ff4f8b;
-    font-size: 15px;
-    margin-bottom: 7px;
-}
-
-.private-card p {
-    color: #888;
-    font-size: 12px;
-    line-height: 1.6;
-}
-
-
-/* ============================================================
-   SECTION TITLES
-============================================================ */
-
-.section-title {
-    color: #ff4f8b;
-    margin-top: 40px;
-    margin-bottom: 5px;
-    font-size: 28px;
-}
-
-.section-subtitle {
-    color: #888;
-    margin-bottom: 20px;
-}
-
-
-/* ============================================================
-   GALLERY
-============================================================ */
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    max-width: 750px;
-    margin: 20px auto 35px;
-}
-
-.gallery img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.35s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
-
-.gallery img:hover {
-    transform: scale(1.03);
-}
-
-
-/* ============================================================
-   MUSIC
-============================================================ */
-
-.music-player {
-    max-width: 650px;
-    margin: 30px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.music-cover {
-    width: 55px;
-    height: 55px;
-    background: #fff0f5;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-}
-
-.music-cover.playing {
-    animation: musicSpin 3s linear infinite;
-}
-
-@keyframes musicSpin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.music-info {
-    flex: 1;
-    text-align: left;
-}
-
-.music-info h3 {
-    font-size: 15px;
-    color: #444;
-}
-
-.music-info p {
-    font-size: 12px;
-    color: #ff4f8b;
-}
-
-.play-btn {
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #ff4f8b;
-    color: white;
-    font-size: 17px;
-}
-
-#progress {
-    width: 100%;
-    accent-color: #ff4f8b;
-}
-
-.volume-box {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-#volume {
-    width: 90px;
-    accent-color: #ff4f8b;
-}
-
-
-/* ============================================================
-   CARDS
-============================================================ */
-
-.activities {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin: 30px auto;
-    max-width: 850px;
-}
-
-.card {
-    background: white;
-    padding: 25px 20px;
-    border-radius: 22px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-}
-
-.card-icon {
-    font-size: 30px;
-}
-
-.card h3 {
-    color: #ff4f8b;
-    margin: 12px 0 8px;
-    font-size: 17px;
-}
-
-.card p {
-    color: #777;
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-
-/* ============================================================
-   ANNIVERSARY LETTER
-============================================================ */
-
-.anniversary-letter {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 35px 30px;
-    background: white;
-    border-radius: 28px;
-    text-align: left;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-}
-
-.anniversary-letter h2 {
-    color: #ff4f8b;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.anniversary-letter p {
-    line-height: 1.9;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.special-line {
-    color: #ff4f8b !important;
-    font-size: 19px;
-    font-weight: 700;
-    text-align: center;
-}
-
-
-/* ============================================================
-   LOVE BOX
-============================================================ */
-
-.love-box-section {
-    max-width: 650px;
-    margin: 40px auto;
-    padding: 35px 20px;
-    background: white;
-    border-radius: 28px;
-    box-shadow: 0 15px 40px rgba(255, 79, 139, 0.08);
-}
-
-.love-box-section h2 {
-    color: #ff4f8b;
-}
-
-.love-box-section > p {
-    color: #888;
-    margin: 10px 0 20px;
-}
-
-#giftBox {
-    font-size: 75px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-#giftBox:hover {
-    transform: scale(1.08);
-}
-
-#giftMessage {
-    color: #ff4f8b;
-    font-weight: 600;
-    min-height: 30px;
-    margin-top: 10px;
-}
-
-#countdown {
-    margin-top: 8px;
-    color: #aaa;
-    font-size: 13px;
-}
-
-
-/* ============================================================
-   MESSAGE BOX
-============================================================ */
-
-.message-box {
-    max-width: 650px;
-    margin: 40px auto;
-    padding: 30px 25px;
-    background: white;
-    border-radius: 28px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-}
-
-.message-box h2 {
-    color: #ff4f8b;
-    margin-bottom: 7px;
-}
-
-.message-box > p {
-    color: #888;
-    font-size: 14px;
-    margin-bottom: 18px;
-}
-
-#rymeMessage,
-#passwordInput {
-    display: block;
-    width: 100%;
-    border: 1px solid #f0dce4;
-    background: #fffafd;
-    border-radius: 16px;
-    padding: 14px;
-    outline: none;
-    margin-bottom: 12px;
-}
-
-#rymeMessage {
-    min-height: 140px;
-    resize: vertical;
-}
-
-#rymeMessage:focus,
-#passwordInput:focus {
-    border-color: #ff8db2;
-    box-shadow: 0 0 0 3px rgba(255, 79, 139, 0.08);
-}
-
-#sendMessageBtn {
-    width: 100%;
-    border: none;
-    border-radius: 50px;
-    padding: 14px;
-    background: #ff4f8b;
-    color: white;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-#sendStatus {
-    min-height: 24px;
-    margin-top: 12px;
-    font-size: 13px;
-}
-
-
-/* ============================================================
-   PRIVATE MODAL
-============================================================ */
-
-.feature-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(30, 10, 20, 0.72);
-    z-index: 100000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
-    backdrop-filter: blur(7px);
-}
-
-.feature-modal.active {
-    display: flex;
-}
-
-.feature-modal-box {
-    position: relative;
-    width: min(620px, 96%);
-    max-height: 90vh;
-    overflow-y: auto;
-    background: white;
-    border-radius: 30px;
-    padding: 35px 25px 28px;
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
-    animation: modalIn 0.25s ease;
-}
-
-@keyframes modalIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.97);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.feature-close {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    width: 38px;
-    height: 38px;
-    border: none;
-    border-radius: 50%;
-    background: #fff0f5;
-    color: #ff4f8b;
-    font-size: 18px;
-}
-
-.feature-content {
-    text-align: center;
-}
-
-.feature-content .big-icon {
-    font-size: 55px;
-    margin-bottom: 8px;
-}
-
-.feature-content h2 {
-    color: #ff4f8b;
-    margin-bottom: 8px;
-}
-
-.feature-content .feature-subtitle {
-    color: #888;
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-.feature-message {
-    background: #fff5f8;
-    border-radius: 20px;
-    padding: 22px;
-    color: #555;
-    line-height: 1.8;
-    margin: 18px 0;
-}
-
-.feature-btn {
-    border: none;
-    border-radius: 50px;
-    padding: 13px 22px;
-    background: #ff4f8b;
-    color: white;
-    font-weight: 600;
-    margin: 7px;
-    transition: 0.2s;
-}
-
-.feature-btn:hover {
-    transform: translateY(-2px);
-}
-
-.feature-btn.secondary {
-    background: #f4e9ed;
-    color: #555;
-}
-
-.feature-input,
-.feature-textarea {
-    width: 100%;
-    border: 1px solid #eedce3;
-    background: #fffafd;
-    border-radius: 15px;
-    padding: 13px;
-    outline: none;
-    margin: 7px 0;
-}
-
-.feature-textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.feature-input:focus,
-.feature-textarea:focus {
-    border-color: #ff8db2;
-}
-
-.note-list {
-    text-align: left;
-    margin-top: 20px;
-}
-
-.note-item {
-    background: #fff6f9;
-    border-radius: 17px;
-    padding: 15px;
-    margin: 10px 0;
-    position: relative;
-}
-
-.note-item small {
-    display: block;
-    color: #aaa;
-    margin-bottom: 7px;
-}
-
-.note-item p {
-    color: #555;
-    white-space: pre-wrap;
-    line-height: 1.7;
-    padding-right: 35px;
-}
-
-.delete-note {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background: transparent;
-    color: #d88;
-    font-size: 15px;
-}
-
-.question-box {
-    background: #fff5f8;
-    padding: 22px;
-    border-radius: 20px;
-    margin: 20px 0;
-}
-
-.question-text {
-    color: #555;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.7;
-}
-
-.daily-box {
-    background: linear-gradient(
-        135deg,
-        #fff4f8,
-        #fff
-    );
-    border-radius: 22px;
-    padding: 25px;
-    margin: 20px 0;
-}
-
-.daily-box h3 {
-    color: #ff4f8b;
-    margin-bottom: 10px;
-}
-
-.daily-box p {
-    color: #555;
-    line-height: 1.8;
-}
-
-.secret-box {
-    background: #fff7fa;
-    border-radius: 22px;
-    padding: 25px;
-}
-
-.secret-success {
-    padding: 25px;
-    background: #fff0f5;
-    border-radius: 22px;
-}
-
-.secret-success h3 {
-    color: #ff4f8b;
-    margin-bottom: 12px;
-}
-
-.timeline {
-    text-align: left;
-    margin-top: 20px;
-}
-
-.timeline-item {
-    position: relative;
-    padding: 0 0 22px 25px;
-    border-left: 2px solid #ffb2c9;
-    margin-left: 10px;
-}
-
-.timeline-item:last-child {
-    border-left-color: transparent;
-}
-
-.timeline-item::before {
-    content: "❤️";
-    position: absolute;
-    left: -12px;
-    top: 0;
-    background: white;
-    border-radius: 50%;
-    font-size: 15px;
-}
-
-.timeline-item h3 {
-    color: #ff4f8b;
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.timeline-item p {
-    color: #777;
-    line-height: 1.7;
-    font-size: 14px;
-}
-
-.streak-number {
-    font-size: 60px;
-    color: #ff4f8b;
-    font-weight: 700;
-    margin: 10px;
-}
-
-.kiss {
-    position: fixed;
-    bottom: 10px;
-    font-size: 30px;
-    pointer-events: none;
-    z-index: 100001;
-    animation: kissFly 2.2s ease-out forwards;
-}
-
-@keyframes kissFly {
-    0% {
-        transform: translateY(0) scale(0.6) rotate(0);
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-80vh) translateX(60px) scale(1.4) rotate(20deg);
-        opacity: 0;
-    }
-}
-
-
-/* ============================================================
-   DARK PAGES
-============================================================ */
-
-.darkPage {
-    background:
-        radial-gradient(
-            circle at top,
-            #371c2a,
-            #140b11
-        );
-    color: white;
-}
-
-.dark-content {
-    width: min(750px, 95%);
-    margin: auto;
-    text-align: center;
-    padding-top: 30px;
-}
-
-.dark-content h1 {
-    font-size: 55px;
-    margin-bottom: 20px;
-}
-
-.typewriter {
-    max-width: 650px;
-    margin: 25px auto;
-    padding: 30px;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.07);
-    line-height: 2;
-}
-
-.letter {
-    max-width: 750px;
-    margin: 25px auto;
-    padding: 35px 30px;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    text-align: left;
-}
-
-.letter h2 {
-    color: #ff7eaa;
-    margin-bottom: 25px;
-}
-
-.letter p {
-    line-height: 2;
-    margin-bottom: 16px;
-}
-
-
-/* ============================================================
-   BROKEN HEART
-============================================================ */
-
-#brokenHeart {
-    font-size: 100px;
-    cursor: pointer;
-    margin: 30px;
-    transition: 0.4s;
-    display: inline-block;
-}
-
-#brokenHeart:hover {
-    transform: scale(1.1);
-}
-
-#heartText {
-    min-height: 40px;
-    margin-bottom: 20px;
-}
-
-
-/* ============================================================
-   LESSONS
-============================================================ */
-
-.lesson {
-    max-width: 600px;
-    margin: 15px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 18px;
-    color: #555;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-}
-
-
-/* ============================================================
-   FINAL
-============================================================ */
-
-.final-content {
-    width: min(700px, 95%);
-    margin: auto;
-    text-align: center;
-}
-
-.final-content h1 {
-    color: #ff6f9f;
-    font-size: clamp(35px, 8vw, 65px);
-    line-height: 1.3;
-    margin-bottom: 25px;
-}
-
-.final-stars {
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-.finalHeart {
-    font-size: 100px;
-    margin: 30px;
-    animation: heartbeat 1.3s infinite;
-}
-
-@keyframes heartbeat {
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.15);
-    }
-}
-
-.final-content h2 {
-    color: #ff7eaa;
-    margin: 20px 0;
-}
-
-.final-content p {
-    margin: 12px 0;
-}
-
-.always {
-    font-size: 22px;
-    color: #ff7eaa !important;
-    font-weight: 600;
-}
-
-
-/* ============================================================
-   FLOATING HEARTS
-============================================================ */
-
-#hearts {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.heart {
-    position: absolute;
-    bottom: -40px;
-    color: #ff9fbd;
-    animation: floatHeart linear forwards;
-    opacity: 0.8;
-}
-
-@keyframes floatHeart {
-
-    from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 0.8;
-    }
-
-    to {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-
-/* ============================================================
-   LIGHTBOX
-============================================================ */
-
-#lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.90);
-    z-index: 99999;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    padding: 20px;
-}
-
-#lightbox.active {
-    display: flex;
-}
-
-#lightboxImg {
-    max-width: 75vw;
-    max-height: 80vh;
-    object-fit: contain;
-    border-radius: 15px;
-}
-
-#lightbox button {
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #ff4f8b;
-    color: white;
-    font-size: 18px;
-}
-
-#closeLightbox {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-}
-
-
-/* ============================================================
-   RESPONSIVE
-============================================================ */
-
-@media (max-width: 850px) {
-
-    .private-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-@media (max-width: 700px) {
-
-    .page {
-        padding: 30px 15px 60px;
-    }
-
-    #timer {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .time-box:last-child {
-        grid-column: 1 / -1;
-        width: 50%;
-        margin: auto;
-    }
-
-    .activities {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .gallery img {
-        height: 180px;
-    }
-
-    .year-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .year-number {
-        font-size: 48px;
-    }
-
-    .music-player {
-        justify-content: center;
-    }
-
-    .music-info {
-        min-width: 130px;
-    }
-
-    .anniversary-title {
-        flex-wrap: wrap;
-    }
-
-    .anniversary-title h1 {
-        font-size: 30px;
-    }
-
-    #lightbox {
-        gap: 8px;
-    }
-
-    #lightboxImg {
-        max-width: 75vw;
-    }
-
-    .private-place-section {
-        padding: 25px 12px;
-    }
-
-    .private-place-title {
-        text-align: left;
-    }
-
-    .private-place-title > span {
-        font-size: 35px;
-    }
-
-}
-
-@media (max-width: 520px) {
-
-    .private-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-
-    .private-card {
-        min-height: 155px;
-        padding: 18px 9px;
-    }
-
-    .private-icon {
-        font-size: 30px;
-    }
-
-    .private-card h3 {
-        font-size: 14px;
-    }
-
-    .private-card p {
-        font-size: 11px;
-    }
-
-}
-
-@media (max-width: 420px) {
-
-    .welcome-box {
-        padding: 35px 20px;
-    }
-
-    .counter {
-        padding: 25px 12px;
-    }
-
-    .time-box span {
-        font-size: 26px;
-    }
-
-    .time-box {
-        min-height: 80px;
-    }
-
-    .gallery img {
-        height: 145px;
-        border-radius: 15px;
-    }
-
-    .anniversary-letter {
-        padding: 25px 20px;
-    }
-
-    .finalHeart {
-        font-size: 80px;
-    }
-
-    .feature-modal-box {
-        padding: 32px 18px 22px;
-    }
-
-}
-
-
-/* ============================================================
-   REDUCED MOTION
-============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-    }
-
-}
-/* ============================================================
-   SHARED STORY HUB
-============================================================ */
-
-.shared-hub {
-    margin: 45px 0 20px;
-    padding: 28px;
-    border-radius: 30px;
-    background: linear-gradient(135deg, rgba(255, 246, 250, .98), rgba(255, 255, 255, .98));
-    border: 1px solid #f5dce6;
-    box-shadow: 0 18px 50px rgba(190, 80, 120, .08);
-}
-
-.shared-hub-title {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 22px;
-    text-align: left;
-}
-
-.shared-hub-title > span {
-    font-size: 38px;
-}
-
-.shared-hub-title h2 {
-    margin: 0;
-    color: #ff4f8b;
-}
-
-.shared-hub-title p {
-    margin: 5px 0 0;
-    color: #888;
-    font-size: 13px;
-}
-
-.shared-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-.shared-card {
-    background: rgba(255, 255, 255, .92);
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 22px 0;
-}
-
-.stat-card {
-    padding: 18px 10px;
-    border-radius: 18px;
-    background: #fff5f8;
-    border: 1px solid #f8dfe8;
-}
-
-.stat-card strong {
-    display: block;
-    color: #ff4f8b;
-    font-size: 30px;
-}
-
-.stat-card span {
-    color: #888;
-    font-size: 11px;
-}
-
-.memory-list,
-.bucket-list,
-.capsule-list,
-.checkin-list,
-.jar-list {
-    text-align: left;
-    margin-top: 20px;
-}
-
-.memory-item,
-.capsule-item,
-.jar-note {
-    background: #fff7fa;
-    border: 1px solid #f6e0e8;
-    border-radius: 19px;
-    padding: 16px;
-    margin: 10px 0;
-}
-
-.memory-item h3,
-.capsule-item h3 {
-    color: #ff4f8b;
-    margin: 6px 0;
-}
-
-.memory-item p,
-.capsule-item p,
-.jar-note p {
-    color: #666;
-    line-height: 1.7;
-    white-space: pre-wrap;
-}
-
-.memory-meta {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    color: #ff7eaa;
-    font-size: 12px;
-}
-
-.memory-meta small,
-.capsule-item small,
-.jar-note small {
-    color: #aaa;
-}
-
-.inline-form {
-    display: flex;
-    gap: 7px;
-    align-items: center;
-}
-
-.inline-form .feature-input {
-    flex: 1;
-}
-
-.bucket-item {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    padding: 13px;
-    margin: 8px 0;
-    background: #fff8fa;
-    border-radius: 17px;
-    border: 1px solid #f4e0e7;
-}
-
-.bucket-item.done {
-    opacity: .68;
-}
-
-.bucket-item.done strong {
-    text-decoration: line-through;
-}
-
-.bucket-check {
-    flex: 0 0 auto;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: #ffedf4;
-    color: #ff4f8b;
-    font-size: 21px;
-}
-
-.bucket-item strong,
-.bucket-item small {
-    display: block;
-}
-
-.bucket-item small {
-    margin-top: 4px;
-    color: #aaa;
-    font-size: 11px;
-}
-
-.capsule-item {
-    display: flex;
-    gap: 14px;
-}
-
-.capsule-icon {
-    font-size: 30px;
-}
-
-.capsule-item.locked {
-    background: linear-gradient(135deg, #fff5f8, #f9f3ff);
-}
-
-.checkin-item {
-    display: flex;
-    gap: 12px;
-    padding: 13px;
-    margin: 8px 0;
-    background: #fff8fa;
-    border-radius: 17px;
-}
-
-.checkin-item > span {
-    font-size: 28px;
-}
-
-.checkin-item strong {
-    color: #ff4f8b;
-}
-
-.checkin-item p {
-    margin: 3px 0;
-    color: #666;
-}
-
-.checkin-item small {
-    color: #aaa;
-    font-size: 10px;
-}
-
-.mood-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 7px;
-    margin: 10px 0;
-}
-
-.mood-btn {
-    border: 2px solid transparent;
-    border-radius: 15px;
-    background: #fff5f8;
-    padding: 10px 5px;
-    font-size: 22px;
-}
-
-.mood-btn.selected,
-.mood-btn:hover {
-    border-color: #ff8db2;
-    transform: translateY(-2px);
-}
-
-.jar-note {
-    display: flex;
-    gap: 12px;
-}
-
-.jar-note > span {
-    font-size: 25px;
-}
-
-.jar-note p {
-    margin: 6px 0 0;
-}
-
-@media (max-width: 700px) {
-    .shared-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .inline-form {
-        flex-direction: column;
-    }
-
-    .inline-form .feature-input,
-    .inline-form .feature-btn {
-        width: 100%;
-    }
-}
-
-@media (max-width: 420px) {
-    .shared-hub {
-        padding: 20px 10px;
-    }
-
-    .shared-grid {
-        gap: 8px;
-    }
-
-    .stats-grid {
-        gap: 7px;
-    }
-
-    .mood-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Live shared updates and in-site notifications */
-.live-sync-notice {
-  position: fixed; z-index: 10050; left: 50%; bottom: 22px;
-  transform: translate(-50%, 24px); opacity: 0; pointer-events: none;
-  display: flex; align-items: center; gap: 10px; width: min(92vw, 560px);
-  padding: 14px 16px; border: 1px solid rgba(255,255,255,.28);
-  border-radius: 18px; background: rgba(54, 25, 43, .96); color: #fff;
-  box-shadow: 0 16px 45px rgba(0,0,0,.28); backdrop-filter: blur(14px);
-  transition: opacity .25s ease, transform .25s ease; font-size: 14px;
-}
-.live-sync-notice.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
-.live-sync-icon { font-size: 22px; flex: 0 0 auto; }
-#liveSyncNoticeText { flex: 1; }
-#enableLiveNotifications, #dismissLiveNotice { border: 0; cursor: pointer; color: #fff; }
-#enableLiveNotifications { background: #d94f83; border-radius: 999px; padding: 8px 11px; white-space: nowrap; font-size: 12px; }
-#dismissLiveNotice { background: transparent; font-size: 22px; opacity: .8; padding: 0 2px; }
-@media (max-width: 480px) {
-  .live-sync-notice { gap: 8px; padding: 12px; font-size: 13px; }
-  #enableLiveNotifications { font-size: 11px; padding: 7px 9px; }
-}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>One Year of Us ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- MUSIC -->
+    <audio id="music" loop>
+        <source src="music/bali-maak.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- FLOATING HEARTS -->
+    <div id="hearts"></div>
+
+
+    <!-- =========================================================
+         WELCOME
+    ========================================================== -->
+
+    <section id="welcome" class="page active">
+
+        <div class="welcome-box">
+
+            <div class="anniversary-badge">
+                ❤️ 1 YEAR ❤️
+            </div>
+
+            <h1>
+                One Year of Us 🌸
+            </h1>
+
+            <p class="subtitle">
+                One beautiful year...
+                <br>
+                countless memories, smiles & moments with you. ❤️
+            </p>
+
+            <button id="happyBtn" class="main-btn">
+                💖 Celebrate With Me
+            </button>
+
+            <button id="sadBtn" class="main-btn dark">
+                🌙 Take a Moment
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         HAPPY PAGE
+    ========================================================== -->
+
+    <section id="happy" class="page">
+
+        <div class="page-content">
+
+            <div class="anniversary-title">
+                <span>🌷</span>
+
+                <h1>
+                    Happy 1st Anniversary
+                </h1>
+
+                <span>❤️</span>
+            </div>
+
+            <p class="anniversary-subtitle">
+                One year ago, our story began...
+                <br>
+                and I would choose you all over again.
+            </p>
+
+
+            <!-- RANDOM LOVE MESSAGE -->
+
+            <div class="love-message-card">
+
+                <p id="loveMessage">
+                    You are my favorite person ❤️
+                </p>
+
+            </div>
+
+
+            <!-- COUNTER -->
+
+            <div class="counter">
+
+                <h2>
+                    Since We Met ❤️
+                </h2>
+
+                <p class="counter-small">
+                    Our first year together
+                </p>
+
+                <div id="timer">
+
+                    <div class="time-box">
+                        <span id="years">0</span>
+                        <small>Years</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="days">0</span>
+                        <small>Days</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="hours">0</span>
+                        <small>Hours</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="minutes">0</span>
+                        <small>Minutes</small>
+                    </div>
+
+                    <div class="time-box">
+                        <span id="seconds">0</span>
+                        <small>Seconds</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 365 DAYS -->
+
+            <div class="year-card">
+
+                <div class="year-number">
+                    365
+                </div>
+
+                <div class="year-text">
+
+                    <h3>
+                        Days of Us ❤️
+                    </h3>
+
+                    <p>
+                        365 days of memories,
+                        conversations, smiles,
+                        laughs and beautiful moments.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 OUR PRIVATE PLACE
+            ====================================================== -->
+
+            <div class="private-place-section">
+
+                <div class="private-place-title">
+                    <span>🔐</span>
+
+                    <div>
+                        <h2>
+                            Our Private Place
+                        </h2>
+
+                        <p>
+                            A little corner of the internet
+                            that feels like ours. ❤️
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="private-grid">
+
+
+                    <!-- MISS YOU -->
+
+                    <button class="private-card"
+                        data-feature="missYou">
+
+                        <div class="private-icon">
+                            🥺❤️
+                        </div>
+
+                        <h3>
+                            I Miss You
+                        </h3>
+
+                        <p>
+                            For the moments you miss me.
+                        </p>
+
+                    </button>
+
+
+                    <!-- DAILY -->
+
+                    <button class="private-card"
+                        data-feature="daily">
+
+                        <div class="private-icon">
+                            🌸
+                        </div>
+
+                        <h3>
+                            Today's Surprise
+                        </h3>
+
+                        <p>
+                            One little surprise every day.
+                        </p>
+
+                    </button>
+
+
+                    <!-- QUESTIONS -->
+
+                    <button class="private-card"
+                        data-feature="questions">
+
+                        <div class="private-icon">
+                            💬
+                        </div>
+
+                        <h3>
+                            Our Questions
+                        </h3>
+
+                        <p>
+                            Questions only we understand.
+                        </p>
+
+                    </button>
+
+
+                    <!-- NOTES -->
+
+                    <button class="private-card"
+                        data-feature="notes">
+
+                        <div class="private-icon">
+                            💌
+                        </div>
+
+                        <h3>
+                            Our Love Notes
+                        </h3>
+
+                        <p>
+                            Leave something from your heart.
+                        </p>
+
+                    </button>
+
+
+                    <!-- SECRET -->
+
+                    <button class="private-card"
+                        data-feature="secret">
+
+                        <div class="private-icon">
+                            🔐
+                        </div>
+
+                        <h3>
+                            Secret Room
+                        </h3>
+
+                        <p>
+                            A tiny room just for us.
+                        </p>
+
+                    </button>
+
+
+                    <!-- TIMELINE -->
+
+                    <button class="private-card"
+                        data-feature="timeline">
+
+                        <div class="private-icon">
+                            🕰️
+                        </div>
+
+                        <h3>
+                            Our Story
+                        </h3>
+
+                        <p>
+                            Little chapters of us.
+                        </p>
+
+                    </button>
+
+
+                    <!-- STREAK -->
+
+                    <button class="private-card"
+                        data-feature="streak">
+
+                        <div class="private-icon">
+                            🔥
+                        </div>
+
+                        <h3>
+                            Love Streak
+                        </h3>
+
+                        <p>
+                            Don't miss a day together.
+                        </p>
+
+                    </button>
+
+
+                    <!-- MESSAGE -->
+
+                    <button class="private-card"
+                        data-feature="message">
+
+                        <div class="private-icon">
+                            📩
+                        </div>
+
+                        <h3>
+                            Send Me a Message
+                        </h3>
+
+                        <p>
+                            This one really reaches me.
+                        </p>
+
+                    </button>
+
+                </div>
+
+                <div class="shared-hub">
+
+                    <div class="shared-hub-title">
+                        <span>✨</span>
+                        <div>
+                            <h2>Our Living Story</h2>
+                            <p>Things we add here stay in our shared little world. ❤️</p>
+                        </div>
+                    </div>
+
+                    <div class="shared-grid">
+                        <button class="private-card shared-card" data-feature="dashboard">
+                            <div class="private-icon">📊</div>
+                            <h3>Our Dashboard</h3>
+                            <p>See how our story is growing.</p>
+                        </button>
+
+                        <button class="private-card shared-card" data-feature="diary">
+                            <div class="private-icon">📖</div>
+                            <h3>Our Diary</h3>
+                            <p>Keep moments, feelings and little stories.</p>
+                        </button>
+
+                        <button class="private-card shared-card" data-feature="bucket">
+                            <div class="private-icon">🎯</div>
+                            <h3>Our Dreams</h3>
+                            <p>Dream → Plan → Done.</p>
+                        </button>
+
+                        <button class="private-card shared-card" data-feature="capsule">
+                            <div class="private-icon">🔒</div>
+                            <h3>Time Capsule</h3>
+                            <p>Write to our future selves.</p>
+                        </button>
+
+                        <button class="private-card shared-card" data-feature="checkin">
+                            <div class="private-icon">🌙</div>
+                            <h3>Today's Mood</h3>
+                            <p>Leave a tiny check-in for each other.</p>
+                        </button>
+
+                        <button class="private-card shared-card" data-feature="memoryJar">
+                            <div class="private-icon">🫙</div>
+                            <h3>Memory Jar</h3>
+                            <p>Collect the little things we don't want to lose.</p>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 MEMORIES
+            ====================================================== -->
+
+            <h2 class="section-title">
+                Our First Year 📸
+            </h2>
+
+            <p class="section-subtitle">
+                Some of the moments I never want to forget.
+            </p>
+
+            <div class="gallery">
+
+                <img src="photos/1.jpeg" alt="Memory 1">
+                <img src="photos/2.jpeg" alt="Memory 2">
+                <img src="photos/3.jpeg" alt="Memory 3">
+                <img src="photos/4.jpeg" alt="Memory 4">
+                <img src="photos/5.jpeg" alt="Memory 5">
+                <img src="photos/6.jpeg" alt="Memory 6">
+
+            </div>
+
+
+            <!-- MUSIC -->
+
+            <div class="music-player">
+
+                <div class="music-cover">
+                    🎵
+                </div>
+
+                <div class="music-info">
+
+                    <h3>
+                        cest pas joli
+                    </h3>
+
+                    <p>
+                        Our Song ❤️
+                    </p>
+
+                </div>
+
+                <button id="playMusic"
+                    class="play-btn">
+                    ▶
+                </button>
+
+                <input
+                    type="range"
+                    id="progress"
+                    value="0"
+                    min="0"
+                    max="100"
+                    step="0.1">
+
+                <div class="volume-box">
+
+                    🔊
+
+                    <input
+                        type="range"
+                        id="volume"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="1">
+
+                </div>
+
+            </div>
+
+
+            <!-- SPECIAL CARDS -->
+
+            <div class="activities">
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        ❤️
+                    </span>
+
+                    <h3>
+                        I Love You More Every Day
+                    </h3>
+
+                    <p>
+                        One year later, and my heart still
+                        chooses you.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        🌹
+                    </span>
+
+                    <h3>
+                        Thank You For Existing
+                    </h3>
+
+                    <p>
+                        You made this year more beautiful
+                        simply by being part of it.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <span class="card-icon">
+                        😊
+                    </span>
+
+                    <h3>
+                        You Make My World Better
+                    </h3>
+
+                    <p>
+                        Your smile is still one of my
+                        favorite things in the world.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANNIVERSARY LETTER -->
+
+            <div class="anniversary-letter">
+
+                <h2>
+                    💖 Happy First Anniversary, My Rymaa 💖
+                </h2>
+
+                <p>
+                    One year.
+                </p>
+
+                <p>
+                    It sounds like just two words, but behind
+                    them are hundreds of moments, conversations,
+                    laughs, memories and feelings that I will
+                    always carry in my heart.
+                </p>
+
+                <p>
+                    One year ago, I didn't know how important
+                    you would become to me.
+                </p>
+
+                <p>
+                    Today, I know that meeting you was one of
+                    the most beautiful things that happened
+                    in my life.
+                </p>
+
+                <p>
+                    Thank you for every smile, every laugh,
+                    every conversation, every little moment
+                    and every memory we created together.
+                </p>
+
+                <p>
+                    This first year will always have a special
+                    place in my heart.
+                </p>
+
+                <p>
+                    And if I could go back to the beginning,
+                    knowing everything I know today...
+                </p>
+
+                <p class="special-line">
+                    I would still choose you. ❤️
+                </p>
+
+                <p>
+                    Forever yours,
+                    <br>
+                    <strong>
+                        Amine ❤️
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <!-- LOVE BOX -->
+
+            <div class="love-box-section">
+
+                <h2>
+                    🎁 Our Anniversary Box
+                </h2>
+
+                <p>
+                    A little gift for the girl who made
+                    this year special. 🥰❤️
+                </p>
+
+                <div id="giftBox">
+                    🎁
+                </div>
+
+                <div id="giftMessage">
+                    Open your gift... 😘
+                </div>
+
+                <div id="countdown"></div>
+
+            </div>
+
+
+            <!-- MESSAGE BOX -->
+
+            <div class="message-box">
+
+                <h2>
+                    💌 A Message From You
+                </h2>
+
+                <p>
+                    Write something from your heart ❤️
+                </p>
+
+                <textarea
+                    id="rymeMessage"
+                    maxlength="1000"
+                    placeholder="Write your message here..."></textarea>
+
+                <input
+                    id="passwordInput"
+                    type="password"
+                    placeholder="Enter Love Code 😉❤️">
+
+                <button id="sendMessageBtn">
+                    💖 Send With Love
+                </button>
+
+                <p id="sendStatus"></p>
+
+            </div>
+
+
+            <!-- QUIZ -->
+
+            <button id="quizStart"
+                class="main-btn">
+
+                💕 Our Little Love Quiz
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         QUIZ
+    ========================================================== -->
+
+    <section id="quiz" class="page">
+
+        <div class="page-content">
+
+            <h1>
+                ❤️ Our Love Quiz ❤️
+            </h1>
+
+            <p class="quiz-question">
+                Who loves you the most?
+            </p>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Amine ❤️
+            </button>
+
+            <button class="quizBtn">
+                Obviously Amine 😂❤️
+            </button>
+
+            <p id="quizResult"></p>
+
+            <button id="quizNext"
+                class="main-btn">
+                Continue ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SAD PAGE
+    ========================================================== -->
+
+    <section id="sad"
+        class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                🌙
+            </h1>
+
+            <div class="typewriter">
+
+                <p>
+                    If you are here...
+
+                    <br><br>
+
+                    maybe you just need
+                    a quiet moment.
+
+                    <br><br>
+
+                    Take your time.
+
+                    <br><br>
+
+                    There is no pressure.
+                </p>
+
+            </div>
+
+            <button id="continueBtn"
+                class="main-btn">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         LETTER
+    ========================================================== -->
+
+    <section id="letter"
+        class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                💌
+            </h1>
+
+            <div class="letter">
+
+                <h2>
+                    To My Rymaa
+                </h2>
+
+                <p>
+                    My love mima 🥺,
+                </p>
+
+                <p>
+                    One year ago, I met you.
+                    I didn't know then how many memories,
+                    smiles and emotions would become part
+                    of our story.
+                </p>
+
+                <p>
+                    Looking back at this year, I am grateful
+                    for every beautiful moment we shared.
+                </p>
+
+                <p>
+                    You have become one of the most precious
+                    people in my life.
+                </p>
+
+                <p>
+                    I know that no relationship is perfect,
+                    but I believe that what makes love special
+                    is choosing each other and learning together.
+                </p>
+
+                <p>
+                    Thank you for every laugh,
+                    every conversation,
+                    every memory and every moment.
+                </p>
+
+                <p>
+                    Happy first anniversary, my love.
+                </p>
+
+                <p>
+                    Always yours,
+                    <br>
+                    Amine ❤️
+                </p>
+
+            </div>
+
+            <button id="next1"
+                class="main-btn">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         BROKEN HEART
+    ========================================================== -->
+
+    <section id="heartGame"
+        class="page darkPage">
+
+        <div class="dark-content">
+
+            <h1>
+                💔
+            </h1>
+
+            <h2>
+                Can You Fix My Heart?
+            </h2>
+
+            <p>
+                Tap the broken heart.
+            </p>
+
+            <div id="brokenHeart">
+                💔
+            </div>
+
+            <p id="heartText"></p>
+
+            <button id="next2"
+                class="main-btn">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         LESSONS
+    ========================================================== -->
+
+    <section id="lessons"
+        class="page">
+
+        <div class="page-content">
+
+            <h1>
+                Things This Year Taught Me ❤️
+            </h1>
+
+            <div class="lesson">
+                ❤️ Love needs patience.
+            </div>
+
+            <div class="lesson">
+                ❤️ Words matter.
+            </div>
+
+            <div class="lesson">
+                ❤️ Actions matter more than promises.
+            </div>
+
+            <div class="lesson">
+                ❤️ Communication makes love stronger.
+            </div>
+
+            <div class="lesson">
+                ❤️ The little moments become the biggest memories.
+            </div>
+
+            <div class="lesson">
+                ❤️ I never want to take you for granted.
+            </div>
+
+            <button id="next3"
+                class="main-btn">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         MEMORIES
+    ========================================================== -->
+
+    <section id="memories"
+        class="page">
+
+        <div class="page-content">
+
+            <h1>
+                Our Memories 📸
+            </h1>
+
+            <p class="section-subtitle">
+                One year.
+                So many memories.
+                And hopefully many more to come. ❤️
+            </p>
+
+            <div class="gallery">
+
+                <img src="photos/7.jpeg"
+                    alt="Memory 7">
+
+                <img src="photos/8.jpeg"
+                    alt="Memory 8">
+
+                <img src="photos/9.jpeg"
+                    alt="Memory 9">
+
+                <img src="photos/10.jpeg"
+                    alt="Memory 10">
+
+                <img src="photos/11.jpeg"
+                    alt="Memory 11">
+
+                <img src="photos/12.jpeg"
+                    alt="Memory 12">
+
+            </div>
+
+            <button id="next4"
+                class="main-btn">
+
+                Last Page ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FINAL
+    ========================================================== -->
+
+    <section id="final"
+        class="page darkPage">
+
+        <div class="final-content">
+
+            <div class="final-stars">
+                ✨ ❤️ ✨
+            </div>
+
+            <h1>
+                One Year.
+                <br>
+                One Story.
+                <br>
+                One You. ❤️
+            </h1>
+
+            <p>
+                I won't stop choosing you.
+            </p>
+
+            <p>
+                Not because I have to...
+            </p>
+
+            <p>
+                But because I want to.
+            </p>
+
+            <div class="finalHeart">
+                ❤️
+            </div>
+
+            <h2>
+                Happy First Anniversary,
+                Rymaa ❤️
+            </h2>
+
+            <p>
+                Here's to our first year...
+                <br>
+                and every beautiful memory still waiting for us.
+            </p>
+
+            <p class="always">
+                Always.
+                <br>
+                Forever.
+            </p>
+
+            <strong>
+                Amine ❤️
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PRIVATE FEATURE MODAL
+    ========================================================== -->
+
+    <div id="featureModal"
+        class="feature-modal">
+
+        <div class="feature-modal-box">
+
+            <button id="closeFeatureModal"
+                class="feature-close">
+                ✕
+            </button>
+
+            <div id="featureModalBody">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         LIGHTBOX
+    ========================================================== -->
+
+    <div id="lightbox">
+
+        <button id="prev">
+            ⬅
+        </button>
+
+        <img id="lightboxImg"
+            src=""
+            alt="Memory">
+
+        <button id="next">
+            ➡
+        </button>
+
+        <button id="closeLightbox">
+            ✕
+        </button>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
